@@ -41,21 +41,58 @@
         </a>
 
     </div>
-    <div class="select">
-        <a href="javascript:void(0);" class="icon" onclick="">
+    <div class="select" id="buttons">
+        <a href="javascript:void(0);" class="icon" onclick="selectbutton(1)">
             <i class="fa-solid fa-map-pin"></i>
 
         </a>
-        <a href="javascript:void(0);" class="icon" onclick="">
+        <a href="javascript:void(0);" class="icon" onclick="selectbutton(2)">
             <i class="fa-solid fa-route"></i>
 
         </a>
-        <a href="javascript:void(0);" class="icon" onclick="">
+        <a href="javascript:void(0);" class="icon" onclick="selectbutton(3)">
             <i class="fa-solid fa-sliders"></i>
 
         </a>
 
+
+
     </div>
+
+    <div class="box" id="checkboxPoi">
+        <label for="myCheck1">Checkbox:</label>
+        <input type="checkbox" id="myCheck1" onclick="">
+        <br>
+        <label for="myCheck2">Checkbox:</label>
+        <input type="checkbox" id="myCheck2" onclick="">
+        <br>
+        <label for="myCheck3">Checkbox:</label>
+        <input type="checkbox" id="myCheck3" onclick="">
+    </div>
+
+    <div class="box" id="slidecontainer">
+        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+    </div>
+
+    <div class="select" id="buttons_walking-bike-car">
+        <a href="javascript:void(0);" class="icon" onclick="">
+            <i class="fa-solid fa-person-walking"></i>
+
+        </a>
+        <a href="javascript:void(0);" class="icon" onclick="">
+
+            <i class="fa-solid fa-bicycle"></i>
+
+        </a>
+        <a href="javascript:void(0);" class="icon" onclick="">
+            <i class="fa-solid fa-car"></i>
+
+        </a>
+
+
+
+    </div>
+
 </div>
 
 <!--Map-->
