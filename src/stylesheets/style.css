@@ -3,6 +3,10 @@ body {
     height: 100vh;
 }
 
-#map{
+#map {
     height: 100%;
+    width: 100%;
+    float: right;
+    z-index: 1;
+    position: relative;
 }
