@@ -37,7 +37,7 @@
 
 .search input {
     font-size: 25px;
-    width: 400px;
+    width: 250px;
     border-style: hidden;
 }
 .search input:focus, textarea:focus, select:focus{
