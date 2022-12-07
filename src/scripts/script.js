@@ -6,12 +6,36 @@ var map = L.map('map',{
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
-var hidemenu=true;
-var menu=0;
+var hidemenu = true;
+var menu = 0;
 myFunction();
 
+var switcher = false;
+var lat1, lon1;
 
-function myFunction(){
+function createRoute(fromLat, fromLon, toLat, toLon) {
+    L.Routing.control({
+        waypoints: [
+            L.latLng(fromLat, fromLon),
+            L.latLng(toLat, toLon)
+        ],
+        serviceUrl: "https://router.project-osrm.org/route/v1",
+        routeWhileDragging: false
+    }).addTo(map);
+}
+//Utility only
+map.on('click', function(e) {
+    if(switcher === false){
+        lat1 = e.latlng.lat;
+        lon1 = e.latlng.lng;
+        switcher = true;
+    } else {
+        createRoute(lat1, lon1, e.latlng.lat, e.latlng.lng);
+        switcher = false;
+    }
+});
+
+function myFunction() {
     //alert("ey")
     var divbuttons = document.getElementById("buttons");
     var divcheckboxPoi = document.getElementById("checkboxPoi");
