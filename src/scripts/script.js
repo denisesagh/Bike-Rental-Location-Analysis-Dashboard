@@ -1,4 +1,4 @@
-var map = L.map('map', {
+var map = L.map('map',{
     center: [49.988799, 8.227393],
     zoom: 14
 });
@@ -41,15 +41,16 @@ function myFunction() {
     var divcheckboxPoi = document.getElementById("checkboxPoi");
     var divslidecontainer = document.getElementById("slidecontainer");
     var divbuttons_walking_bike_car = document.getElementById("buttons_walking-bike-car");
-    if (hidemenu == true) {
+    if (hidemenu == true){
 
 
         document.getElementById("menu").style.background = "transparent";
         divbuttons.style.display = "none";
-        menu = 0;
+        menu=0;
         showmenu();
         hidemenu = false;
-    } else {
+    }
+    else{
         document.getElementById("menu").style.background = "grey";
         divbuttons.style.display = "block";
         showmenu();
@@ -57,34 +58,34 @@ function myFunction() {
     }
 }
 
-function showmenu() {
+function showmenu(){
     document.getElementById("buttons");
     var divcheckboxPoi = document.getElementById("checkboxPoi");
     var divslidecontainer = document.getElementById("slidecontainer");
     var divbuttons_walking_bike_car = document.getElementById("buttons_walking-bike-car");
-    if (menu == 0) {
+    if (menu ==0){
         divcheckboxPoi.style.display = "none";
         divslidecontainer.style.display = "none";
         divbuttons_walking_bike_car.style.display = "none";
     }
-    if (menu == 1) {
+    if (menu == 1){
         divcheckboxPoi.style.display = "block";
         divslidecontainer.style.display = "none";
         divbuttons_walking_bike_car.style.display = "none";
     }
-    if (menu == 2) {
+    if (menu ==2){
         divcheckboxPoi.style.display = "none";
         divslidecontainer.style.display = "none";
         divbuttons_walking_bike_car.style.display = "block";
     }
-    if (menu == 3) {
+    if (menu ==3){
         divcheckboxPoi.style.display = "none";
         divslidecontainer.style.display = "block";
         divbuttons_walking_bike_car.style.display = "none";
     }
 }
 
-function selectbutton(value) {
-    menu = value;
+function selectbutton(value){
+    menu=value;
     showmenu();
 }
