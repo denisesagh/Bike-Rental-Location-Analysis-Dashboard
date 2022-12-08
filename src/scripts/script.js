@@ -85,6 +85,12 @@ function showmenu(){
     }
 }
 
+function showUserLogin(){
+
+    document.getElementById("register").style.display = "none";
+
+}
+
 function selectbutton(value){
     menu=value;
     showmenu();

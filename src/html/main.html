@@ -26,16 +26,39 @@
     <!--Eigene Scripts -->
     <script src="../scripts/script.js"></script>
 
+    <!--stylesheet for UserLogin -->
+    <link rel="stylesheet" href="../stylesheets/styleUserButton.css">
 </head>
 <body>
 <!--Map-->
 <div id='map'></div>
+
+
+<!--UserLogin-->
+
+<div class ="user_login_window">
+    <div class="user_login_form">
+
+            <form>
+                <input type="text" placeholder="Username">
+                <input type="password" placeholder="Password">
+                <input type="submit" value="Login">
+
+            </form>
+
+
+    </div>
+    <div style="text-align: right" class ="user_icon_button" id="user_icon_button">
+        <button onclick="showUserLogin()" style="border-radius: 20px" type="button"><img src="../icon/user_icon.png" alt="UserIcon" style="width: 25px; height: 25px"></button>
+    </div>
+
+</div>
+
 <!--NavBar -->
 <div class="menu" id="menu">
     <div class="search">
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i>
-
         </a>
 
         <label>
@@ -46,6 +69,7 @@
         </a>
 
     </div>
+
     <div class="select" id="buttons">
         <a href="javascript:void(0);" class="icon" onclick="selectbutton(1)">
             <i class="fa-solid fa-map-pin"></i>
@@ -93,8 +117,6 @@
             <i class="fa-solid fa-car"></i>
 
         </a>
-
-
 
     </div>
 
