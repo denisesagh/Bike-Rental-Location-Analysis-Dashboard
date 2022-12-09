@@ -6,9 +6,19 @@ var osmUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
     });
 
 // initialize the map on the "map" div with a given center and zoom
-var map = L.map('map').setView([19.04469, 72.9258], 12).addLayer(osm);
+var map = L.map('map', {
+    zoomControl: false,
+    inertia: true,
+    worldCopyJump: true
+}).setView([19.04469, 72.9258], 12).addLayer(osm);
 
 map.on('click', onMapClick);
+
+
+//ROUTING DEMONSTRATION
+var route = new BykeRoute(map, "driving", L.latLng(49.69839,  8.620872), L.latLng(49.988015,  8.228197));
+route.createRoute();
+route.showPlan();
 
 function onMapClick(e) {
 
@@ -19,13 +29,10 @@ function onMapClick(e) {
         riseOnHover: true
     }).addTo(map)
         .bindPopup(e.latlng.toString()).openPopup();
-
     // Update marker on changing it's position
     marker.on("dragend", function (ev) {
-
         var chagedPos = ev.target.getLatLng();
         this.bindPopup(chagedPos.toString()).openPopup();
-
     });
 }
 
@@ -132,5 +139,4 @@ function buttonpressedRadius(radiusmenu) {
     if (radiusmenu === 3) {
         buttonCar.classList.add("buttonselected");
     }
-
 }

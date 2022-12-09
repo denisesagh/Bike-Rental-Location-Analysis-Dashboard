@@ -12,8 +12,8 @@
             integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
             crossorigin=""></script>
 
-   <!-- resources for routing machine -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <!-- resources for routing machine -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css"/>
     <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
 
     <!--stylesheets for NavBar -->
@@ -25,6 +25,7 @@
 
     <!--Eigene Scripts -->
     <script src="../scripts/script.js"></script>
+    <script src="../scripts/routing.js"></script>
 
     <!--stylesheet for UserLogin -->
     <link rel="stylesheet" href="../stylesheets/styleUserButton.css">
@@ -36,22 +37,22 @@
 
 <!--UserLogin-->
 
-<div class ="user_login_window">
+<div class="user_login_window">
     <div class="user_login_form">
 
-            <form>
-                <input type="text" placeholder="Username">
-                <input type="password" placeholder="Password">
-                <input type="submit" value="Login">
-
-            </form>
-
+        <form>
+            <input type="text" placeholder="Username">
+            <input type="password" placeholder="Password">
+            <input type="submit" value="Login">
+        </form>
 
     </div>
-    <div style="text-align: right" class ="user_icon_button" id="user_icon_button">
-        <button onclick="showUserLogin()" style="border-radius: 20px" type="button"><img src="../icon/user_icon.png" alt="UserIcon" style="width: 25px; height: 25px"></button>
+    <div style="text-align: right" class="user_icon_button" id="user_icon_button">
+        <button onclick="showUserLogin()" style="border-radius: 20px" type="button"><img src="../icon/user_icon.png"
+                                                                                         alt="UserIcon"
+                                                                                         style="width: 25px; height: 25px">
+        </button>
     </div>
-
 </div>
 
 <!--NavBar -->
@@ -60,31 +61,24 @@
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i>
         </a>
-
         <label>
             <input type="text" placeholder="Search Bykebonk..">
         </label>
         <a href="javascript:void(0);" class="icon" id="magni" onclick="searchbutton()">
             <i class="fa-solid fa-magnifying-glass"></i>
         </a>
-
     </div>
 
     <div class="select" id="buttons">
         <a href="javascript:void(0);" class="icon" id="buttonWaypoint" onclick="selectbutton(1)">
             <i class="fa-solid fa-map-pin"></i>
-
         </a>
         <a href="javascript:void(0);" class="icon" id="buttonRoute" onclick="selectbutton(2)">
             <i class="fa-solid fa-route"></i>
-
         </a>
-        <a href="javascript:void(0);" class="icon" id="buttonRadius"onclick="selectbutton(3)">
+        <a href="javascript:void(0);" class="icon" id="buttonRadius" onclick="selectbutton(3)">
             <i class="fa-solid fa-sliders"></i>
-
         </a>
-
-
 
     </div>
 
@@ -106,24 +100,15 @@
     <div class="select" id="buttons_walking-bike-car">
         <a href="javascript:void(0);" class="icon" id="buttonWalking" onclick="radiusbuttons(1)">
             <i class="fa-solid fa-person-walking"></i>
-
         </a>
         <a href="javascript:void(0);" class="icon" id="buttonBike" onclick="radiusbuttons(2)">
-
             <i class="fa-solid fa-bicycle"></i>
-
         </a>
         <a href="javascript:void(0);" class="icon" id="buttonCar" onclick="radiusbuttons(3)">
             <i class="fa-solid fa-car"></i>
-
         </a>
-
     </div>
-
 </div>
-
-
-
 
 <script src="../scripts/script.js"></script>
 </body>
