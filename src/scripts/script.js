@@ -29,10 +29,12 @@ function onMapClick(e) {
         riseOnHover: true
     }).addTo(map)
         .bindPopup(e.latlng.toString()).openPopup();
+
     // Update marker on changing it's position
     marker.on("dragend", function (ev) {
         var chagedPos = ev.target.getLatLng();
         this.bindPopup(chagedPos.toString()).openPopup();
+
     });
 }
 
