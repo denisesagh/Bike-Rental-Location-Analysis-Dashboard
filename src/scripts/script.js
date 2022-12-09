@@ -1,4 +1,3 @@
-
 var osmUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
     osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     osm = L.tileLayer(osmUrl, {
@@ -22,7 +21,7 @@ function onMapClick(e) {
         .bindPopup(e.latlng.toString()).openPopup();
 
     // Update marker on changing it's position
-    marker.on("dragend", function(ev) {
+    marker.on("dragend", function (ev) {
 
         var chagedPos = ev.target.getLatLng();
         this.bindPopup(chagedPos.toString()).openPopup();
@@ -30,133 +29,107 @@ function onMapClick(e) {
     });
 }
 
-var hidemenu=true;
-var menu=0;
+var hidemenu = true;
+var menu = 0;
 myFunction();
 
 
-function myFunction(){
+function myFunction() {
     //alert("ey")
     var divbuttons = document.getElementById("buttons");
     var divcheckboxPoi = document.getElementById("checkboxPoi");
     var divslidecontainer = document.getElementById("slidecontainer");
     var divbuttons_walking_bike_car = document.getElementById("buttons_walking-bike-car");
-    if (hidemenu == true){
 
-
+    if (hidemenu === true) {
         document.getElementById("menu").style.background = "transparent";
         divbuttons.style.display = "none";
-        menu=0;
-        showmenu();
+        menu = 0;
+        showmenu(0);
         hidemenu = false;
-    }
-    else{
+    } else {
         document.getElementById("menu").style.background = "grey";
         divbuttons.style.display = "block";
-        showmenu();
+        //menu wird nie gesetzt?? immer nur übergeben durch html -> direkt reine übergebungsvariable machen
+        showmenu(menu);
         hidemenu = true;
         radiusbuttons(0);
         selectbutton(0);
     }
 }
 
-function showmenu(){
+function showmenu(menu) {
     document.getElementById("buttons");
     var divcheckboxPoi = document.getElementById("checkboxPoi");
     var divslidecontainer = document.getElementById("slidecontainer");
     var divbuttons_walking_bike_car = document.getElementById("buttons_walking-bike-car");
-    if (menu ==0){
-        divcheckboxPoi.style.display = "none";
-        divslidecontainer.style.display = "none";
-        divbuttons_walking_bike_car.style.display = "none";
-    }
-    if (menu == 1){
+
+    divcheckboxPoi.style.display = "none";
+    divslidecontainer.style.display = "none";
+    divbuttons_walking_bike_car.style.display = "none";
+
+    if (menu === 1) {
         divcheckboxPoi.style.display = "block";
-        divslidecontainer.style.display = "none";
-        divbuttons_walking_bike_car.style.display = "none";
     }
-    if (menu ==2){
-        divcheckboxPoi.style.display = "none";
-        divslidecontainer.style.display = "none";
+    if (menu === 2) {
         divbuttons_walking_bike_car.style.display = "block";
     }
-    if (menu ==3){
-        divcheckboxPoi.style.display = "none";
+    if (menu === 3) {
         divslidecontainer.style.display = "block";
-        divbuttons_walking_bike_car.style.display = "none";
     }
 }
 
-function showUserLogin(){
-
+function showUserLogin() {
     document.getElementById("register").style.display = "none";
-
 }
 
-function selectbutton(value){
-    menu=value;
-    showmenu();
-    buttonpressed();
+function selectbutton(value) {
+    menu = value;
+    showmenu(value);
+    buttonpressed(value);
 }
 
-function buttonpressed(){
+function buttonpressed(menu) {
     var buttonWaypoint = document.getElementById("buttonWaypoint");
     var buttonRoute = document.getElementById("buttonRoute");
-    var buttonRadius= document.getElementById("buttonRadius");
-    if (menu ==1){
+    var buttonRadius = document.getElementById("buttonRadius");
+
+    buttonWaypoint.classList.remove("buttonselected");
+    buttonRoute.classList.remove("buttonselected");
+    buttonRadius.classList.remove("buttonselected");
+
+    if (menu === 1) {
         buttonWaypoint.classList.add("buttonselected");
-        buttonRoute.classList.remove("buttonselected")
-        buttonRadius.classList.remove("buttonselected")
-
     }
-    if (menu ==2){
-        buttonWaypoint.classList.remove("buttonselected");
-        buttonRoute.classList.add("buttonselected")
-        buttonRadius.classList.remove("buttonselected")
-
+    if (menu === 2) {
+        buttonRoute.classList.add("buttonselected");
     }
-    if (menu ==3){
-        buttonWaypoint.classList.remove("buttonselected");
-        buttonRoute.classList.remove("buttonselected")
-        buttonRadius.classList.add("buttonselected")
-
-    }
-    if (menu ==0){
-        buttonWaypoint.classList.remove("buttonselected");
-        buttonRoute.classList.remove("buttonselected")
-        buttonRadius.classList.remove("buttonselected")
-
+    if (menu === 3) {
+        buttonRadius.classList.add("buttonselected");
     }
 }
-var radiusmenu=0;
-function radiusbuttons(value){
-    radiusmenu = value;
-    buttonpressedRadius();
+
+//TODO: get rid of this or add relevant functionality
+function radiusbuttons(value) {
+    buttonpressedRadius(value);
 }
 
-function buttonpressedRadius(){
+function buttonpressedRadius(radiusmenu) {
     var buttonWalking = document.getElementById("buttonWalking");
     var buttonBike = document.getElementById("buttonBike");
     var buttonCar = document.getElementById("buttonCar");
 
-    if (radiusmenu == 0){
-        buttonWalking.classList.remove("buttonselected");
-        buttonBike.classList.remove("buttonselected");
-        buttonCar.classList.remove("buttonselected");
-    }
-    if (radiusmenu == 1){
+    buttonWalking.classList.remove("buttonselected");
+    buttonBike.classList.remove("buttonselected");
+    buttonCar.classList.remove("buttonselected");
+
+    if (radiusmenu === 1) {
         buttonWalking.classList.add("buttonselected");
-        buttonBike.classList.remove("buttonselected");
-        buttonCar.classList.remove("buttonselected");
     }
-    if (radiusmenu == 2){
-        buttonWalking.classList.remove("buttonselected");
+    if (radiusmenu === 2) {
         buttonBike.classList.add("buttonselected");
-        buttonCar.classList.remove("buttonselected");
     }
-    if (radiusmenu == 3){
-        buttonWalking.classList.remove("buttonselected");
-        buttonBike.classList.remove("buttonselected");
+    if (radiusmenu === 3) {
         buttonCar.classList.add("buttonselected");
     }
 
