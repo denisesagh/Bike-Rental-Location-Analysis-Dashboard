@@ -39,20 +39,22 @@
 <div class ="user_login_window">
     <div class="user_login_form">
 
-            <form>
-                <input type="text" placeholder="Username">
-                <input type="password" placeholder="Password">
-                <input type="submit" value="Login">
+            <label>
+                <input class="user_login_input" type="text" placeholder="Username">
+                <input class="user_login_input" type="password" placeholder="Passwort">
 
-            </form>
+            </label>
+        <input style="cursor: pointer" class="user_login_input" type="submit" value="Login" onclick="selectbutton(2)">
 
 
-    </div>
-    <div style="text-align: right" class ="user_icon_button" id="user_icon_button">
-        <button onclick="showUserLogin()" style="border-radius: 20px" type="button"><img src="../icon/user_icon.png" alt="UserIcon" style="width: 25px; height: 25px"></button>
+        <button class="user_icon_button" id="user_icon_button" type="button">
+            <i style="cursor: pointer" class="fa fa-user"></i>
+        </button>
+
     </div>
 
 </div>
+
 
 <!--NavBar -->
 <div class="menu" id="menu">
