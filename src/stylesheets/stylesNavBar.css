@@ -58,7 +58,7 @@
     margin-right: -100%;
     position: relative;
     float: left;
-    z-index: 2;
+    z-index: 1;
 
     pointer-events: auto;
 
