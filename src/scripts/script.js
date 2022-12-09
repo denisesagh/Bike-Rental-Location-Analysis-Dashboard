@@ -55,6 +55,8 @@ function myFunction(){
         divbuttons.style.display = "block";
         showmenu();
         hidemenu = true;
+        radiusbuttons(0);
+        selectbutton(0);
     }
 }
 
@@ -88,4 +90,68 @@ function showmenu(){
 function selectbutton(value){
     menu=value;
     showmenu();
+    buttonpressed();
+}
+
+function buttonpressed(){
+    var buttonWaypoint = document.getElementById("buttonWaypoint");
+    var buttonRoute = document.getElementById("buttonRoute");
+    var buttonRadius= document.getElementById("buttonRadius");
+    if (menu ==1){
+        buttonWaypoint.classList.add("buttonselected");
+        buttonRoute.classList.remove("buttonselected")
+        buttonRadius.classList.remove("buttonselected")
+
+    }
+    if (menu ==2){
+        buttonWaypoint.classList.remove("buttonselected");
+        buttonRoute.classList.add("buttonselected")
+        buttonRadius.classList.remove("buttonselected")
+
+    }
+    if (menu ==3){
+        buttonWaypoint.classList.remove("buttonselected");
+        buttonRoute.classList.remove("buttonselected")
+        buttonRadius.classList.add("buttonselected")
+
+    }
+    if (menu ==0){
+        buttonWaypoint.classList.remove("buttonselected");
+        buttonRoute.classList.remove("buttonselected")
+        buttonRadius.classList.remove("buttonselected")
+
+    }
+}
+var radiusmenu=0;
+function radiusbuttons(value){
+    radiusmenu = value;
+    buttonpressedRadius();
+}
+
+function buttonpressedRadius(){
+    var buttonWalking = document.getElementById("buttonWalking");
+    var buttonBike = document.getElementById("buttonBike");
+    var buttonCar = document.getElementById("buttonCar");
+
+    if (radiusmenu == 0){
+        buttonWalking.classList.remove("buttonselected");
+        buttonBike.classList.remove("buttonselected");
+        buttonCar.classList.remove("buttonselected");
+    }
+    if (radiusmenu == 1){
+        buttonWalking.classList.add("buttonselected");
+        buttonBike.classList.remove("buttonselected");
+        buttonCar.classList.remove("buttonselected");
+    }
+    if (radiusmenu == 2){
+        buttonWalking.classList.remove("buttonselected");
+        buttonBike.classList.add("buttonselected");
+        buttonCar.classList.remove("buttonselected");
+    }
+    if (radiusmenu == 3){
+        buttonWalking.classList.remove("buttonselected");
+        buttonBike.classList.remove("buttonselected");
+        buttonCar.classList.add("buttonselected");
+    }
+
 }

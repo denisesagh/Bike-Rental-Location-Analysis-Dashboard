@@ -7,7 +7,7 @@
     border-width: 2px;
     border-style: solid;
 
-    width: 90%;
+    width: 95%;
     white-space: nowrap;
 
     margin: 5px auto;
@@ -46,21 +46,23 @@
 
 .menu{
     background-color: gray;
-    padding: 0px 10px;
+    padding: 0 10px;
     display: inline-block;
-    width: 30%;
+    width: 25%;
     align-content: center;
     border-radius: 30px;
 
 
 
 
-    margin-right: -500px;
+    margin-right: -100%;
     position: relative;
     float: left;
     z-index: 2;
 
     pointer-events: auto;
+
+
 
 
 
@@ -85,24 +87,28 @@
 
 
     white-space:nowrap;
-    width:  90%;
+    width: calc(95% + 20px);
 
-    padding: 3px 10px;
+
+
     margin: 5px auto;
+    padding: 5px 0px;
 
 }
 
 .select a:hover{
     background-color: lightgray;
-    padding: 0;
-    margin: 0;
+    border: #191919 solid 2px;
+    margin: -2px;
+    border-radius: 25px;
+    padding: 7px 0;
 
 }
 .select {
     text-align: center;
 }
 .select i{
-    min-width: 32%;
+    min-width: calc(32.666% );
 
 
 
@@ -118,7 +124,7 @@
 
 
     white-space:nowrap;
-    width: 90%;
+    width: 95%;
 
     padding: 3px 10px;
     margin: 5px auto;
@@ -153,4 +159,13 @@
     border-radius: 50%;
     background: #191919;
     cursor: pointer;
+}
+
+.buttonselected{
+    background-color: lightgray;
+    border: #191919 solid 2px;
+    margin: -2px;
+    border-radius: 25px;
+    padding: 7px 0;
+
 }
