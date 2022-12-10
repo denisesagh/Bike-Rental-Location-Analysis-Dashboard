@@ -26,6 +26,7 @@
     <!--Eigene Scripts -->
     <script src="../scripts/script.js"></script>
     <script src="../scripts/routing.js"></script>
+    <script src="../scripts/usermanager.js"></script>
 
     <!--stylesheet for UserLogin -->
     <link rel="stylesheet" href="../stylesheets/styleUserButton.css">
@@ -34,24 +35,20 @@
 <!--Map-->
 <div id='map'></div>
 
-
 <!--UserLogin-->
-
 <div class="user_login_window">
     <div class="user_login_form">
-
-        <form>
-            <input type="text" placeholder="Username">
-            <input type="password" placeholder="Password">
-            <input type="submit" value="Login">
-        </form>
-
-    </div>
-    <div style="text-align: right" class="user_icon_button" id="user_icon_button">
-        <button onclick="showUserLogin()" style="border-radius: 20px" type="button"><img src="../icon/user_icon.png"
-                                                                                         alt="UserIcon"
-                                                                                         style="width: 25px; height: 25px">
+        <label>
+            <input id="user_login_username" class="user_login_input" type="text" placeholder="Username">
+            <input class="user_login_input" type="password" placeholder="Passwort">
+            <input style="cursor: pointer" class="user_login_submit" id="user_login_submit" type="submit" value="Login"
+                   onclick="ShowUserLoggedStatus()">
+        </label>
+        <button class="user_icon_button" id="user_icon_button" type="button" onclick="displayLoggedUser()">
+            <i style="cursor: pointer" class="fa fa-user"></i>
         </button>
+        <input style="cursor: pointer; position: center; margin-bottom: 10px" class="user_login_submit"
+               id="user_login_logout" type="submit" value="Logout" onclick="refreshPage()">
     </div>
 </div>
 
