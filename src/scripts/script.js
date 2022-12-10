@@ -5,6 +5,7 @@ var osmUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
         attribution: osmAttrib
     });
 
+document.querySelector("#user_login_logout").style.display = "none"
 // initialize the map on the "map" div with a given center and zoom
 var map = L.map('map', {
     zoomControl: false,
