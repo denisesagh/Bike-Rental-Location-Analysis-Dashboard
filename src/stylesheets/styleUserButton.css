@@ -9,6 +9,7 @@
     width: 500px;
     place-items: center;
 
+
 }
 .user_login_form{
     background-color: white;
@@ -61,3 +62,15 @@
     place-items: center;
 }
 
+#user_login_submit{
+    background-color: #191919;
+    border-radius: 90px;
+    border-color: #191919;
+    border-width: 2px;
+    border-style: solid;
+    white-space:nowrap;
+    color: white;
+    padding: 5px 10px;
+    margin: 2px auto;
+    place-items: center;
+}
