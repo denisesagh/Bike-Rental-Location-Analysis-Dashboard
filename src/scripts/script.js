@@ -41,7 +41,7 @@ function myFunction(){
     var divcheckboxPoi = document.getElementById("checkboxPoi");
     var divslidecontainer = document.getElementById("slidecontainer");
     var divbuttons_walking_bike_car = document.getElementById("buttons_walking-bike-car");
-    if (hidemenu == true){
+    if (hidemenu === true){
 
 
         document.getElementById("menu").style.background = "transparent";
@@ -63,33 +63,57 @@ function showmenu(){
     var divcheckboxPoi = document.getElementById("checkboxPoi");
     var divslidecontainer = document.getElementById("slidecontainer");
     var divbuttons_walking_bike_car = document.getElementById("buttons_walking-bike-car");
-    if (menu ==0){
+    if (menu ===0){
         divcheckboxPoi.style.display = "none";
         divslidecontainer.style.display = "none";
         divbuttons_walking_bike_car.style.display = "none";
     }
-    if (menu == 1){
+    if (menu === 1){
         divcheckboxPoi.style.display = "block";
         divslidecontainer.style.display = "none";
         divbuttons_walking_bike_car.style.display = "none";
     }
-    if (menu ==2){
+    if (menu ===2){
         divcheckboxPoi.style.display = "none";
         divslidecontainer.style.display = "none";
         divbuttons_walking_bike_car.style.display = "block";
     }
-    if (menu ==3){
+    if (menu ===3){
         divcheckboxPoi.style.display = "none";
         divslidecontainer.style.display = "block";
         divbuttons_walking_bike_car.style.display = "none";
     }
 }
 
-function showUserLogin(){
+document.querySelector("#user_login_logout").style.display = "none";
+function isLogged(){
+    //LOGIN CODE
+    return true;
+}
 
-    document.getElementById("register").style.display = "none";
+function ShowUserLoggedStatus(){
+    if (isLogged()){
+        console.log("User is logged");
+        document.querySelector("#user_login_logout").style.display = "block";
+        let divLoginInput = document.querySelector("body > div.user_login_window > div > label");
+        let divLoginInputSubmitter = document.querySelector("#user_login_submit")
+        let divLoginWindow = document.querySelector("body > div.user_login_window")
+        divLoginWindow.setAttribute("style", "width: 90px");
+        divLoginInput.style.display = "none";
+        divLoginInputSubmitter.style.display = "none";
+
+    }
 
 }
+
+function displayLoggedUser(){
+    alert("Eingelogged als "); //ADD USERNAME
+}
+
+function refreshPage(){
+    window.location.reload();
+}
+
 
 function selectbutton(value){
     menu=value;
