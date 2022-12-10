@@ -1,4 +1,4 @@
-document.querySelector("#user_login_logout").style.display = "none";
+
 function isLogged(){
     //LOGIN CODE
     return true;
