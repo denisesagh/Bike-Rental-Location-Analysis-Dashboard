@@ -1,4 +1,3 @@
-
 function isLogged(){
     //LOGIN CODE
     return true;

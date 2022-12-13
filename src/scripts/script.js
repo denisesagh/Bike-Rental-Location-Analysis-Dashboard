@@ -5,7 +5,7 @@ var osmUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
         attribution: osmAttrib
     });
 
-document.querySelector("#user_login_logout").style.display = "none"
+//document.querySelector("#user_login_logout").style.display = "none"
 // initialize the map on the "map" div with a given center and zoom
 var map = L.map('map', {
     zoomControl: false,
@@ -19,8 +19,9 @@ map.on('click', onMapClick);
 //ROUTING DEMONSTRATION
 var route = new BykeRoute(map, "driving", L.latLng(49.69839,  8.620872), L.latLng(49.988015,  8.228197));
 route.createRoute();
-route.showPlan();
 
+var iso = new BykeChrone(map, "driving-car", L.latLng(49.988015,  8.228197), 6000);
+iso.createIsochrone();
 function onMapClick(e) {
 
     var marker = L.marker(e.latlng, {
