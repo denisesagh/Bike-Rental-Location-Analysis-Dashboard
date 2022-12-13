@@ -21,6 +21,7 @@ class BykeRoute {
             routeWhileDragging: false,
             router: new L.Routing.OSRMv1({serviceUrl: OSRM_URL, profile: this.routeType}),
             show: false,
+            collapsible: false
         }).addTo(this.map);
     }
 

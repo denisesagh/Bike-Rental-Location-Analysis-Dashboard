@@ -19,8 +19,8 @@ map.on('click', onMapClick);
 //ROUTING DEMONSTRATION
 var route = new BykeRoute(map, "driving", L.latLng(49.69839,  8.620872), L.latLng(49.988015,  8.228197));
 route.createRoute();
-route.showPlan();
 
+var iso = new BykeChrone(map, "driving-car", L.latLng(49.69839,  8.620872), 300);
 function onMapClick(e) {
 
     var marker = L.marker(e.latlng, {
