@@ -2,9 +2,9 @@ const ISO_URL = "";
 const API_KEY = "5b3ce3597851110001cf62481e9ad655bdbd469ca42072bdf27481e1";
 //https://openrouteservice.org/dev/#/home
 
-String.prototype.format = function() {
+String.prototype.format = function () {
     var args = arguments;
-    return this.replace(/{(\d+)}/g, function(match, number) {
+    return this.replace(/{(\d+)}/g, function (match, number) {
         return typeof args[number] != 'undefined'
             ? args[number]
             : match;
@@ -28,19 +28,23 @@ class BykeChrone {
             if (this.readyState === 4) {
                 console.log('Status:', this.status);
                 console.log('Headers:', this.getAllResponseHeaders());
-                console.log('Body:', this.responseText);
-                console.log(JSON.parse(this.responseText));
-                createIso(this.map, this.responseText);
+                console.log('Body:', JSON.parse(this.responseText));
+
+                var data = JSON.parse(this.responseText);
+
+                L.geoJSON(data, {style: function (){
+                    //styles hier oder freilassen für default
+                    },}).addTo(map);
             }
-        };
-        this.query = '{"locations":[[{0},{1}]],"range":[{2},{3}]}'.format(source.lat, source.lng, (radius * 0.66), radius);
+        }
+        this.query = '{"locations":[[{0},{1}]],"range":[{2},{3}]}'.format(source.lng, source.lat, (radius * 0.66), radius);
         console.log(this.query);
         this.request.send(this.query);
         console.log('Body:', this.request.responseText);
     }
 }
 
-function createIso(map, data){
+function createIso(map, data) {
     var json = JSON.parse(data);
     L.geoJSON(json).addTo(map);
     alert("done shit");
