@@ -20,7 +20,8 @@ map.on('click', onMapClick);
 var route = new BykeRoute(map, "driving", L.latLng(49.69839,  8.620872), L.latLng(49.988015,  8.228197));
 route.createRoute();
 
-var iso = new BykeChrone(map, "driving-car", L.latLng(49.988015,  8.228197), 600);
+var iso = new BykeChrone(map, "driving-car", L.latLng(49.988015,  8.228197), 6000);
+iso.createIsochrone();
 function onMapClick(e) {
 
     var marker = L.marker(e.latlng, {
