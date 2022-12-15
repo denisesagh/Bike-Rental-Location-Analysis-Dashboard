@@ -13,15 +13,16 @@ var map = L.map('map', {
     worldCopyJump: true
 }).setView([19.04469, 72.9258], 12).addLayer(osm);
 
-map.on('click', onMapClick);
+//map.on('click', onMapClick);
 
 
 //ROUTING DEMONSTRATION
 var route = new BykeRoute(map, "driving", L.latLng(49.69839,  8.620872), L.latLng(49.988015,  8.228197));
 route.createRoute();
 
-var iso = new BykeChrone(map, "driving-car", L.latLng(49.988015,  8.228197), 6000);
+var iso = new BykeChrone(map, "foot-walking", L.latLng(49.988015,  8.228197), 2000);
 iso.createIsochrone();
+/*
 function onMapClick(e) {
 
     var marker = L.marker(e.latlng, {
@@ -37,6 +38,8 @@ function onMapClick(e) {
         this.bindPopup(chagedPos.toString()).openPopup();
     });
 }
+*/
+
 
 var hidemenu = true;
 var menu = 0;

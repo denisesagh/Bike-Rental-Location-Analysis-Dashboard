@@ -1,6 +1,3 @@
-const API_KEY = "5b3ce3597851110001cf62481e9ad655bdbd469ca42072bdf27481e1";
-//https://openrouteservice.org/dev/#/home
-
 String.prototype.format = function () {
     var args = arguments;
     return this.replace(/{(\d+)}/g, function (match, number) {
@@ -57,7 +54,7 @@ L.Control.Isochrone = L.Control.extend({
         if (window.XMLHttpRequest) {
 
             var requestBody = '{"locations":[[' + context.options.poi.lng + ',' + context.options.poi.lat + ']],"attributes":[' + this.options.attributes + '],"smoothing":' + this.options.smoothing + ',';
-            requestBody += '"range_type":"' + this.options.rangeType + '","area_units":"' + this.options.rangeControlDistanceUnits + '","range":[' + this.options.rangeValue + '],"interval":'+this.options.rangeInterval+'}';
+            requestBody += '"range_type":"' + this.options.rangeType + '","area_units":"' + this.options.rangeControlDistanceUnits + '","range":[' + this.options.rangeValue + '],"interval":' + this.options.rangeInterval + '}';
 
             var request = new XMLHttpRequest();
 
@@ -109,10 +106,14 @@ L.Control.Isochrone = L.Control.extend({
 
                             if (context.options.markerFn != null) {
                                 originMarker = context.options.markerFn(context.options.poi, context.options.travelMode, context.options.rangeType);
-                            }
-                            else {
+                            } else {
                                 // Create a default marker for the origin of the isolines group
-                                originMarker = L.circleMarker(context.options.poi, { radius: 3, weight: 0, fillColor: '#0073d4', fillOpacity: 1 });
+                                originMarker = L.circleMarker(context.options.poi, {
+                                    radius: 3,
+                                    weight: 0,
+                                    fillColor: '#0073d4',
+                                    fillOpacity: 1
+                                });
                             }
 
                             // Add the marker to the isolines GeoJSON
@@ -134,34 +135,4 @@ L.control.isochrone = function (options) {
     return new L.Control.Isochrone(options);
 };
 
-class BykeChrone {
 
-    isochrone
-    constructor(map, type, poi, range) {
-        this.map = map;
-        this.type = type;
-        this.poi = poi;
-        this.range = range;
-    }
-
-    createIsochrone(){
-        this.isochrone = L.control.isochrone({
-            apiKey: API_KEY,
-            travelMode: this.type,
-            poi: this.poi,
-            smoothing: 0.5,
-            rangeValue: this.range,
-            rangeInterval: this.range / 5,
-        });
-
-        this.isochrone.callApi();
-        this.isochrone.addTo(this.map);
-    }
-
-    removeIsochrone(){
-        if(this.isochrone != null){
-            this.map.removeControl(this.isochrone);
-            this.isochrone = null;
-        }
-    }
-}
