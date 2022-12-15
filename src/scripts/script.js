@@ -142,3 +142,62 @@ function buttonpressedRadius(radiusmenu) {
         buttonCar.classList.add("buttonselected");
     }
 }
+var search = false;
+function searchround(){
+    var search_recomendations = document.getElementById("search_recomendations");
+    if (search == true){
+        search_recomendations.style.display = "block";
+
+        document.querySelector(".search").setAttribute("id","searchbarround")
+
+    }
+    if(search==false){
+
+        search_recomendations.style.display = "none";
+        console.log();
+        document.querySelector(".search").removeAttribute("id")
+
+
+    }
+}
+
+var source = document.getElementById('source21');
+
+
+var searchinput = "";
+var eywa = function(e) {
+    console.log(searchinput)
+    searchinput = document.getElementById('source21').value;
+    if(searchinput==""){
+        search = false
+        searchround();
+
+    }
+    else {
+        search=true;
+
+        hidemenu=true;
+        myFunction();
+        searchround();
+    }
+
+}
+
+source.addEventListener('input', eywa);
+//source.addEventListener('propertychange', eywa); // for IE8
+// Firefox/Edge18-/IE9+ don’t fire on <select><option>
+// source.addEventListener('change', inputHandler);
+
+searchround();
+
+function burgermenu(){
+    if (search){
+        search=false;
+        document.getElementById('source21').value="";
+        searchround();
+
+
+    }
+
+    myFunction();
+}
