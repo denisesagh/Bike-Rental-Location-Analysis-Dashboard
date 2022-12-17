@@ -17,10 +17,10 @@ var map = L.map('map', {
 
 
 //ROUTING DEMONSTRATION
-var route = new BykeRoute(map, "driving", L.latLng(49.69839,  8.620872), L.latLng(49.988015,  8.228197));
+var route = new BykeRoute(map, "driving", L.latLng(49.69839, 8.620872), L.latLng(49.988015, 8.228197));
 route.createRoute();
 
-var iso = new BykeChrone(map, "foot-walking", L.latLng(49.988015,  8.228197), 2000);
+var iso = new BykeChrone(map, "foot-walking", L.latLng(49.988015, 8.228197), 2000);
 iso.createIsochrone();
 /*
 function onMapClick(e) {
@@ -145,22 +145,19 @@ function buttonpressedRadius(radiusmenu) {
         buttonCar.classList.add("buttonselected");
     }
 }
+
 var search = false;
-function searchround(){
+
+function searchround() {
     var search_recomendations = document.getElementById("search_recomendations");
-    if (search == true){
+    if (search === true) {
         search_recomendations.style.display = "block";
-
-        document.querySelector(".search").setAttribute("id","searchbarround")
-
+        document.querySelector(".search").setAttribute("id", "searchbarround");
     }
-    if(search==false){
-
+    if (search === false) {
         search_recomendations.style.display = "none";
         console.log();
         document.querySelector(".search").removeAttribute("id")
-
-
     }
 }
 
@@ -168,35 +165,50 @@ var source = document.getElementById('source21');
 
 
 var searchinput = "";
-var eywa = function(e) {
-    console.log(searchinput)
+var onSearchInput = function (e) {
+    //console.log(searchinput)
     searchinput = document.getElementById('source21').value;
-    if(searchinput==""){
+    if (searchinput === "") {
         search = false
         searchround();
-
-    }
-    else {
-        search=true;
-
-        hidemenu=true;
+    } else {
+        $.ajax({
+            url: "../scripts/poicollector.php",
+            type: "post",
+            dataType: 'json',
+            data: {
+                query: "SELECT * FROM poi WHERE NAME LIKE '%" + searchinput + "%' LIMIT 5"
+            },
+            success: function (json) {
+                var searchResultBuilder = "";
+                for (let i = 0; i < json.length; i++) {
+                    searchResultBuilder += "<p>" + json[i].name + "</p>";
+                }
+                document.getElementById("search_recomendations").innerHTML = searchResultBuilder;
+            },
+            error: function (thrownError) {
+                console.log(thrownError.responseText);
+            }
+        });
+        search = true;
+        hidemenu = true;
         myFunction();
         searchround();
     }
 
 }
 
-source.addEventListener('input', eywa);
-//source.addEventListener('propertychange', eywa); // for IE8
+source.addEventListener('input', onSearchInput);
+//source.addEventListener('propertychange', onSearchInput); // for IE8
 // Firefox/Edge18-/IE9+ don’t fire on <select><option>
 // source.addEventListener('change', inputHandler);
 
 searchround();
 
-function burgermenu(){
-    if (search){
-        search=false;
-        document.getElementById('source21').value="";
+function burgermenu() {
+    if (search) {
+        search = false;
+        document.getElementById('source21').value = "";
         searchround();
 
 
