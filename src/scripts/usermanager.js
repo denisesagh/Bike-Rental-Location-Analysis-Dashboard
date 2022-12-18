@@ -1,5 +1,7 @@
 var username;
 var loginStatus;
+var current_user_id;
+document.querySelector("#user_login_logout").style.display = "none";
 
 async function sha256(message) {
     // encode as UTF-8
@@ -42,7 +44,9 @@ async function isLogged() {
                 console.log(xhr.status);
                 console.log(thrownError);
                 alert("Username oder Passwort falsch");
-                refreshPage();
+                document.querySelector("body > div.user_login_window > div > label > input:nth-child(2)").value = "";
+
+                //refreshPage();
             }
         });
 
@@ -54,6 +58,7 @@ async function isLogged() {
 function ShowUserLoggedStatus(user_id, loginStatus) {
     if (loginStatus === "logged") {
         console.log("User with id " + user_id + " is logged"); //USER ID!!!!!!!!!
+        current_user_id = user_id;
         document.querySelector("#user_login_logout").style.display = "block";
         let divLoginInput = document.querySelector("body > div.user_login_window > div > label");
         let divLoginInputSubmitter = document.querySelector("#user_login_submit")
