@@ -1,18 +1,10 @@
 map.on('moveend', function (){
-    //placeMarkersInBounds();
+
     var Box = map.getBounds();
-    //console.log(Box.toBBoxString());
-    let str = Box.toBBoxString();
-    let result = str.split(/[,]/);
-    let longStart = result[1];
-    let latStart = result[0];
-    let longEnd = result[3];
-    let latEnd = result[2];
+    let result = Box.toBBoxString().split(/[,]/);
 
-    console.log(longStart, latStart, longEnd, latEnd);
-    ajaxloadData(latStart, latEnd, longStart, longEnd);
+    ajaxloadData(result[0], result[2],  result[1], result[3]);
 });
-
 
 
 function ajaxloadData(latStart, latEnd, longStart, longEnd){
@@ -29,7 +21,6 @@ function ajaxloadData(latStart, latEnd, longStart, longEnd){
         console.log("Failed to load POIS!");
     }
 }
-
 function ajaxLoadMHSError(){
     console.log("didnt work");
 }
@@ -48,22 +39,11 @@ function placeMarkersInBounds(myData) {
 
     myData.forEach(element => {
 
-        if(element.Type === "POI"){
             marker = new L.circleMarker([element.long, element.lat], {
-                color: '#c9ff33',
+                color: setMarker(element.Type),
                 renderer: myRenderer
             })
                 .bindPopup("<b>Name: </b>" + element.POI_Name + "<br><b>Kategorie: </b>" + element.kategorie);
-        }else{
-            marker = new L.circleMarker([element.long, element.lat], {
-                color: '#3388ff',
-                renderer: myRenderer
-            })
-                .bindPopup("<b>Name: </b>" + element.POI_Name + "<br><b>Kategorie: </b>" + element.kategorie);
-        }
-
-
-        //marker.addTo(markerLayer);
 
         if(markerCounter <= 1000){
             marker.addTo(markerLayer);
@@ -72,10 +52,17 @@ function placeMarkersInBounds(myData) {
         markerCounter += 1;
     });
 
-    try {
         map.addLayer(markerLayer);
-    }catch (error){
-        console.log("MarkerLayer was empty!");
-    }
+}
 
+function setMarker(type){
+    let color;
+    switch (type){
+        case 'POI':
+            return color = '#f833ff';
+        case 'Fahrradstation':
+            return color = '#3388ff';
+        default:
+            break;
+    }
 }
