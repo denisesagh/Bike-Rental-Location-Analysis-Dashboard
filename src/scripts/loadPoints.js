@@ -36,19 +36,9 @@ function ajaxLoadMHSError(){
 
 
 var markerLayer = null;
+var myRenderer = L.canvas({padding: 0.5});
 function placeMarkersInBounds(myData) {
     let markerCounter = 0;
-
-    var greenIcon = new L.Icon({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-        iconSize: [25, 41],
-    });
-
-    var redIcon = new L.Icon({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-        iconSize: [25, 41],
-    });
-
 
     if(markerLayer == null){
         markerLayer = L.layerGroup();
@@ -59,26 +49,27 @@ function placeMarkersInBounds(myData) {
     myData.forEach(element => {
 
         if(element.Type === "POI"){
-            marker = new L.marker([element.long, element.lat], {
-                icon: redIcon,
+            marker = new L.circleMarker([element.long, element.lat], {
+                color: '#c9ff33',
+                renderer: myRenderer
             })
                 .bindPopup("<b>Name: </b>" + element.POI_Name + "<br><b>Kategorie: </b>" + element.kategorie);
         }else{
-            marker = new L.marker([element.long, element.lat], {
-                icon: greenIcon,
+            marker = new L.circleMarker([element.long, element.lat], {
+                color: '#3388ff',
+                renderer: myRenderer
             })
                 .bindPopup("<b>Name: </b>" + element.POI_Name + "<br><b>Kategorie: </b>" + element.kategorie);
         }
 
 
-        marker.addTo(markerLayer);
-        /*
-        if(markerCounter <= 300){
+        //marker.addTo(markerLayer);
+
+        if(markerCounter <= 1000){
             marker.addTo(markerLayer);
         }
-        */
 
-        //markerCounter += 1;
+        markerCounter += 1;
     });
 
     try {
