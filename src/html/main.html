@@ -26,6 +26,8 @@
 
     <!--stylesheet for UserLogin -->
     <link rel="stylesheet" href="../stylesheets/styleUserButton.css">
+    <!--stylesheet for POI-Adder -->
+    <link rel="stylesheet" href="../stylesheets/stylePOIAdder.css">
 </head>
 <body>
 <!--Map-->
@@ -110,6 +112,28 @@
         <p>Julius Neufeld</p>
         <p>ashwaganda</p>
     </div>
+
+</div>
+
+<!--POIAdder -->
+<div class="poiAdderDIV" id = "poi_adder_div">
+    <label>
+        <input class="poiAdderButton" id = "poiName" type="text" placeholder="POI-Name">
+        <input class="poiAdderButton" id = "poiLong" type="text" placeholder="Long">
+        <input class="poiAdderButton" id = "poiLat" type="text" placeholder="Lat">
+        <input class="poiAdderButton" id = "poiKat" type="text" placeholder="Kategorie">
+        <input style="cursor: pointer" class="poiAdderButton" id="poi_name_input" type="submit" value="Hinzufügen"
+               onclick="createPOI()">
+    </label>
+    <div class="poiAdderButton" id ="poi_adder_button">
+
+        <a href="javascript:void(0);" class="icon" id="poiAdderButton" style="text-decoration: none; color: black" onclick="selectbutton(3)">
+            <i class="fa" style="font-size:24px" aria-hidden="true">+</i>
+            <i class="fa-solid fa-map-pin " style="font-size:24px"></i>
+        </a>
+
+    </div>
+
 </div>
 
 <!--LeafletMap-->
@@ -129,6 +153,7 @@
 <script src="../scripts/isochrone.js"></script>
 <script src="../scripts/script.js"></script>
 <script src="../scripts/usermanager.js"></script>
+<script src="../scripts/poimaker.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script src="../scripts/loadPoints.js"></script>
