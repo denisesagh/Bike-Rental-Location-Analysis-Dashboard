@@ -22,24 +22,6 @@ route.createRoute();
 
 var iso = new BykeChrone(map, "foot-walking", L.latLng(49.988015, 8.228197), 2000);
 iso.createIsochrone();
-/*
-function onMapClick(e) {
-
-    var marker = L.marker(e.latlng, {
-        draggable: true,
-        title: "Resource location",
-        alt: "Resource Location",
-        riseOnHover: true
-    }).addTo(map)
-        .bindPopup(e.latlng.toString()).openPopup();
-    // Update marker on changing it's position
-    marker.on("dragend", function (ev) {
-        var chagedPos = ev.target.getLatLng();
-        this.bindPopup(chagedPos.toString()).openPopup();
-    });
-}
-*/
-
 
 var hidemenu = true;
 var menu = 0;
@@ -172,6 +154,7 @@ var onSearchInput = function (e) {
         search = false
         searchround();
     } else {
+        //TODO: SQL in PHP auslegen, sicherheitsgefahr KRITISCH!
         $.ajax({
             url: "../scripts/poicollector.php",
             type: "post",
