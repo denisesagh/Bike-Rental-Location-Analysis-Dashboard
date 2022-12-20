@@ -22,6 +22,7 @@ function createPOI(){
     let poiLong = document.querySelector("#poiLong").value;
     let poiLat = document.querySelector("#poiLat").value;
     let poiKat = document.querySelector("#poiKat").value;
+    console.log(poiName + " " + poiLong + " " + poiLat + " " + poiKat);
     if (loginStatus === "logged") {
         try {
 
