@@ -105,7 +105,7 @@ function ShowUserLoggedStatus(user_id, loginStatus) {
         divLoginWindow.setAttribute("style", "width: 90px");
         divLoginInput.style.display = "none";
         divLoginInputSubmitter.style.display = "none";
-        loadPersonalPOIs();
+        //loadPersonalPOIs();
     }
 }
 var loginField = "shown";
