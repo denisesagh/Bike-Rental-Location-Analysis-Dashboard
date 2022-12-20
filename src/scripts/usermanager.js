@@ -1,7 +1,7 @@
 var username;
 var loginStatus;
 var current_user_id;
-document.querySelector("#user_login_logout").style.display = "none";
+//document.querySelector("#user_login_logout").style.display = "none";
 
 async function sha256(message) {
     // encode as UTF-8
