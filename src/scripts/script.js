@@ -55,12 +55,17 @@ function myFunction() {
 function showmenu(menu) {
     document.getElementById("buttons");
     var divcheckboxPoi = document.getElementById("checkboxPoi");
-    var divslidecontainer = document.getElementById("slidecontainer");
+    //var divslidecontainer = document.getElementById("slidecontainer");
     var divbuttons_walking_bike_car = document.getElementById("buttons_walking-bike-car");
 
     divcheckboxPoi.style.display = "none";
-    divslidecontainer.style.display = "none";
+    //divslidecontainer.style.display = "none";
     divbuttons_walking_bike_car.style.display = "none";
+
+    var sitedrei = document.getElementsByClassName("drei"); //divsToHide is an array
+    for(var i = 0; i < sitedrei.length; i++){
+        sitedrei[i].style.display = "none"; // depending on what you're doing
+    }
 
     if (menu === 1) {
         divcheckboxPoi.style.display = "block";
@@ -69,7 +74,9 @@ function showmenu(menu) {
         divbuttons_walking_bike_car.style.display = "block";
     }
     if (menu === 3) {
-        divslidecontainer.style.display = "block";
+        for(var i = 0; i < sitedrei.length; i++){
+            sitedrei[i].style.display = "block"; // depending on what you're doing
+        }
     }
 }
 
@@ -81,6 +88,8 @@ function selectbutton(value) {
     menu = value;
     showmenu(value);
     buttonpressed(value);
+    showaddpoi=false;
+    showhideaddpoi();
 }
 
 function buttonpressed(menu) {
@@ -199,3 +208,46 @@ function burgermenu() {
 
     myFunction();
 }
+var showaddpoi=false;
+function showhideaddpoi(){
+
+    if (showaddpoi){
+        document.getElementById("addpoi").style.display="block"
+    }
+    else{
+        document.getElementById("addpoi").style.display="none"
+    }
+
+}
+function buttonaddpoi(){
+    if(showaddpoi){
+        showaddpoi=false;
+    }
+    else {
+        showaddpoi=true;
+    }
+    showhideaddpoi();
+}
+showhideaddpoi();
+
+
+function sliderbuttons(radiusmenu) {
+    var radiusWalking = document.getElementById("buttonradiusWalking");
+    var radiusBike = document.getElementById("buttonradiusBike");
+    var radiusCar = document.getElementById("buttonradiusCar");
+
+    radiusWalking.classList.remove("buttonselected");
+    radiusBike.classList.remove("buttonselected");
+    radiusCar.classList.remove("buttonselected");
+
+    if (radiusmenu === 1) {
+        radiusWalking.classList.add("buttonselected");
+    }
+    if (radiusmenu === 2) {
+        radiusBike.classList.add("buttonselected");
+    }
+    if (radiusmenu === 3) {
+        radiusCar.classList.add("buttonselected");
+    }
+}
+

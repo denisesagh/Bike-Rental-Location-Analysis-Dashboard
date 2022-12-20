@@ -80,17 +80,73 @@
     </div>
 
     <div class="box" id="checkboxPoi">
-        <label for="myCheck1">Checkbox:</label>
+        <input type="checkbox" class="checkboxcheck" id="myCheck0" onclick="">
+        <label for="myCheck1" class="textcheck"><i class="fa-solid fa-bicycle iconcheck"></i> Fahrradstationen</label><br>
+
         <input type="checkbox" id="myCheck1" onclick="">
+        <label for="myCheck1"><i class="fa-solid fa-utensils iconcheck"></i> Gastronomie</label>
+
         <br>
-        <label for="myCheck2">Checkbox:</label>
         <input type="checkbox" id="myCheck2" onclick="">
+        <label for="myCheck2"><i class="fa-solid fa-building iconcheck" ></i> Öffentlich</label>
+
         <br>
-        <label for="myCheck3">Checkbox:</label>
         <input type="checkbox" id="myCheck3" onclick="">
+        <label for="myCheck3"><i class="fa-light fa-futbol iconcheck"></i> Freizeit</label><br>
+
+        <input type="checkbox" id="myCheck4" onclick="">
+        <label for="myCheck3"><i class="fa-solid fa-book"></i> Bildung</label><br>
+
+        <input type="checkbox" id="myCheck5" onclick="">
+        <label for="myCheck3"><i class="fa-solid fa-carrot"></i> Lebensmittel</label><br>
+
+        <input type="checkbox" id="myCheck6" onclick="">
+        <label for="myCheck3"><i class="fa-solid fa-bell-concierge"></i> Dienstleistungen</label><br>
+
+        <input type="checkbox" id="myCheck7" onclick="">
+        <label for="myCheck3"><i class="fa-solid fa-cart-shopping"></i> Shopping</label><br>
+
+        <input type="checkbox" id="myCheck8" onclick="">
+        <label for="myCheck3"><i class="fa-solid fa-minus"></i> Sonstige</label>
+
+
+        <div class="buttonaddpoi">
+            <a href="javascript:void(0);" onclick="buttonaddpoi()"><i class="fa-solid fa-plus"></i> Add POI</a>
+
     </div>
 
-    <div class="box" id="slidecontainer">
+    </div>
+    <div class="Input poi box" id="addpoi">
+        <form id="frm" action="javascript:void(0)">
+            <table>
+                <tr>
+                    <th>Name:</th>
+                    <th><input type="text" name="name"></th>
+
+                </tr>
+                <tr>
+                    <th> Long:</th>
+                    <th><input type="text" name="long"></th>
+                </tr>
+                <tr>
+                    <th>Lat:</th>
+                    <th><input type="text" name="lat"></th>
+                </tr>
+
+            </table>
+            <table>
+                <tr>
+                    <th><input type="button" onclick="" value="Submit"></th>
+                </tr>
+            </table>
+
+
+
+
+        </form>
+    </div>
+
+    <div class="box drei" id="slidecontainer">
         <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
     </div>
 
@@ -102,6 +158,18 @@
             <i class="fa-solid fa-bicycle"></i>
         </a>
         <a href="javascript:void(0);" class="icon" id="buttonCar" onclick="radiusbuttons(3)">
+            <i class="fa-solid fa-car"></i>
+        </a>
+    </div>
+
+    <div class="select drei" id="buttons_radius">
+        <a href="javascript:void(0);" class="icon" id="buttonradiusWalking" onclick="sliderbuttons(1)">
+            <i class="fa-solid fa-person-walking"></i>
+        </a>
+        <a href="javascript:void(0);" class="icon" id="buttonradiusBike" onclick="sliderbuttons(2)">
+            <i class="fa-solid fa-bicycle"></i>
+        </a>
+        <a href="javascript:void(0);" class="icon" id="buttonradiusCar" onclick="sliderbuttons(3)">
             <i class="fa-solid fa-car"></i>
         </a>
     </div>

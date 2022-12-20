@@ -52,6 +52,7 @@
     align-content: center;
     border-radius: 30px;
     margin-right: -100%;
+
     position: relative;
     float: left;
     z-index: 1;
@@ -174,4 +175,47 @@
 #searchbarround{
     border-radius: 25px 25px 0 0;
     padding-top: 5px;
+}
+
+#checkboxPoi{
+    font-family: Helvetica;
+    font-size: 20px;}
+
+
+
+
+
+#addpoi table {
+    font-family: Helvetica;
+    margin: 0 auto; /* or margin: 0 auto 0 auto */
+
+}
+
+#addpoi input {
+
+    margin: 0px auto; /* or margin: 0 auto 0 auto */
+}
+
+
+
+.buttonaddpoi{
+    background-color: lightgrey;
+    border: 2px solid #191919;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 25px;
+    color: gray;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+
+}
+
+.buttonaddpoi a{
+    display: block;
+    color: gray;
+    padding: 0 20px;
+    text-decoration: none;
+
 }
