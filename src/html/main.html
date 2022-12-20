@@ -120,23 +120,23 @@
         <form id="frm" action="javascript:void(0)">
             <table>
                 <tr>
-                    <th>Name:</th>
-                    <th><input type="text" name="name"></th>
+                    <th >Name:</th>
+                    <th ><input type="text" name="name" id ="poiName"></th>
 
                 </tr>
                 <tr>
-                    <th> Long:</th>
-                    <th><input type="text" name="long"></th>
+                    <th > Long:</th>
+                    <th ><input type="text" name="long" id="poiLong"></th>
                 </tr>
                 <tr>
-                    <th>Lat:</th>
-                    <th><input type="text" name="lat"></th>
+                    <th >Lat:</th>
+                    <th ><input type="text" name="lat" id="poiLat"></th>
                 </tr>
 
             </table>
             <table>
                 <tr>
-                    <th><input type="button" onclick="" value="Submit"></th>
+                    <th><input type="button" onclick="createPOI()" value="Submit"></th>
                 </tr>
             </table>
 
@@ -185,17 +185,10 @@
 
 <!--POIAdder -->
 <div class="poiAdderDIV" id = "poi_adder_div">
-    <label>
-        <input class="poiAdderButton" id = "poiName" type="text" placeholder="POI-Name">
-        <input class="poiAdderButton" id = "poiLong" type="text" placeholder="Long">
-        <input class="poiAdderButton" id = "poiLat" type="text" placeholder="Lat">
-        <input class="poiAdderButton" id = "poiKat" type="text" placeholder="Kategorie">
-        <input style="cursor: pointer" class="poiAdderButton" id="poi_name_input" type="submit" value="Hinzufügen"
-               onclick="createPOI()">
-    </label>
+
     <div class="poiAdderButton" id ="poi_adder_button">
 
-        <a href="javascript:void(0);" class="icon" id="poiAdderButton" style="text-decoration: none; color: black" onclick="selectbutton(3)">
+        <a href="javascript:void(0);" class="icon" id="poiAdderButton" style="text-decoration: none; color: black" onclick="selectbutton(1)">
             <i class="fa" style="font-size:24px" aria-hidden="true">+</i>
             <i class="fa-solid fa-map-pin " style="font-size:24px"></i>
         </a>
