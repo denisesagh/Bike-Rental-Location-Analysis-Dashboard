@@ -3,22 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>BykeBonk</title>
-
-    <!--LeafletMap-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
           integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
           crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-            integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
-            crossorigin=""></script>
-
-    <!-- resources for routing machine -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css"/>
-    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
-
-    <!-- tools und andere dependencies -->
-    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-
     <!--stylesheets for NavBar -->
     <link rel="stylesheet" href="../stylesheets/stylesNavBar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
@@ -34,9 +22,12 @@
     <script src="../scripts/script.js"></script>
     <script src="../scripts/routing.js"></script>
     <script src="../scripts/isochrone.js"></script>
+    <script src="../scripts/bykechrone.js"></script>
 
     <!--stylesheet for UserLogin -->
     <link rel="stylesheet" href="../stylesheets/styleUserButton.css">
+    <!--stylesheet for POI-Adder -->
+    <link rel="stylesheet" href="../stylesheets/stylePOIAdder.css">
 </head>
 <body>
 <!--Map-->
@@ -59,8 +50,6 @@
                id="user_login_logout" type="submit" value="Logout" onclick="refreshPage()">
     </div>
 </div>
-
-
 
 
 <!--NavBar -->
@@ -194,8 +183,48 @@
 
 </div>
 
+<!--POIAdder -->
+<div class="poiAdderDIV" id = "poi_adder_div">
+    <label>
+        <input class="poiAdderButton" id = "poiName" type="text" placeholder="POI-Name">
+        <input class="poiAdderButton" id = "poiLong" type="text" placeholder="Long">
+        <input class="poiAdderButton" id = "poiLat" type="text" placeholder="Lat">
+        <input class="poiAdderButton" id = "poiKat" type="text" placeholder="Kategorie">
+        <input style="cursor: pointer" class="poiAdderButton" id="poi_name_input" type="submit" value="Hinzufügen"
+               onclick="createPOI()">
+    </label>
+    <div class="poiAdderButton" id ="poi_adder_button">
+
+        <a href="javascript:void(0);" class="icon" id="poiAdderButton" style="text-decoration: none; color: black" onclick="selectbutton(3)">
+            <i class="fa" style="font-size:24px" aria-hidden="true">+</i>
+            <i class="fa-solid fa-map-pin " style="font-size:24px"></i>
+        </a>
+
+    </div>
+
+</div>
+
+<!--LeafletMap-->
+
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+        crossorigin=""></script>
+
+<!-- resources for routing machine -->
+
+<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+<!-- tools und andere dependencies -->
+<!-- script src="https://code.jquery.com/jquery-1.11.1.min.js"></script> -->
+
+<script src="../scripts/routing.js"></script>
+<script src="../scripts/isochrone.js"></script>
 <script src="../scripts/script.js"></script>
 <script src="../scripts/usermanager.js"></script>
+<script src="../scripts/poimaker.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script src="../scripts/loadPoints.js"></script>
+
 </body>
 </html>
