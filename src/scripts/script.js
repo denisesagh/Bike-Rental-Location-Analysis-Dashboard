@@ -184,16 +184,25 @@ var onSearchInput = function (e) {
     } else {
         //TODO: SQL in PHP auslegen, sicherheitsgefahr KRITISCH!
         $.ajax({
-            url: "../scripts/poicollector.php",
+            url: "../php/PoiSearchCollector.php",
             type: "post",
             dataType: 'json',
             data: {
-                query: "SELECT * FROM poi WHERE NAME LIKE '%" + searchinput + "%' LIMIT 5"
+                input: searchinput
             },
             success: function (json) {
                 var searchResultBuilder = "";
                 for (let i = 0; i < json.length; i++) {
-                    searchResultBuilder += "<p>" + json[i].name + "</p>";
+                    var result = new POI({
+                        name: json[i].name,
+                        category: json[i].cat,
+                        lng: json[i].lng,
+                        lat: json[i].lat,
+                        station_id: json[i].sid,
+                        user_id: json[i].uid
+                    })
+                    //searchResultBuilder += "<p>" + json[i].name + "</p>";
+                    searchResultBuilder += result.searchButton;
                 }
                 document.getElementById("search_recomendations").innerHTML = searchResultBuilder;
             },
