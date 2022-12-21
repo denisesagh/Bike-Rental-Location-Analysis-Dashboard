@@ -2,10 +2,12 @@
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json; charset=utf-8');
 $connection = include ('db.inc.php');
-$query = $_POST['query'];
+$input = $_POST['input'];
+$sql = "SELECT * FROM poi WHERE NAME LIKE '%$input%' GROUP BY NAME LIMIT 5";
+
 try{
     $messages = array();
-    $result = mysqli_query($connection ,$query);
+    $result = mysqli_query($connection ,$sql);
     if($result){
         while($row = mysqli_fetch_assoc($result)) {
 
