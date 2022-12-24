@@ -63,7 +63,7 @@ function showmenu(menu) {
     divbuttons_walking_bike_car.style.display = "none";
 
     var sitedrei = document.getElementsByClassName("drei"); //divsToHide is an array
-    for(var i = 0; i < sitedrei.length; i++){
+    for (var i = 0; i < sitedrei.length; i++) {
         sitedrei[i].style.display = "none"; // depending on what you're doing
     }
 
@@ -74,7 +74,7 @@ function showmenu(menu) {
         divbuttons_walking_bike_car.style.display = "block";
     }
     if (menu === 3) {
-        for(var i = 0; i < sitedrei.length; i++){
+        for (var i = 0; i < sitedrei.length; i++) {
             sitedrei[i].style.display = "block"; // depending on what you're doing
         }
     }
@@ -88,7 +88,7 @@ function selectbutton(value) {
     menu = value;
     showmenu(value);
     buttonpressed(value);
-    showaddpoi=false;
+    showaddpoi = false;
     showhideaddpoi();
 }
 
@@ -163,7 +163,6 @@ var onSearchInput = function (e) {
         search = false
         searchround();
     } else {
-        //TODO: SQL in PHP auslegen, sicherheitsgefahr KRITISCH!
         $.ajax({
             url: "../php/PoiSearchCollector.php",
             type: "post",
@@ -172,7 +171,7 @@ var onSearchInput = function (e) {
                 input: searchinput
             },
             success: function (json) {
-                var searchResultBuilder = "";
+                document.getElementById("search_recomendations").innerHTML = "";
                 for (let i = 0; i < json.length; i++) {
                     var result = new POI({
                         name: json[i].name,
@@ -180,12 +179,16 @@ var onSearchInput = function (e) {
                         lng: json[i].lng,
                         lat: json[i].lat,
                         station_id: json[i].sid,
-                        user_id: json[i].uid
-                    })
-                    //searchResultBuilder += "<p>" + json[i].name + "</p>";
-                    searchResultBuilder += result.searchButton;
+                        user_id: json[i].uid,
+
+                        searchBtnClick: function (val){
+                            alert("clicked");
+                        }
+                    });
+                    result.createButton(result.params.name);
+                    //document.getElementById("search_recomendations").appendChild(result.searchButton);
+                    document.getElementById("search_recomendations").innerHTML += "<br>";
                 }
-                document.getElementById("search_recomendations").innerHTML = searchResultBuilder;
             },
             error: function (thrownError) {
                 console.log(thrownError.responseText);
@@ -196,7 +199,6 @@ var onSearchInput = function (e) {
         myFunction();
         searchround();
     }
-
 }
 
 source.addEventListener('input', onSearchInput);
@@ -217,26 +219,28 @@ function burgermenu() {
 
     myFunction();
 }
-var showaddpoi=false;
-function showhideaddpoi(){
 
-    if (showaddpoi){
-        document.getElementById("addpoi").style.display="block"
-    }
-    else{
-        document.getElementById("addpoi").style.display="none"
+var showaddpoi = false;
+
+function showhideaddpoi() {
+
+    if (showaddpoi) {
+        document.getElementById("addpoi").style.display = "block"
+    } else {
+        document.getElementById("addpoi").style.display = "none"
     }
 
 }
-function buttonaddpoi(){
-    if(showaddpoi){
-        showaddpoi=false;
-    }
-    else {
-        showaddpoi=true;
+
+function buttonaddpoi() {
+    if (showaddpoi) {
+        showaddpoi = false;
+    } else {
+        showaddpoi = true;
     }
     showhideaddpoi();
 }
+
 showhideaddpoi();
 
 
