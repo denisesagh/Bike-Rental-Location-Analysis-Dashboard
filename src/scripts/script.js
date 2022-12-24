@@ -11,26 +11,29 @@ var map = L.map('map', {
     zoomControl: false,
     inertia: true,
     worldCopyJump: true
-}).setView([49.988015, 8.228197], 12).addLayer(osm);
+}).setView([19.04469, 72.9258], 12).addLayer(osm);
+
+function getMap(){
+    return map;
+}
+
+//map.on('click', onMapClick);
+
 
 //ROUTING DEMONSTRATION
-/*
 var route = new BykeRoute(map, "driving", L.latLng(49.69839, 8.620872), L.latLng(49.988015, 8.228197));
 route.createRoute();
 
 var iso = new BykeChrone(map, "foot-walking", L.latLng(49.988015, 8.228197), 2000);
 iso.createIsochrone();
 
-*/
-var firstSelectedPOI = null;
-var secondSelectedPOI = null;
-
 var hidemenu = true;
 var menu = 0;
-handleUIState();
+myFunction();
 
 
-function handleUIState() {
+function myFunction() {
+    //alert("ey")
     var divbuttons = document.getElementById("buttons");
     var divcheckboxPoi = document.getElementById("checkboxPoi");
     var divslidecontainer = document.getElementById("slidecontainer");
@@ -45,6 +48,7 @@ function handleUIState() {
     } else {
         document.getElementById("menu").style.background = "grey";
         divbuttons.style.display = "block";
+        //menu wird nie gesetzt?? immer nur übergeben durch html -> direkt reine übergebungsvariable machen
         showmenu(menu);
         hidemenu = true;
         radiusbuttons(0);
@@ -63,7 +67,7 @@ function showmenu(menu) {
     divbuttons_walking_bike_car.style.display = "none";
 
     var sitedrei = document.getElementsByClassName("drei"); //divsToHide is an array
-    for (var i = 0; i < sitedrei.length; i++) {
+    for(var i = 0; i < sitedrei.length; i++){
         sitedrei[i].style.display = "none"; // depending on what you're doing
     }
 
@@ -74,7 +78,7 @@ function showmenu(menu) {
         divbuttons_walking_bike_car.style.display = "block";
     }
     if (menu === 3) {
-        for (var i = 0; i < sitedrei.length; i++) {
+        for(var i = 0; i < sitedrei.length; i++){
             sitedrei[i].style.display = "block"; // depending on what you're doing
         }
     }
@@ -88,7 +92,7 @@ function selectbutton(value) {
     menu = value;
     showmenu(value);
     buttonpressed(value);
-    showaddpoi = false;
+    showaddpoi=false;
     showhideaddpoi();
 }
 
@@ -163,27 +167,20 @@ var onSearchInput = function (e) {
         search = false
         searchround();
     } else {
+        //TODO: SQL in PHP auslegen, sicherheitsgefahr KRITISCH!
         $.ajax({
-            url: "../php/PoiSearchCollector.php",
+            url: "../scripts/poicollector.php",
             type: "post",
             dataType: 'json',
             data: {
-                input: searchinput
+                query: "SELECT * FROM poi WHERE NAME LIKE '%" + searchinput + "%' LIMIT 5"
             },
             success: function (json) {
-                document.getElementById("search_recomendations").innerHTML = "";
+                var searchResultBuilder = "";
                 for (let i = 0; i < json.length; i++) {
-                    var result = new POI({
-                        name: json[i].name,
-                        category: json[i].cat,
-                        lng: json[i].lng,
-                        lat: json[i].lat,
-                        station_id: json[i].sid,
-                        user_id: json[i].uid,
-                    });
-                    document.getElementById("search_recomendations").innerHTML += result.searchButton;
-                    document.getElementById("search_recomendations").innerHTML += "<br>";
+                    searchResultBuilder += "<p>" + json[i].name + "</p>";
                 }
+                document.getElementById("search_recomendations").innerHTML = searchResultBuilder;
             },
             error: function (thrownError) {
                 console.log(thrownError.responseText);
@@ -191,9 +188,10 @@ var onSearchInput = function (e) {
         });
         search = true;
         hidemenu = true;
-        handleUIState();
+        myFunction();
         searchround();
     }
+
 }
 
 source.addEventListener('input', onSearchInput);
@@ -212,30 +210,28 @@ function burgermenu() {
 
     }
 
-    handleUIState();
+    myFunction();
 }
+var showaddpoi=false;
+function showhideaddpoi(){
 
-var showaddpoi = false;
-
-function showhideaddpoi() {
-
-    if (showaddpoi) {
-        document.getElementById("addpoi").style.display = "block"
-    } else {
-        document.getElementById("addpoi").style.display = "none"
+    if (showaddpoi){
+        document.getElementById("addpoi").style.display="block"
+    }
+    else{
+        document.getElementById("addpoi").style.display="none"
     }
 
 }
-
-function buttonaddpoi() {
-    if (showaddpoi) {
-        showaddpoi = false;
-    } else {
-        showaddpoi = true;
+function buttonaddpoi(){
+    if(showaddpoi){
+        showaddpoi=false;
+    }
+    else {
+        showaddpoi=true;
     }
     showhideaddpoi();
 }
-
 showhideaddpoi();
 
 
