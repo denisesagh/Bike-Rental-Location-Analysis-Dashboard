@@ -13,6 +13,10 @@ var map = L.map('map', {
     worldCopyJump: true
 }).setView([19.04469, 72.9258], 12).addLayer(osm);
 
+function getMap(){
+    return map;
+}
+
 //map.on('click', onMapClick);
 
 
