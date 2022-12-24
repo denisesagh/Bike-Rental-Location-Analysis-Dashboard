@@ -12,39 +12,28 @@
 
     margin: 5px auto;
     padding: 3px 10px;
-
-
-
-
 }
 
-.search #magni{
+.search #magni {
     float: right;
 }
 
-.search a.icon{
-
-
-
-
+.search a.icon {
     font-size: 25px;
     color: gray;
-
-
 }
-
-
 
 .search input {
     font-size: 25px;
     width: 70%;
     border-style: hidden;
 }
-.search input:focus, textarea:focus, select:focus{
+
+.search input:focus, textarea:focus, select:focus {
     outline: none;
 }
 
-.menu{
+.menu {
     background-color: gray;
     padding: 0 10px;
     display: inline-block;
@@ -58,15 +47,9 @@
     z-index: 1;
 
     pointer-events: auto;
-
-
-
-
-
-
-
 }
-.menu a.icon{
+
+.menu a.icon {
 
     text-decoration: none;
     font-size: 25px;
@@ -82,33 +65,27 @@
     border-width: 2px;
     border-style: solid;
 
-
-    white-space:nowrap;
+    white-space: nowrap;
     width: calc(95% + 20px);
-
-
 
     margin: 5px auto;
     padding: 5px 0px;
-
 }
 
-.select a:hover{
+.select a:hover {
     background-color: lightgray;
     border: #191919 solid 2px;
     margin: -2px;
     border-radius: 25px;
     padding: 7px 0;
-
 }
+
 .select {
     text-align: center;
 }
-.select i{
-    min-width: calc(32.666% );
 
-
-
+.select i {
+    min-width: calc(32.666%);
 }
 
 .box {
@@ -119,8 +96,7 @@
     border-width: 2px;
     border-style: solid;
 
-
-    white-space:nowrap;
+    white-space: nowrap;
     width: 95%;
 
     padding: 3px 10px;
@@ -157,32 +133,53 @@
     cursor: pointer;
 }
 
-.buttonselected{
+.buttonselected {
     background-color: lightgray;
     border: #191919 solid 2px;
     margin: -2px;
     border-radius: 25px;
     padding: 7px 0;
-
 }
 
-#search_recomendations{
+.searchButton {
+    font-family: Helvetica;
+    font-size: 18px;
+
+    transition: .3s all ease-in-out;
+    color: black;
+    background-color: white;
+    border: #191919 solid 0px;
+    margin: 2px;
+    border-radius: 25px;
+
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.searchButton:hover{
+    transition: .3s all ease-in-out;
+    color: white;
+    background-color: rgba(25, 25, 25, 0.8);
+}
+
+
+#search_recomendations {
     font-family: Helvetica;
     border-radius: 0 0 25px 25px;
     margin-top: -7px;
 }
 
-#searchbarround{
+#searchbarround {
     border-radius: 25px 25px 0 0;
     padding-top: 5px;
 }
 
-#checkboxPoi{
+#checkboxPoi {
     font-family: Helvetica;
-    font-size: 20px;}
-
-
-
+    font-size: 20px;
+}
 
 
 #addpoi table {
@@ -192,13 +189,11 @@
 }
 
 #addpoi input {
-
     margin: 0px auto; /* or margin: 0 auto 0 auto */
 }
 
 
-
-.buttonaddpoi{
+.buttonaddpoi {
     background-color: lightgrey;
     border: 2px solid #191919;
     border-radius: 20px;
@@ -212,7 +207,7 @@
 
 }
 
-.buttonaddpoi a{
+.buttonaddpoi a {
     display: block;
     color: gray;
     padding: 0 20px;
