@@ -46,13 +46,17 @@ function placeMarkersInBounds(myData) {
                 .bindPopup("<b>Name: </b>" + element.POI_Name + "<br><b>Kategorie: </b>" + element.kategorie);
 
         if(markerCounter <= 1000){
-            marker.addTo(markerLayer);
+            marker.addTo(markerLayer).on('click', onClick);
         }
 
         markerCounter += 1;
     });
 
         map.addLayer(markerLayer);
+}
+
+function onClick(){
+    console.log(this.getLatLng());
 }
 
 function setMarker(type){
