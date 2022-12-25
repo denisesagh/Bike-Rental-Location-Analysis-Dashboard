@@ -11,25 +11,26 @@ var map = L.map('map', {
     zoomControl: false,
     inertia: true,
     worldCopyJump: true
-}).setView([19.04469, 72.9258], 12).addLayer(osm);
-
-//map.on('click', onMapClick);
-
+}).setView([49.988015, 8.228197], 12).addLayer(osm);
 
 //ROUTING DEMONSTRATION
+/*
 var route = new BykeRoute(map, "driving", L.latLng(49.69839, 8.620872), L.latLng(49.988015, 8.228197));
 route.createRoute();
 
 var iso = new BykeChrone(map, "foot-walking", L.latLng(49.988015, 8.228197), 2000);
 iso.createIsochrone();
 
+*/
+var firstSelectedPOI = null;
+var secondSelectedPOI = null;
+
 var hidemenu = true;
 var menu = 0;
-myFunction();
+handleUIState();
 
 
-function myFunction() {
-    //alert("ey")
+function handleUIState() {
     var divbuttons = document.getElementById("buttons");
     var divcheckboxPoi = document.getElementById("checkboxPoi");
     var divslidecontainer = document.getElementById("slidecontainer");
@@ -44,7 +45,6 @@ function myFunction() {
     } else {
         document.getElementById("menu").style.background = "grey";
         divbuttons.style.display = "block";
-        //menu wird nie gesetzt?? immer nur übergeben durch html -> direkt reine übergebungsvariable machen
         showmenu(menu);
         hidemenu = true;
         radiusbuttons(0);
@@ -180,13 +180,8 @@ var onSearchInput = function (e) {
                         lat: json[i].lat,
                         station_id: json[i].sid,
                         user_id: json[i].uid,
-
-                        searchBtnClick: function (val){
-                            alert("clicked");
-                        }
                     });
-                    result.createButton(result.params.name);
-                    //document.getElementById("search_recomendations").appendChild(result.searchButton);
+                    document.getElementById("search_recomendations").innerHTML += result.searchButton;
                     document.getElementById("search_recomendations").innerHTML += "<br>";
                 }
             },
@@ -196,7 +191,7 @@ var onSearchInput = function (e) {
         });
         search = true;
         hidemenu = true;
-        myFunction();
+        handleUIState();
         searchround();
     }
 }
@@ -217,7 +212,7 @@ function burgermenu() {
 
     }
 
-    myFunction();
+    handleUIState();
 }
 
 var showaddpoi = false;
