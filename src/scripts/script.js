@@ -255,3 +255,34 @@ function sliderbuttons(radiusmenu) {
     }
 }
 
+
+map.on('click', function(e) {
+    console.log(e.latlng.lat, e.latlng.lng);
+    clickeventmanger(e.latlng);
+
+});
+
+function clickeventmanger(cords){
+    if (menu ==0){
+
+    }
+    if (menu ==1){
+
+    }
+    if (menu ==2){
+
+    }
+    if (menu ==3){
+
+
+
+    }
+    addIsochroneToMap(driving-car,cords,500);
+
+}
+
+
+
+
+
+
