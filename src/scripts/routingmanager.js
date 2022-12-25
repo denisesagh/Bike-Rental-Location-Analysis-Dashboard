@@ -1,5 +1,5 @@
-let route;
-let isochrones = [];
+var route;
+var isochrones = [];
 
 /*
 type: car, bike, foot

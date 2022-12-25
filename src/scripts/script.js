@@ -263,22 +263,21 @@ map.on('click', function(e) {
 });
 
 function clickeventmanger(cords){
-    if (menu ==0){
+    if (menu ===0){
 
     }
-    if (menu ==1){
+    if (menu ===1){
 
     }
-    if (menu ==2){
+    if (menu ===2){
 
     }
-    if (menu ==3){
+    if (menu ===3){
 
 
 
     }
-    addIsochroneToMap(driving-car,cords,500);
-
+    addIsochroneToMap("driving-car",cords,500);
 }
 
 
