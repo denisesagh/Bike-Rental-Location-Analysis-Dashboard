@@ -1,4 +1,4 @@
-const OSRM_URL = "https://router.project-osrm.org/route/v1";
+var OSRM_URL = "https://router.project-osrm.org/route/v1";
 
 class BykeRoute {
     route;

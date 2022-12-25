@@ -18,7 +18,7 @@ class POI {
 
     constructor(params) {
         this.params = params;
-        //this.searchButton = this._createButton(this.params.name);
+        this.searchButton = this.createButton(this.params.name);
     }
 
     createMarker() {
@@ -26,16 +26,10 @@ class POI {
     }
 
     createButton(name) {
-        var btn = document.createElement("button");
-        btn.innerHTML = this._formatWithCategoryIcon("  " + this._shortenName(name));
-        btn.setAttribute("class", "searchButton");
-        btn.type = "button";
-        btn.onclick = function (){
-            console.log("yea");
-        };
-        document.getElementById("search_recomendations").appendChild(btn);
-       //btn.addEventListener("click", onclick);
-        //return btn;
+        var addParams = '\''+this.params.name+'\', \'' + this.params.category + '\', '
+            +this.params.lat + ', ' + this.params.lng;
+        return '<button type="button" class="searchButton" onclick="addToSelectedPOIs(' + addParams + ')">'
+            + this._formatWithCategoryIcon("  " + this._shortenName(name)) + '</button>';
     }
 
     _shortenName(name) {
@@ -72,4 +66,23 @@ class POI {
                 return "<label for=\"myCheck3\"><i class=\"fa-solid fa-minus\"></i>" + text + "</label>";
         }
     }
+}
+
+function addToSelectedPOIs(name, cat, lat, lng) {
+    if(firstSelectedPOI == null){
+        document.getElementById("selected-poi1").innerHTML = _formatSelectedPOI(name, cat, lat, lng, "selected-poi1");
+    } else if(secondSelectedPOI == null){
+        document.getElementById("selected-poi2").innerHTML = _formatSelectedPOI(name, cat, lat, lng ,"selected-poi2");
+    } else {
+        alert("please remove one of your selected POIs");
+    }
+    console.log(name + " " + cat + " " + lat + " " + lng);
+}
+
+function _formatSelectedPOI(name, cat, lat, lng, elementId){
+
+}
+
+function _removeSelectedPOI(elementId){
+    document.getElementById(elementId).innerHTML = "";
 }
