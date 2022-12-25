@@ -11,7 +11,7 @@ var map = L.map('map', {
     zoomControl: false,
     inertia: true,
     worldCopyJump: true
-}).setView([19.04469, 72.9258], 12).addLayer(osm);
+}).setView([49.988015, 8.228197], 12).addLayer(osm);
 
 function getMap(){
     return map;
@@ -34,10 +34,9 @@ route.createRoute();
 
 var iso = new BykeChrone(map, "foot-walking", L.latLng(49.988015, 8.228197), 2000);
 iso.createIsochrone();
-
 */
-var firstSelectedPOI = null;
-var secondSelectedPOI = null;
+var firstSelectedPOI = false;
+var secondSelectedPOI = false;
 
 var hidemenu = true;
 var menu = 0;
@@ -259,11 +258,7 @@ function showhideaddpoi() {
 }
 
 function buttonaddpoi() {
-    if (showaddpoi) {
-        showaddpoi = false;
-    } else {
-        showaddpoi = true;
-    }
+    showaddpoi = !showaddpoi;
     showhideaddpoi();
 }
 
