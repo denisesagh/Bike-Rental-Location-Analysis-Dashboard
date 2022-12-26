@@ -20,7 +20,7 @@ class BykeChrone {
             travelMode: this.type,
             poi: this.poi,
             smoothing: 25,
-            rangeType: "time",
+            rangeType: "distance",
             rangeValue: this.range,
             rangeInterval: this.range / 5,
             styleFn: styleIsolines,
