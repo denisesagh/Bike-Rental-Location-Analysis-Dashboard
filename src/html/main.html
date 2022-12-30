@@ -23,7 +23,7 @@
     <script src="../scripts/routing.js"></script>
     <script src="../scripts/isochrone.js"></script>
     <script src="../scripts/bykechrone.js"></script>
-
+    <script src="../scripts/routingmanager.js"></script>
     <!--stylesheet for UserLogin -->
     <link rel="stylesheet" href="../stylesheets/styleUserButton.css">
     <!--stylesheet for POI-Adder -->
@@ -78,8 +78,18 @@
         </a>
 
     </div>
+    <div class="box check_3_close eins">
+        <div class="onoffswitch">
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" tabindex="0">
+            <label class="onoffswitch-label" for="myonoffswitch"></label>
+        </div>
+        <div class="textstyle">
+            3 nächsten POI
+        </div>
+    </div>
+    <div class="box eins" id="checkboxPoi">
 
-    <div class="box" id="checkboxPoi">
+
         <input type="checkbox" class="checkboxcheck" id="myCheck0" onclick="">
         <label for="myCheck1" class="textcheck"><i class="fa-solid fa-bicycle iconcheck"></i> Fahrradstationen</label><br>
 
@@ -150,7 +160,7 @@
         <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
     </div>
 
-    <div class="select" id="buttons_walking-bike-car">
+    <div class="select zwei" id="buttons_walking-bike-car">
         <a href="javascript:void(0);" class="icon" id="buttonWalking" onclick="radiusbuttons(1)">
             <i class="fa-solid fa-person-walking"></i>
         </a>
@@ -174,11 +184,14 @@
         </a>
     </div>
     <div class="box" id="search_recomendations">
-        <p><i class="fa-solid fa-car"></i> Jim Block</p>
-        <p>Pick Up Gay Bar</p>
-        <p>The Boilerman Bar</p>
-        <p>Julius Neufeld</p>
-        <p>ashwaganda</p>
+
+    </div>
+
+    <div class="box zwei" id="menu_2_clear">
+        <a href="javascript:void(0);" class="buttonaddpoi" onclick="routing_edit_start()">Edit start</a>
+        <a href="javascript:void(0);" class="buttonaddpoi" onclick="routing_clear()">Clear</a>
+        <a href="javascript:void(0);" class="buttonaddpoi" onclick="marius()">Create Route</a>
+
     </div>
 
 </div>
@@ -215,6 +228,7 @@
 <script src="../scripts/script.js"></script>
 <script src="../scripts/usermanager.js"></script>
 <script src="../scripts/poimaker.js"></script>
+<script src="../scripts/routingmanager.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script src="../scripts/loadPoints.js"></script>

@@ -61,7 +61,8 @@ function showmenu(menu) {
     var divcheckboxPoi = document.getElementById("checkboxPoi");
     //var divslidecontainer = document.getElementById("slidecontainer");
     var divbuttons_walking_bike_car = document.getElementById("buttons_walking-bike-car");
-
+    var sitezwei = document.getElementsByClassName("zwei");
+    var siteeins = document.getElementsByClassName("eins");
     divcheckboxPoi.style.display = "none";
     //divslidecontainer.style.display = "none";
     divbuttons_walking_bike_car.style.display = "none";
@@ -70,12 +71,24 @@ function showmenu(menu) {
     for(var i = 0; i < sitedrei.length; i++){
         sitedrei[i].style.display = "none"; // depending on what you're doing
     }
+    for(var i = 0; i < sitezwei.length; i++){
+        sitezwei[i].style.display = "none"; // depending on what you're doing
+    }
+    for(var i = 0; i < siteeins.length; i++){
+        siteeins[i].style.display = "none"; // depending on what you're doing
+    }
+
+
 
     if (menu === 1) {
-        divcheckboxPoi.style.display = "block";
+        for(var i = 0; i < siteeins.length; i++){
+            siteeins[i].style.display = ""; // depending on what you're doing
+        }
     }
     if (menu === 2) {
-        divbuttons_walking_bike_car.style.display = "block";
+        for(var i = 0; i < sitezwei.length; i++){
+            sitezwei[i].style.display = "block"; // depending on what you're doing
+        }
     }
     if (menu === 3) {
         for(var i = 0; i < sitedrei.length; i++){
@@ -121,11 +134,13 @@ function radiusbuttons(value) {
     buttonpressedRadius(value);
 }
 
+var routingtype = 3;
+
 function buttonpressedRadius(radiusmenu) {
     var buttonWalking = document.getElementById("buttonWalking");
     var buttonBike = document.getElementById("buttonBike");
     var buttonCar = document.getElementById("buttonCar");
-
+    var routingtype = radiusmenu;
     buttonWalking.classList.remove("buttonselected");
     buttonBike.classList.remove("buttonselected");
     buttonCar.classList.remove("buttonselected");
@@ -234,12 +249,12 @@ function buttonaddpoi(){
 }
 showhideaddpoi();
 
-
+var radiusmenuvalue=3;
 function sliderbuttons(radiusmenu) {
     var radiusWalking = document.getElementById("buttonradiusWalking");
     var radiusBike = document.getElementById("buttonradiusBike");
     var radiusCar = document.getElementById("buttonradiusCar");
-
+    radiusmenuvalue=radiusmenu
     radiusWalking.classList.remove("buttonselected");
     radiusBike.classList.remove("buttonselected");
     radiusCar.classList.remove("buttonselected");
@@ -254,4 +269,95 @@ function sliderbuttons(radiusmenu) {
         radiusCar.classList.add("buttonselected");
     }
 }
+
+var isoradius=5000;
+var slider = document.getElementById("myRange");
+slider.oninput = function() {
+    isoradius=100*this.value
+    console.log(isoradius)
+}
+
+map.on('click', function(e) {
+    console.log(e.latlng.lat, e.latlng.lng);
+    clickeventmanger(e.latlng);
+
+});
+
+function clickeventmanger(cords){
+    if (menu ===0){
+
+
+    }
+    if (menu ===1){
+        document.getElementById("poiLong").value = cords.lng;
+        document.getElementById("poiLat").value = cords.lat;
+
+    }
+    if (menu ===2){
+        routeingpoints(cords)
+
+    }
+    if (menu ===3){
+        if (radiusmenuvalue===1){
+            //removeFirstIsochroneFromMap();
+            console.log("1")
+            addIsochroneToMap("foot-walking",cords,isoradius);
+        }
+        if (radiusmenuvalue===2){
+            //removeFirstIsochroneFromMap();
+            console.log("2")
+            addIsochroneToMap("cycling-regular",cords,isoradius);
+        }
+        if (radiusmenuvalue===3){
+            //removeFirstIsochroneFromMap();
+            console.log("3")
+            addIsochroneToMap("driving-car",cords,isoradius);
+        }
+
+    }
+
+}
+
+var route_cords_start = null;
+var route_cords_end = null;
+
+function routeingpoints(cord){
+    if (route_cords_start===null){
+        route_cords_start=cord;
+        if(route_cords_end!=null){
+            removeRouteFromMap();
+            routingtypeselecter(route_cords_start,route_cords_end);
+        }
+    }
+    else {
+        route_cords_end=cord;
+        removeRouteFromMap();
+        routingtypeselecter(route_cords_start,route_cords_end)
+    }
+}
+
+function routingtypeselecter(start,end){
+    if (routingtype===1){
+        addRouteToMap("foot",route_cords_start,route_cords_end);
+    }
+    if (routingtype===2){
+        addRouteToMap("bike",route_cords_start,route_cords_end);
+    }if (routingtype===3){
+        addRouteToMap("car",route_cords_start,route_cords_end);
+    }
+}
+
+function routing_edit_start(){
+    route_cords_start=null;
+}
+
+
+function routing_clear(){
+    route_cords_start=null;
+    route_cords_end=null;
+    removeRouteFromMap();
+
+}
+
+
 
