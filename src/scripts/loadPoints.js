@@ -45,7 +45,9 @@ function ajaxloadData(latStart, latEnd, longStart, longEnd, userID, filterArray)
             dataType: 'json',
             data: {lat1: latStart, lat2: latEnd, long1: longStart, long2: longEnd, userID: userID, filterArray: filterArray},
             error: ajaxLoadMHSError,
-            success: placeMarkersInBounds
+            success: function (result){
+                placeMarkersInBounds(result, 1000)
+            }
         })
     }catch (error){
         console.log("Failed to load POIS!");
@@ -58,7 +60,7 @@ function ajaxLoadMHSError(){
 
 var markerLayer = null;
 var myRenderer = L.canvas({padding: 0.5});
-function placeMarkersInBounds(myData) {
+function placeMarkersInBounds(myData, limit) {
     let markerCounter = 0;
 
     if(markerLayer == null){
@@ -75,7 +77,7 @@ function placeMarkersInBounds(myData) {
             })
                 .bindPopup("<b>Name: </b>" + element.name + "<br><b>Kategorie: </b>" + element.kategorie);
 
-        if(markerCounter <= 1000){
+        if(markerCounter <= limit){
             marker.addTo(markerLayer).on('click', onClick);
         }
 
