@@ -1,71 +1,55 @@
 <?php
-   header('Content-Type: application/json; charset=utf-8');
+header('Content-Type: application/json; charset=utf-8');
 
-   //Function Abfrage
-    function getData($result, $type, $messages){
-        if($result){
-            while($row = mysqli_fetch_assoc($result)) {
-                $message = array(
-                    "Type"=> "$type",
-                    "id"=>$row['RENTAL_ZONE_HAL_ID'],
-                    "POI_Name"=>$row['NAME'],
-                    "lat"=>floatval($row['LATITUDE']),
-                    "long"=>floatval($row['LONGITUDE']));
-                array_push($messages,$message);
-            }
-        }
-        return $messages;
+function createSQL($value, $table, $latStart, $latEnd, $longStart, $longEnd, $userID){
+    switch ($value){
+        case "Persönliche":
+            return "SELECT * FROM $table WHERE LATITUDE >= $latStart and LATITUDE <= $latEnd and LONGITUDE >= $longStart and LONGITUDE <= $longEnd and USERID=$userID";
+        case "empty":
+            return "SELECT * FROM $table WHERE LATITUDE >= $latStart and LATITUDE <= $latEnd and LONGITUDE >= $longStart and LONGITUDE <= $longEnd";
+        default:
+            return "SELECT * FROM $table WHERE LATITUDE >= $latStart and LATITUDE <= $latEnd and LONGITUDE >= $longStart and LONGITUDE <= $longEnd and KATEGORIE = '$value'";
     }
-
-    function getDataPOI($result, $type, $messages){
-        if($result){
-            while($row = mysqli_fetch_assoc($result)) {
-                $message = array(
-                    "Type"=> "$type",
-                    "id"=>$row['STATION_ID'],
-                    "POI_Name"=>$row['NAME'],
-                    "lat"=>floatval($row['POI_LAT']),
-                    "long"=>floatval($row['POI_LNG']),
-                    "kategorie"=>$row['KATEGORIE'],
-                    "fclass"=>$row['FCLASS']);
-                array_push($messages,$message);
-            }
+}
+function getData($result, $messages){
+    if($result){
+        while($row = mysqli_fetch_assoc($result)) {
+            $message = array(
+                "name"=>$row['NAME'],
+                "lat"=>floatval($row['LATITUDE']),
+                "long"=>floatval($row['LONGITUDE']),
+                "kategorie"=>$row['KATEGORIE']);
+            array_push($messages,$message);
         }
-        return $messages;
     }
+    return $messages;
+}
 
 
-    //DB-Verbindung
-    $verbindung = include ('db.inc.php');
+//GeoDaten
+$latStart= $_GET['lat1'];
+$latEnd= $_GET['lat2'];
+$longStart = $_GET['long1'];
+$longEnd = $_GET['long2'];
+$userID = $_GET['userID'];
+$filterOptions = $_GET['filterArray'];
 
-    //GeoDaten
-    $latStart= $_GET['lat1'];
-    $latEnd= $_GET['lat2'];
-    $longStart = $_GET['long1'];
-    $longEnd = $_GET['long2'];
+$verbindung = include ('db.inc.php');
+$tables= ["table1" => "poi",
+    "table2" => "stationen_hamburg"];
+$PointsArray = array();
 
-
-    //FahrradStationen
-    $tableFStation    = "stationen_hamburg";
-    $messagesFStation = array();
-    $sql = "SELECT * FROM $tableFStation WHERE LATITUDE >= $latStart and LATITUDE <= $latEnd and LONGITUDE >= $longStart and LONGITUDE <= $longEnd";
-    $result = mysqli_query($verbindung, $sql);
-
-    $messagesFStation = getData($result, "Fahrradstation", $messagesFStation);
-
-
-
-    //POIs
-    $tablePOI= "poi";
-    $messagesPOI = array();
-    $sql = "SELECT * FROM $tablePOI WHERE POI_LAT >= $latStart and POI_LAT <= $latEnd and POI_LNG >= $longStart and POI_LNG <= $longEnd";
-    $result = mysqli_query($verbindung, $sql);
-
-    $messagesPOI = getDataPOI($result, "POI", $messagesPOI);
+foreach ($tables as $table) {
+    foreach ($filterOptions as $value) {
+        $result = mysqli_query($verbindung, createSQL($value, $table, $latStart, $latEnd, $longStart, $longEnd, $userID));
+        $PointsArray += getData($result, $PointsArray);
+    }
+}
 
 
-    //return Arrays
-    mysqli_close ($verbindung);
-    $json = json_encode($messagesFStation + $messagesPOI);
-    print($json);
+
+//return Arrays
+mysqli_close ($verbindung);
+$json = json_encode($PointsArray);
+print($json);
 ?>
