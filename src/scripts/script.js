@@ -1,17 +1,54 @@
-var osmUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-    osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    osm = L.tileLayer(osmUrl, {
-        maxZoom: 18,
-        attribution: osmAttrib
-    });
 
-//document.querySelector("#user_login_logout").style.display = "none"
-// initialize the map on the "map" div with a given center and zoom
+var modus = "light";
+
 var map = L.map('map', {
     zoomControl: false,
     inertia: true,
     worldCopyJump: true
-}).setView([49.988015, 8.228197], 12).addLayer(osm);
+}).setView([49.988015, 8.228197], 12);
+lightmode();
+
+function darkmode(){
+    if (modus === "light") {
+        console.log("darkmode");
+        var Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
+            maxZoom: 20,
+            attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+        });
+        map.addLayer(Stadia_AlidadeSmoothDark);
+        modus = "dark";
+    }
+    else {
+        lightmode();
+    }
+
+}
+
+
+
+console.log("lightmode");
+
+
+
+
+function lightmode(){
+
+    var osmUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+        osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        osm = L.tileLayer(osmUrl, {
+            maxZoom: 18,
+            attribution: osmAttrib
+        });
+
+    map.addLayer(osm);
+    modus = "light";
+
+}
+
+
+//document.querySelector("#user_login_logout").style.display = "none"
+// initialize the map on the "map" div with a given center and zoom
+
 
 function getMap(){
     return map;
