@@ -29,7 +29,7 @@ async function isLogged() {
     try {
 
         $.ajax({
-            url: "../scripts/userlogin.php",    //the page containing php script
+            url: "../php/userlogin.php",    //the page containing php script
             type: "post",    //request type,
             dataType: 'json',
             data: {registration: "success", name: username, password: hashedPassword},

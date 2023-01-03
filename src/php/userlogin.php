@@ -1,7 +1,7 @@
 <?php
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json; charset=utf-8');
-$verbindung = include ('db.inc.php');
+$verbindung = include('db.inc.php');
 $registration = $_POST['registration'];
 $name= $_POST['name'];
 $password = $_POST['password'];
