@@ -422,9 +422,9 @@ function createRouteWithSearchSelection() {
 }
 
 function getIsoType(){
-    if (routingtype === 1) {
+    if (radiusmenuvalue === 1) {
         return "foot-walking";
-    } else if (routingtype === 2) {
+    } else if (radiusmenuvalue === 2) {
         return "cycling-regular";
     } else {
         return "driving-car";
