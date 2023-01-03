@@ -11,7 +11,14 @@ var map = L.map('map', {
     zoomControl: false,
     inertia: true,
     worldCopyJump: true
-}).setView([19.04469, 72.9258], 12).addLayer(osm);
+}).setView([49.988015, 8.228197], 12).addLayer(osm);
+
+function getMap(){
+    return map;
+}
+
+//map.on('click', onMapClick);
+
 
 function getMap(){
     return map;
@@ -21,19 +28,22 @@ function getMap(){
 
 
 //ROUTING DEMONSTRATION
+/*
 var route = new BykeRoute(map, "driving", L.latLng(49.69839, 8.620872), L.latLng(49.988015, 8.228197));
 route.createRoute();
 
 var iso = new BykeChrone(map, "foot-walking", L.latLng(49.988015, 8.228197), 2000);
 iso.createIsochrone();
+*/
+var firstSelectedPOI = false;
+var secondSelectedPOI = false;
 
 var hidemenu = true;
 var menu = 0;
-myFunction();
+handleUIState();
 
 
-function myFunction() {
-    //alert("ey")
+function handleUIState() {
     var divbuttons = document.getElementById("buttons");
     var divcheckboxPoi = document.getElementById("checkboxPoi");
     var divslidecontainer = document.getElementById("slidecontainer");
@@ -48,7 +58,6 @@ function myFunction() {
     } else {
         document.getElementById("menu").style.background = "grey";
         divbuttons.style.display = "block";
-        //menu wird nie gesetzt?? immer nur übergeben durch html -> direkt reine übergebungsvariable machen
         showmenu(menu);
         hidemenu = true;
         radiusbuttons(0);
@@ -68,7 +77,7 @@ function showmenu(menu) {
     divbuttons_walking_bike_car.style.display = "none";
 
     var sitedrei = document.getElementsByClassName("drei"); //divsToHide is an array
-    for(var i = 0; i < sitedrei.length; i++){
+    for (var i = 0; i < sitedrei.length; i++) {
         sitedrei[i].style.display = "none"; // depending on what you're doing
     }
     for(var i = 0; i < sitezwei.length; i++){
@@ -91,7 +100,7 @@ function showmenu(menu) {
         }
     }
     if (menu === 3) {
-        for(var i = 0; i < sitedrei.length; i++){
+        for (var i = 0; i < sitedrei.length; i++) {
             sitedrei[i].style.display = "block"; // depending on what you're doing
         }
     }
@@ -105,7 +114,7 @@ function selectbutton(value) {
     menu = value;
     showmenu(value);
     buttonpressed(value);
-    showaddpoi=false;
+    showaddpoi = false;
     showhideaddpoi();
 }
 
@@ -184,18 +193,26 @@ var onSearchInput = function (e) {
     } else {
         //TODO: SQL in PHP auslegen, sicherheitsgefahr KRITISCH!
         $.ajax({
-            url: "../scripts/poicollector.php",
+            url: "../php/PoiSearchCollector.php",
             type: "post",
             dataType: 'json',
             data: {
-                query: "SELECT * FROM poi WHERE NAME LIKE '%" + searchinput + "%' LIMIT 5"
+                input: searchinput
             },
             success: function (json) {
-                var searchResultBuilder = "";
+                document.getElementById("search_recomendations").innerHTML = "";
                 for (let i = 0; i < json.length; i++) {
-                    searchResultBuilder += "<p>" + json[i].name + "</p>";
+                    var result = new POI({
+                        name: json[i].name,
+                        category: json[i].cat,
+                        lng: json[i].lng,
+                        lat: json[i].lat,
+                        station_id: json[i].sid,
+                        user_id: json[i].uid,
+                    });
+                    document.getElementById("search_recomendations").innerHTML += result.searchButton;
+                    document.getElementById("search_recomendations").innerHTML += "<br>";
                 }
-                document.getElementById("search_recomendations").innerHTML = searchResultBuilder;
             },
             error: function (thrownError) {
                 console.log(thrownError.responseText);
@@ -203,7 +220,7 @@ var onSearchInput = function (e) {
         });
         search = true;
         hidemenu = true;
-        myFunction();
+        handleUIState();
         searchround();
     }
 
@@ -225,28 +242,26 @@ function burgermenu() {
 
     }
 
-    myFunction();
+    handleUIState();
 }
-var showaddpoi=false;
-function showhideaddpoi(){
 
-    if (showaddpoi){
-        document.getElementById("addpoi").style.display="block"
-    }
-    else{
-        document.getElementById("addpoi").style.display="none"
+var showaddpoi = false;
+
+function showhideaddpoi() {
+
+    if (showaddpoi) {
+        document.getElementById("addpoi").style.display = "block"
+    } else {
+        document.getElementById("addpoi").style.display = "none"
     }
 
 }
-function buttonaddpoi(){
-    if(showaddpoi){
-        showaddpoi=false;
-    }
-    else {
-        showaddpoi=true;
-    }
+
+function buttonaddpoi() {
+    showaddpoi = !showaddpoi;
     showhideaddpoi();
 }
+
 showhideaddpoi();
 
 var radiusmenuvalue=3;

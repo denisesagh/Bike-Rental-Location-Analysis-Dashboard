@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 
     <!--stylesheets for POIAdder -->
-    <link rel="stylesheet" href="../stylesheets/stylesPOIAdder.css">
+    <link rel="stylesheet" href="../stylesheets/stylePOIAdder.css">
 
     <!--stylesheet for Map -->
     <link rel="stylesheet" href="../stylesheets/style.css">
@@ -76,7 +76,6 @@
         <a href="javascript:void(0);" class="icon" id="buttonRadius" onclick="selectbutton(3)">
             <i class="fa-solid fa-sliders"></i>
         </a>
-
     </div>
     <div class="box check_3_close eins">
         <div class="onoffswitch">
@@ -122,7 +121,6 @@
 
         <div class="buttonaddpoi">
             <a href="javascript:void(0);" onclick="buttonaddpoi()"><i class="fa-solid fa-plus"></i> Add POI</a>
-
     </div>
 
     </div>
@@ -132,7 +130,6 @@
                 <tr>
                     <th >Name:</th>
                     <th ><input type="text" name="name" id ="poiName"></th>
-
                 </tr>
                 <tr>
                     <th > Long:</th>
@@ -142,17 +139,12 @@
                     <th >Lat:</th>
                     <th ><input type="text" name="lat" id="poiLat"></th>
                 </tr>
-
             </table>
             <table>
                 <tr>
                     <th><input type="button" onclick="createPOI()" value="Submit"></th>
                 </tr>
             </table>
-
-
-
-
         </form>
     </div>
 
@@ -194,6 +186,15 @@
 
     </div>
 
+    <!---->
+    <div class="selectedPois" id="selected-poi1">
+
+    </div>
+
+    <div class="selectedPois" id="selected-poi2">
+
+    </div>
+
 </div>
 
 <!--POIAdder -->
@@ -229,6 +230,7 @@
 <script src="../scripts/usermanager.js"></script>
 <script src="../scripts/poimaker.js"></script>
 <script src="../scripts/routingmanager.js"></script>
+<script src="../scripts/poi.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script src="../scripts/loadPoints.js"></script>

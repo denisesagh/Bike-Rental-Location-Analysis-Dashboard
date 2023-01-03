@@ -1,4 +1,4 @@
-const OSRM_URL = "https://router.project-osrm.org/route/v1";
+var OSRM_URL = "https://router.project-osrm.org/route/v1";
 
 class BykeRoute {
     route;
@@ -22,7 +22,10 @@ class BykeRoute {
             router: new L.Routing.OSRMv1({serviceUrl: OSRM_URL, profile: this.routeType}),
             show: false,
             collapsible: false
-        }).addTo(this.map);
+        });
+        //TODO: Style and fix
+        //this.route.createContainer("iternary");
+        this.route.addTo(this.map);
     }
 
     updateRoute() {
