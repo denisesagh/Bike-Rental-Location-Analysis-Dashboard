@@ -4,9 +4,6 @@ const API_KEY = "5b3ce3597851110001cf62481e9ad655bdbd469ca42072bdf27481e1";
 var isochrone
 
 class BykeChrone {
-
-    //isochrone
-
     constructor(map, type, poi, range) {
         this.map = map;
         this.type = type;
@@ -15,9 +12,6 @@ class BykeChrone {
     }
 
     createIsochrone() {
-        if(isochrone != null){
-            isochrone.onRemove();
-        }
         this.isochrone = L.control.isochrone({
             apiKey: API_KEY,
             travelMode: this.type,
@@ -39,7 +33,7 @@ class BykeChrone {
     removeIsochrone() {
         if (this.isochrone != null) {
             this.isochrone.onRemove();
-            this.map.removeControl(this.isochrone);
+            //this.map.removeControl(this.isochrone);
         }
     }
 
