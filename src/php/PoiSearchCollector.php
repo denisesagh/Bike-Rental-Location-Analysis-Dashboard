@@ -14,8 +14,8 @@ try{
         $message = array(
             "name"=> $row["NAME"],
             "cat"=> $row["KATEGORIE"],
-            "lng"=> $row["POI_LNG"],
-            "lat"=> $row["POI_LAT"],
+            "lng"=> $row["LATITUDE"],
+            "lat"=> $row["LONGITUDE"],
             "sid"=> $row["STATION_ID"],
             "uid"=> $row["USERID"]);
             array_push($messages,$message);
