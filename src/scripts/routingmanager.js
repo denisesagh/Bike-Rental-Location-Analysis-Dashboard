@@ -32,7 +32,7 @@ function addIsochroneToMap(type, coords, range) {
     iso.createIsochrone();
 }
 
-function addIsochroneToMap(type, lat, lng, range) {
+function addIsochroneToMapRaw(type, lat, lng, range) {
     var coords = new L.latLng(lat, lng);
     if (iso != null) {
         iso.removeIsochrone();

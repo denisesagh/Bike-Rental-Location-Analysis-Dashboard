@@ -421,13 +421,13 @@ function createRouteWithSearchSelection() {
     }
 }
 
-function getRoutingType(){
+function getIsoType(){
     if (routingtype === 1) {
-        return "foot";
+        return "foot-walking";
     } else if (routingtype === 2) {
-        return "bike";
+        return "cycling-regular";
     } else {
-        return "car";
+        return "driving-car";
     }
 }
 

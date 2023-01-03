@@ -71,8 +71,9 @@ function formatSelectedPOI(name, cat, lat, lng, elementId) {
     var buttonRemove = '<button type="button" class="searchButton" onclick="removeSelectedPOI(' + formattedElement + ')">' +
         "Remove" + '</button>'
     body.innerHTML += buttonRemove;
-    formattedElement = "\'" + getRoutingType() + "\'," + "\'" + lat + "\'," + "\'" + lng + "\'," + "\'" + isoradius + "\'";
-    var buttonIso = '<button type="button" class="searchButton" onclick="addIsochroneToMap(' + formattedElement + ')">' +
+    formattedElement = "\'" + getIsoType() + "\'," + lat + "," + lng + ","  + isoradius;
+    console.log(formattedElement);
+    var buttonIso = '<button type="button" class="searchButton" onclick="addIsochroneToMapRaw(' + formattedElement + ')">' +
         "Show Reach" + '</button>'
     body.innerHTML += buttonIso;
     return body;
