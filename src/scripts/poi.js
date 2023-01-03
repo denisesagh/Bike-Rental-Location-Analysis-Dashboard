@@ -42,12 +42,22 @@ class POI {
 }
 
 function addToSelectedPOIs(name, cat, lat, lng) {
-    if (firstSelectedPOI === false) {
+    if (firstSelectedPOI == null) {
         document.getElementById("selected-poi1").appendChild(formatSelectedPOI(name, cat, lat, lng, "selected-poi1"));
-        firstSelectedPOI = true;
-    } else if (secondSelectedPOI === false) {
+        firstSelectedPOI = new POI({
+            name: name,
+            cat: cat,
+            lat: lat,
+            lng: lng
+        });
+    } else if (secondSelectedPOI == null) {
         document.getElementById("selected-poi2").appendChild(formatSelectedPOI(name, cat, lat, lng, "selected-poi2"));
-        secondSelectedPOI = true;
+        secondSelectedPOI = new POI({
+            name: name,
+            cat: cat,
+            lat: lat,
+            lng: lng
+        });
     } else {
         alert("please remove one of your selected POIs");
     }
@@ -61,16 +71,19 @@ function formatSelectedPOI(name, cat, lat, lng, elementId) {
     var buttonRemove = '<button type="button" class="searchButton" onclick="removeSelectedPOI(' + formattedElement + ')">' +
         "Remove" + '</button>'
     body.innerHTML += buttonRemove;
-
+    formattedElement = "\'" + getRoutingType() + "\'," + "\'" + lat + "\'," + "\'" + lng + "\'," + "\'" + isoradius + "\'";
+    var buttonIso = '<button type="button" class="searchButton" onclick="addIsochroneToMap(' + formattedElement + ')">' +
+        "Show Reach" + '</button>'
+    body.innerHTML += buttonIso;
     return body;
 }
 
 function removeSelectedPOI(elementId) {
     document.getElementById(elementId).innerHTML = "";
     if (elementId === "selected-poi1") {
-        firstSelectedPOI = false;
+        firstSelectedPOI = null;
     } else {
-        secondSelectedPOI = false;
+        secondSelectedPOI = null;
     }
 }
 

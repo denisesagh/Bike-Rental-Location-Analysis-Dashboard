@@ -45,8 +45,10 @@ L.Control.Isochrone = L.Control.extend({
     },
 
     onRemove: function () {
-        this.groupIso.removeLayer(this.lastIso);
-        this.groupIso.removeFrom(this._map);
+        if(this.lastIso != null){
+            this.groupIso.removeLayer(this.lastIso);
+            this.groupIso.removeFrom(this._map);
+        }
     },
 
     callApi: function () {
