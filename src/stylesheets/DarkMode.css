@@ -1,4 +1,4 @@
-.poiAdderDIV{
+.poiAdderDIV {
     position: absolute;
     top: 95%;
     right: 0;
@@ -8,18 +8,17 @@
     place-items: center;
 
 
-
 }
 
 
-.poiAdderButton a{
+.poiAdderButton a {
     background-color: white;
     border-radius: 90px;
     border-color: #000000;
     border-width: 2px;
     border-style: solid;
-    white-space:nowrap;
-    width:  60%;
+    white-space: nowrap;
+    width: 60%;
     padding: 2.5px 5px;
     margin-left: 40px;
     position: center;
@@ -28,7 +27,7 @@
     text-align: center;
 }
 
-.poiAdderDIV input{
+.poiAdderDIV input {
     background-color: white;
     border-radius: 90px;
     border-color: #191919;

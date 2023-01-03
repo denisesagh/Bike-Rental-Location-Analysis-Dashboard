@@ -328,7 +328,6 @@ slider.oninput = function () {
 map.on('click', function (e) {
     console.log(e.latlng.lat, e.latlng.lng);
     clickeventmanger(e.latlng);
-
 });
 
 function clickeventmanger(cords) {
@@ -421,7 +420,7 @@ function createRouteWithSearchSelection() {
     }
 }
 
-function getIsoType(){
+function getIsoType() {
     if (radiusmenuvalue === 1) {
         return "foot-walking";
     } else if (radiusmenuvalue === 2) {

@@ -1,5 +1,3 @@
-
-
 var personalPOIIcon = L.icon({
     iconUrl: '../icon/148764.png',
     iconSize: [32, 32],
@@ -8,7 +6,7 @@ var personalPOIIcon = L.icon({
 });
 
 
-function createPersonalPOIMarker(poiName, poiLong, poiLat){
+function createPersonalPOIMarker(poiName, poiLong, poiLat) {
     L.marker([poiLong, poiLat],
         {icon: personalPOIIcon})
         .addTo(map)
@@ -17,7 +15,7 @@ function createPersonalPOIMarker(poiName, poiLong, poiLat){
 }
 
 
-function createPOI(){
+function createPOI() {
     let poiName = document.querySelector("#poiName").value;
     let poiLong = document.querySelector("#poiLat").value;
     let poiLat = document.querySelector("#poiLong").value;
@@ -32,16 +30,18 @@ function createPOI(){
                     url: "../php/poimaker.php",    //the page containing php script
                     type: "post",    //request type,
                     dataType: 'json',
-                    data: {make: "make",
+                    data: {
+                        make: "make",
                         poiname: poiName,
                         poilong: poiLong,
                         poilat: poiLat,
-                        userid: current_user_id,},
+                        userid: current_user_id,
+                    },
                     success: function (result) {
                         //alert(result);
                         alert("POI " + poiName + " erfolgreich erstellt");
                         let reply = result.reply;
-                        console.log (reply)
+                        console.log(reply)
                         createPersonalPOIMarker(poiName, poiLong, poiLat);
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
@@ -60,7 +60,7 @@ function createPOI(){
             alert("Bitte alle Felder ausfüllen");
         }
 
-    }else if (loginStatus === "not logged"){
+    } else if (loginStatus === "not logged") {
         alert("Bitte einloggen um POI zu erstellen");
     }
 

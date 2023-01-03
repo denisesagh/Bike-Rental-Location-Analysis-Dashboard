@@ -45,7 +45,7 @@ L.Control.Isochrone = L.Control.extend({
     },
 
     onRemove: function () {
-        if(this.lastIso != null){
+        if (this.lastIso != null) {
             this.groupIso.removeLayer(this.lastIso);
             this.groupIso.removeFrom(this._map);
         }

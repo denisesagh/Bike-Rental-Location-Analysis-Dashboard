@@ -29,15 +29,15 @@ class POI {
         var addParams = '\'' + this.params.name + '\', \'' + this.params.category + '\', '
             + this.params.lat + ', ' + this.params.lng;
         return '<button type="button" class="searchButton" onclick="addToSelectedPOIs(' + addParams + ')">'
-            + formatWithCategoryIcon("  " + this._shortenName(name), this.params.category) + '</button>';
+            + formatWithCategoryIcon("  " + shortenName(name, 30), this.params.category) + '</button>';
     }
+}
 
-    _shortenName(name) {
-        if (name.length >= 30) {
-            return name.slice(0, 29) + "...";
-        } else {
-            return name;
-        }
+function shortenName(name, length) {
+    if (name.length >= length) {
+        return name.slice(0, length - 1) + "...";
+    } else {
+        return name;
     }
 }
 
@@ -66,16 +66,18 @@ function addToSelectedPOIs(name, cat, lat, lng) {
 
 function formatSelectedPOI(name, cat, lat, lng, elementId) {
     var body = document.createElement("p");
-    body.innerHTML += formatWithCategoryIcon("  " + name, cat);
+    body.innerHTML += formatWithCategoryIcon("  " + shortenName(name, 20), cat);
     var formattedElement = "\'" + elementId + "\'";
     var buttonRemove = '<button type="button" class="searchButton" onclick="removeSelectedPOI(' + formattedElement + ')">' +
         "Remove" + '</button>'
-    body.innerHTML += buttonRemove;
-    formattedElement = "\'" + getIsoType() + "\'," + lat + "," + lng + ","  + isoradius;
+
+    formattedElement = "\'" + getIsoType() + "\'," + lat + "," + lng + "," + isoradius;
     console.log(formattedElement);
     var buttonIso = '<button type="button" class="searchButton" onclick="addIsochroneToMapRaw(' + formattedElement + ')">' +
         "Show Reach" + '</button>'
+
     body.innerHTML += buttonIso;
+    body.innerHTML += buttonRemove;
     return body;
 }
 

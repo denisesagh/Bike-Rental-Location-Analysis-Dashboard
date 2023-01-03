@@ -1,6 +1,7 @@
 var username;
 var loginStatus = "not logged";
 var current_user_id;
+
 //user_login_logout.style.display = "none";
 
 async function sha256(message) {
@@ -32,9 +33,11 @@ async function isLogged() {
             url: "../php/userlogin.php",    //the page containing php script
             type: "post",    //request type,
             dataType: 'json',
-            data: {registration: "success",
+            data: {
+                registration: "success",
                 name: username,
-                password: hashedPassword},
+                password: hashedPassword
+            },
             success: function (result) {
                 alert("Erfolgreich eingeloggt als " + username);
                 loginStatus = "logged";
@@ -74,6 +77,7 @@ function ShowUserLoggedStatus(user_id, loginStatus) {
 
 
 var loginField = "shown";
+
 function displayLoggedUser() {
     if (loginField === "shown") {
         loginField = "hidden";

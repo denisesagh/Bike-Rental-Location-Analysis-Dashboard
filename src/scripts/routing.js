@@ -32,8 +32,8 @@ class BykeRoute {
         //relevant? nicht relevant? idk
     }
 
-    removeRoute(){
-        if(route != null){
+    removeRoute() {
+        if (route != null) {
             this.map.removeControl(this.route);
             this.route = null;
         }
