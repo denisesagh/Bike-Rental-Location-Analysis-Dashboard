@@ -6,9 +6,9 @@ function createSQL($value, $table, $latStart, $latEnd, $longStart, $longEnd, $us
         case "Persönliche":
             return "SELECT * FROM $table WHERE LATITUDE >= $latStart and LATITUDE <= $latEnd and LONGITUDE >= $longStart and LONGITUDE <= $longEnd and USERID=$userID";
         case "empty":
-            return "SELECT * FROM $table WHERE LATITUDE >= $latStart and LATITUDE <= $latEnd and LONGITUDE >= $longStart and LONGITUDE <= $longEnd";
+            return "SELECT * FROM $table WHERE LATITUDE >= $latStart and LATITUDE <= $latEnd and LONGITUDE >= $longStart and LONGITUDE <= $longEnd and USERID=0";
         default:
-            return "SELECT * FROM $table WHERE LATITUDE >= $latStart and LATITUDE <= $latEnd and LONGITUDE >= $longStart and LONGITUDE <= $longEnd and KATEGORIE = '$value'";
+            return "SELECT * FROM $table WHERE LATITUDE >= $latStart and LATITUDE <= $latEnd and LONGITUDE >= $longStart and LONGITUDE <= $longEnd and KATEGORIE = '$value' and USERID=0";
     }
 }
 function getData($result, $messages){

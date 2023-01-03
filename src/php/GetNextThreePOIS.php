@@ -7,7 +7,7 @@ header('Content-Type: application/json; charset=utf-8');
     $verbindung = include ('db.inc.php');
     $SQL = "SELECT p.* FROM poi p
             inner join stationen_hamburg s
-            on p.STATION_ID = s.RENTAL_ZONE_HAL_ID WHERE p.STATION_ID = $ID ORDER BY p.ENTFERNUNG ASC";
+            on p.STATION_ID = s.RENTAL_ZONE_HAL_ID WHERE p.STATION_ID = $ID ORDER BY p.ENTFERNUNG ASC LIMIT 3";
     $result = mysqli_query($verbindung, $SQL);
 
 
