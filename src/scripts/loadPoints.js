@@ -1,34 +1,39 @@
 map.on('moveend', function () {
     loadMarkers();
 });
+let filterArray = [];
+function checkFilterSelected(value) {
 
-function checkFilterSelected() {
-    let filterArray = [];
-
-
-    if (document.querySelector('.checkboxcheck').checked) {
-
-        filterArray.push();
-        console.log(filterArray);
-
-    } else {
-        filterArray = filterArray.filter(e => e !== "test");
-        console.log(filterArray);
-    }
+        if(!filterArray.includes(value)){
+            console.log(value);
+            filterArray.push(value);
+            console.log(filterArray);
+        }else {
+            filterArray = filterArray.filter(e => e !== value);
+        }
 
     return filterArray;
 }
 
-function loadMarkers() {
+function loadMarkers(value) {
 
     var Box = map.getBounds();
     let MapBounds = Box.toBBoxString().split(/[,]/);
 
-    const userID = 1;
-    let filterArray = checkFilterSelected();
+    let userID;
+    let filterArray = checkFilterSelected(value);
+
+    if(loginStatus === "logged"){
+        userID = current_user_id;
+        console.log(userID);
+        console.log("User id übergeben");
+    }else {
+        userID = 0;
+        console.log("Keine User id übergeben");
+    }
 
     if (filterArray.length === 0) {
-        filterArray = ["empty"];
+        filterArray = ["Persönliche", "empty"];
         ajaxloadData(MapBounds[0], MapBounds[2], MapBounds[1], MapBounds[3], userID, filterArray);
     } else {
         ajaxloadData(MapBounds[0], MapBounds[2], MapBounds[1], MapBounds[3], userID, filterArray);
@@ -96,7 +101,30 @@ function placeMarkersInBounds(myData, limit) {
 }
 
 function onClick() {
-    console.log(this.getLatLng());
+    //console.log(this.getLatLng());
+    const coordinates = this.getLatLng().toString().split(/([1-9]\d*(\.|\,)\d*|0?(\.|\,)\d*[1-9]\d*|[1-9]\d*)/);
+
+    let latitude = coordinates[1];
+    let longitude = coordinates[2];
+
+
+    try {
+        $.ajax({
+            type: 'GET',
+            url: ('../php/GetNextThreePOIS.php'),
+            dataType: 'json',
+            data: {
+                lat: latitude,
+                long: longitude,
+            },
+            error: ajaxLoadMHSError,
+            success: function (result) {
+                placeMarkersInBounds(result, 3)
+            }
+        })
+    }catch (e){
+
+    }
 }
 
 function setMarkerColor(type) {
