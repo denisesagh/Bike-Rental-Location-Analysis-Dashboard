@@ -36,16 +36,17 @@ L.Control.Isochrone = L.Control.extend({
         this._map = map;
 
         this.lastIso = null;
-        this.groupIso = L.geoJSON(null, {style: this.options.styleFn});
-
+        //this.groupIso = L.geoJSON(null, {style: this.options.styleFn});
+        this.groupIso = new L.LayerGroup();
+        this.groupIso.addTo(this._map);
         this._container = L.DomUtil.create('div', 'leaflet-bar ');
         L.DomEvent.disableClickPropagation(this._container);
         return this._container;
     },
 
-    onRemove: function (map) {
-        this.isolinesGroup.removeFrom(this._map);
-        this.isolinesGroup.clearLayers();
+    onRemove: function () {
+        this.groupIso.removeLayer(this.lastIso);
+        this.groupIso.removeFrom(this._map);
     },
 
     callApi: function () {
@@ -66,7 +67,6 @@ L.Control.Isochrone = L.Control.extend({
             request.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
                     var data = JSON.parse(this.responseText);
-                    console.log(data);
                     if (data.hasOwnProperty('features')) {
                         data.features.reverse();
                         for (var i = 0; i < data.features.length; i++) {
@@ -115,12 +115,10 @@ L.Control.Isochrone = L.Control.extend({
                                     fillOpacity: 1
                                 });
                             }
-
                             // Add the marker to the isolines GeoJSON
                             originMarker.addTo(context.lastIso);
                         }
                         context.lastIso.addTo(context.groupIso);
-
                         // Add the isolines GeoJSON FeatureGroup to the map if it isn't already
                         if (!context._map.hasLayer(context.groupIso)) context.groupIso.addTo(context._map);
                     }

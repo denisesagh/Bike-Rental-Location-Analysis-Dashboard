@@ -1,5 +1,5 @@
 var route;
-var isochrones = [];
+var iso;
 
 /*
 type: car, bike, foot
@@ -17,19 +17,19 @@ function removeRouteFromMap() {
         route = null;
     }
 }
+
 /*
 types: driving-car, cycling-regular/cycling-road, foot-walking
 coords: L.latLng(X.Y, X.Y)
 range: 100-10000 UNBEDINGT DARAUF BEGRENZEN!!!
  */
 function addIsochroneToMap(type, coords, range) {
-    isochrones.push(new BykeChrone(getMap(), type, coords, range));
-    isochrones.at(isochrones.length - 1).createIsochrone();
+    iso = new BykeChrone(getMap(), type, coords, range);
+    iso.createIsochrone();
 }
 
 function removeFirstIsochroneFromMap() {
-    if (isochrones.length > 0) {
-        isochrones.at(0).removeIsochrone();
-        isochrones.shift();
+    if (iso != null) {
+        iso.removeIsochrone();
     }
 }
