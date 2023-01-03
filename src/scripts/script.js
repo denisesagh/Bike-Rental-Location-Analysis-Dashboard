@@ -314,18 +314,18 @@ function clickeventmanger(cords){
     }
     if (menu ===3){
         if (radiusmenuvalue===1){
-            //removeFirstIsochroneFromMap();
-            console.log("1")
+            console.log("1");
+            removeFirstIsochroneFromMap();
             addIsochroneToMap("foot-walking",cords,isoradius);
         }
         if (radiusmenuvalue===2){
-            //removeFirstIsochroneFromMap();
-            console.log("2")
+            console.log("2");
+            removeFirstIsochroneFromMap();
             addIsochroneToMap("cycling-regular",cords,isoradius);
         }
         if (radiusmenuvalue===3){
-            //removeFirstIsochroneFromMap();
-            console.log("3")
+            console.log("3");
+            removeFirstIsochroneFromMap();
             addIsochroneToMap("driving-car",cords,isoradius);
         }
 

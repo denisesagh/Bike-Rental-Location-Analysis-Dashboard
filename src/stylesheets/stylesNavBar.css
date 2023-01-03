@@ -271,5 +271,12 @@
 }
 
 .selectedPois {
-
+    font-family: Helvetica;
+    font-size: 18px;
+    color: #191919;
+    background-color: white;
+    margin: 2px;
+    border-radius: 25px;
+/*
+    padding-left: 10px;*/
 }

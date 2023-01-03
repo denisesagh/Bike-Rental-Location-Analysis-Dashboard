@@ -36,16 +36,18 @@ L.Control.Isochrone = L.Control.extend({
         this._map = map;
 
         this.lastIso = null;
-        this.groupIso = L.geoJSON(null, {style: this.options.styleFn});
-
+        //this.groupIso = L.geoJSON(null, {style: this.options.styleFn});
+        this.groupIso = new L.LayerGroup();
+        this.groupIso.addTo(this._map);
         this._container = L.DomUtil.create('div', 'leaflet-bar ');
         L.DomEvent.disableClickPropagation(this._container);
         return this._container;
     },
 
-    onRemove: function (map) {
-        this.isolinesGroup.removeFrom(this._map);
-        this.isolinesGroup.clearLayers();
+    onRemove: function () {
+        this.groupIso.removeLayer(this.lastIso);
+        this.groupIso.removeFrom(this._map);
+        //$(".leaflet-control").remove();
     },
 
     callApi: function () {

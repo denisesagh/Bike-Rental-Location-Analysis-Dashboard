@@ -1,5 +1,5 @@
 var route;
-var isochrones = [];
+var isochrone;
 
 /*
 type: car, bike, foot
@@ -23,13 +23,10 @@ coords: L.latLng(X.Y, X.Y)
 range: 100-10000 UNBEDINGT DARAUF BEGRENZEN!!!
  */
 function addIsochroneToMap(type, coords, range) {
-    isochrones.push(new BykeChrone(getMap(), type, coords, range));
-    isochrones.at(isochrones.length - 1).createIsochrone();
+    isochrone = new BykeChrone(getMap(), type, coords, range);
+    isochrone.createIsochrone();
 }
 
 function removeFirstIsochroneFromMap() {
-    if (isochrones.length > 0) {
-        isochrones.at(0).removeIsochrone();
-        isochrones.shift();
-    }
+
 }

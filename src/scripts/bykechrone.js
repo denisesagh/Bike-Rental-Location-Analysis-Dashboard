@@ -15,7 +15,10 @@ class BykeChrone {
     }
 
     createIsochrone() {
-        isochrone = L.control.isochrone({
+        if(isochrone != null){
+            isochrone.onRemove();
+        }
+        this.isochrone = L.control.isochrone({
             apiKey: API_KEY,
             travelMode: this.type,
             poi: this.poi,
@@ -28,15 +31,15 @@ class BykeChrone {
             mouseOutFn: resetIsolines,
             clickFn: clickIsolines,
         });
-
-        isochrone.callApi();
-        isochrone.addTo(this.map);
+        isochrone = this.isochrone;
+        this.isochrone.callApi();
+        this.isochrone.addTo(this.map);
     }
 
     removeIsochrone() {
         if (this.isochrone != null) {
+            this.isochrone.onRemove();
             this.map.removeControl(this.isochrone);
-            this.isochrone = null;
         }
     }
 
@@ -47,7 +50,7 @@ function resetIsolines(e) {
     // NOTE: as shown in the examples on the Leaflet website, e.target = the layer the user is interacting with
     var layer = e.target;
 
-    isochrone.groupIso.resetStyle(layer);
+    isochrone.lastIso.resetStyle(layer);
 }
 
 function styleIsolines(feature) {
