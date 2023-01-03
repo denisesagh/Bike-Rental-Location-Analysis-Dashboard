@@ -29,25 +29,35 @@ class POI {
         var addParams = '\'' + this.params.name + '\', \'' + this.params.category + '\', '
             + this.params.lat + ', ' + this.params.lng;
         return '<button type="button" class="searchButton" onclick="addToSelectedPOIs(' + addParams + ')">'
-            + formatWithCategoryIcon("  " + this._shortenName(name), this.params.category) + '</button>';
+            + formatWithCategoryIcon("  " + shortenName(name, 30), this.params.category) + '</button>';
     }
+}
 
-    _shortenName(name) {
-        if (name.length >= 30) {
-            return name.slice(0, 29) + "...";
-        } else {
-            return name;
-        }
+function shortenName(name, length) {
+    if (name.length >= length) {
+        return name.slice(0, length - 1) + "...";
+    } else {
+        return name;
     }
 }
 
 function addToSelectedPOIs(name, cat, lat, lng) {
-    if (firstSelectedPOI === false) {
+    if (firstSelectedPOI == null) {
         document.getElementById("selected-poi1").appendChild(formatSelectedPOI(name, cat, lat, lng, "selected-poi1"));
-        firstSelectedPOI = true;
-    } else if (secondSelectedPOI === false) {
+        firstSelectedPOI = new POI({
+            name: name,
+            cat: cat,
+            lat: lat,
+            lng: lng
+        });
+    } else if (secondSelectedPOI == null) {
         document.getElementById("selected-poi2").appendChild(formatSelectedPOI(name, cat, lat, lng, "selected-poi2"));
-        secondSelectedPOI = true;
+        secondSelectedPOI = new POI({
+            name: name,
+            cat: cat,
+            lat: lat,
+            lng: lng
+        });
     } else {
         alert("please remove one of your selected POIs");
     }
@@ -56,21 +66,27 @@ function addToSelectedPOIs(name, cat, lat, lng) {
 
 function formatSelectedPOI(name, cat, lat, lng, elementId) {
     var body = document.createElement("p");
-    body.innerHTML += formatWithCategoryIcon("  " + name, cat);
+    body.innerHTML += formatWithCategoryIcon("  " + shortenName(name, 20), cat);
     var formattedElement = "\'" + elementId + "\'";
     var buttonRemove = '<button type="button" class="searchButton" onclick="removeSelectedPOI(' + formattedElement + ')">' +
         "Remove" + '</button>'
-    body.innerHTML += buttonRemove;
 
+    formattedElement = "\'" + getIsoType() + "\'," + lat + "," + lng + "," + isoradius;
+    console.log(formattedElement);
+    var buttonIso = '<button type="button" class="searchButton" onclick="addIsochroneToMapRaw(' + formattedElement + ')">' +
+        "Show Reach" + '</button>'
+
+    body.innerHTML += buttonIso;
+    body.innerHTML += buttonRemove;
     return body;
 }
 
 function removeSelectedPOI(elementId) {
     document.getElementById(elementId).innerHTML = "";
     if (elementId === "selected-poi1") {
-        firstSelectedPOI = false;
+        firstSelectedPOI = null;
     } else {
-        secondSelectedPOI = false;
+        secondSelectedPOI = null;
     }
 }
 
