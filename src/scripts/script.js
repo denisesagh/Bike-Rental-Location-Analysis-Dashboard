@@ -7,29 +7,28 @@ var map = L.map('map', {
     worldCopyJump: true
 }).setView([49.988015, 8.228197], 12);
 lightmode();
+var Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
+    maxZoom: 20,
+    attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+});
+
+
 
 function darkmode(){
     if (modus === "light") {
         console.log("darkmode");
-        var Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
-            maxZoom: 20,
-            attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-        });
         map.addLayer(Stadia_AlidadeSmoothDark);
         modus = "dark";
+        map.removeLayer(osm);
     }
     else {
+        map.removeLayer(Stadia_AlidadeSmoothDark)
         lightmode();
     }
 
 }
 
-
-
 console.log("lightmode");
-
-
-
 
 function lightmode(){
 
