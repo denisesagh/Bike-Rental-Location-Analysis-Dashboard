@@ -32,7 +32,9 @@ async function isLogged() {
             url: "../php/userlogin.php",    //the page containing php script
             type: "post",    //request type,
             dataType: 'json',
-            data: {registration: "success", name: username, password: hashedPassword},
+            data: {registration: "success",
+                name: username,
+                password: hashedPassword},
             success: function (result) {
                 alert("Erfolgreich eingeloggt als " + username);
                 loginStatus = "logged";
