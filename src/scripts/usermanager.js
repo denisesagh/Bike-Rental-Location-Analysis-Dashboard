@@ -1,6 +1,7 @@
 var username;
 var loginStatus = "not logged";
 var current_user_id;
+//user_login_logout.style.display = "none";
 
 async function sha256(message) {
     // encode as UTF-8
@@ -59,6 +60,7 @@ function ShowUserLoggedStatus(user_id, loginStatus) {
         console.log("User with id " + user_id + " is logged"); //USER ID!!!!!!!!!
         current_user_id = user_id;
         document.querySelector("#user_login_logout").style.display = "block";
+        //document.querySelector("#user_login_logout").style.display = "block";
         let divLoginInput = document.querySelector("body > div.user_login_window > div > label");
         let divLoginInputSubmitter = document.querySelector("#user_login_submit")
         let divLoginWindow = document.querySelector("body > div.user_login_window")
@@ -67,6 +69,8 @@ function ShowUserLoggedStatus(user_id, loginStatus) {
         divLoginInputSubmitter.style.display = "none";
     }
 }
+
+
 var loginField = "shown";
 function displayLoggedUser() {
     if (loginField === "shown") {
