@@ -3,8 +3,7 @@ function getThreeNext(name, long, lat, kategorie, id) {
     marker = new L.circleMarker([long, lat], {
         color: setMarkerColor(kategorie),
         renderer: myRenderer
-    })
-        .bindPopup("<b>Name: </b>" + name + "<br><b>Kategorie: </b>" + kategorie).addTo(markerLayer);
+    }).bindPopup("<b>Name: </b>" + name + "<br><b>Kategorie: </b>" + kategorie).addTo(markerLayer);
 }
 
 
