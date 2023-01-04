@@ -1,17 +1,5 @@
 var modus = "light";
 
-var map = L.map('map', {
-    zoomControl: false,
-    inertia: true,
-    worldCopyJump: true
-}).setView([49.988015, 8.228197], 12);
-lightmode();
-var Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
-    maxZoom: 20,
-    attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-});
-
-
 function darkmode() {
     if (modus === "light") {
         console.log("darkmode");
@@ -26,20 +14,6 @@ function darkmode() {
 }
 
 console.log("lightmode");
-
-function lightmode() {
-
-    var osmUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-        osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        osm = L.tileLayer(osmUrl, {
-            maxZoom: 18,
-            attribution: osmAttrib
-        });
-
-    map.addLayer(osm);
-    modus = "light";
-
-}
 
 
 //document.querySelector("#user_login_logout").style.display = "none"
