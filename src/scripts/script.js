@@ -4,7 +4,7 @@ var map = L.map('map', {
     zoomControl: false,
     inertia: true,
     worldCopyJump: true
-}).setView([49.988015, 8.228197], 12);
+}).setView([53.565394659681424 , 10.007514953613283], 8);
 lightmode();
 var Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
     maxZoom: 20,
