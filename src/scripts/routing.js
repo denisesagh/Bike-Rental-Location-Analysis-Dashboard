@@ -21,9 +21,10 @@ class BykeRoute {
             routeWhileDragging: false,
             router: new L.Routing.OSRMv1({serviceUrl: OSRM_URL, profile: this.routeType}),
             show: false,
-            collapsible: true
+            collapsible: false
         });
         //TODO: Style and fix
+        //this.route.createContainer("iternary");
         this.route.addTo(this.map);
     }
 

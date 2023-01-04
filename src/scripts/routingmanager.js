@@ -32,13 +32,13 @@ function addIsochroneToMap(type, coords, range) {
     iso.createIsochrone();
 }
 
-function addIsochroneToMapRaw(lat, lng) {
+function addIsochroneToMapRaw(type, lat, lng, range) {
     var coords = new L.latLng(lat, lng);
     if (iso != null) {
         iso.removeIsochrone();
         iso = null;
     }
-    iso = new BykeChrone(getMap(), getIsoType(), coords, isoradius);
+    iso = new BykeChrone(getMap(), type, coords, range);
     iso.createIsochrone();
 }
 
