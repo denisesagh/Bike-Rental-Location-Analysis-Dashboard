@@ -1,42 +1,7 @@
-let filterArray = [];
-
-var map = L.map('map', {
-    zoomControl: false,
-    inertia: true,
-    worldCopyJump: true
-});
-
-map.on('load',  function () {
-    loadMarkers("empty");
-    filterArray = [];
-});
-
-map.setView([53.605544099238, 9.992752075195314], 15);
-
-function lightmode() {
-
-    var osmUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-        osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        osm = L.tileLayer(osmUrl, {
-            maxZoom: 18,
-            attribution: osmAttrib
-        });
-
-    map.addLayer(osm);
-    modus = "light";
-
-}
-
 map.on('moveend', function () {
     loadMarkers();
 });
-
-var Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
-    maxZoom: 20,
-    attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-});
-lightmode();
-
+let filterArray = [];
 function checkFilterSelected(value) {
 
         if(!filterArray.includes(value)){
@@ -68,7 +33,7 @@ function loadMarkers(value) {
     }
 
     if (filterArray.length === 0) {
-        filterArray = ["empty"];
+        filterArray = ["Persönliche", "empty"];
         ajaxloadData(MapBounds[0], MapBounds[2], MapBounds[1], MapBounds[3], userID, filterArray);
     } else {
         ajaxloadData(MapBounds[0], MapBounds[2], MapBounds[1], MapBounds[3], userID, filterArray);
@@ -96,7 +61,7 @@ function ajaxloadData(latStart, latEnd, longStart, longEnd, userID, filterArray)
             }
         })
     } catch (error) {
-        console.log(error);
+        console.log("Failed to load POIS!");
     }
 }
 
@@ -142,7 +107,7 @@ function onClick() {
     let latitude = coordinates[1];
     let longitude = coordinates[2];
 
-    /*
+
     try {
         $.ajax({
             type: 'GET',
@@ -160,8 +125,6 @@ function onClick() {
     }catch (e){
 
     }
-
-     */
 }
 
 function setMarkerColor(type) {
@@ -185,6 +148,6 @@ function setMarkerColor(type) {
         case 'Sonstige':
             return '#6c0b9b';
         default:
-            return '#000000';
+            break;
     }
 }
