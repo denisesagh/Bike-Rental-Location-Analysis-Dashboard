@@ -1,7 +1,43 @@
+let filterArray = [];
+
+var map = L.map('map', {
+    zoomControl: false,
+    inertia: true,
+    worldCopyJump: true
+});
+
+map.on('load',  function () {
+    loadMarkers("empty");
+    filterArray = [];
+});
+
+map.setView([53.605544099238, 9.992752075195314], 15);
+
+function lightmode() {
+
+    var osmUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+        osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        osm = L.tileLayer(osmUrl, {
+            maxZoom: 18,
+            attribution: osmAttrib
+        });
+
+    map.addLayer(osm);
+    modus = "light";
+
+}
+
 map.on('moveend', function () {
     loadMarkers();
 });
-let filterArray = [];
+
+var Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
+    maxZoom: 20,
+    attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+});
+lightmode();
+
+
 function checkFilterSelected(value) {
 
         if(!filterArray.includes(value)){
@@ -61,7 +97,7 @@ function ajaxloadData(latStart, latEnd, longStart, longEnd, userID, filterArray)
             }
         })
     } catch (error) {
-        console.log("Failed to load POIS!");
+        console.log(error);
     }
 }
 
@@ -107,7 +143,7 @@ function onClick() {
     let latitude = coordinates[1];
     let longitude = coordinates[2];
 
-
+    /*
     try {
         $.ajax({
             type: 'GET',
@@ -125,6 +161,8 @@ function onClick() {
     }catch (e){
 
     }
+
+     */
 }
 
 function setMarkerColor(type) {
