@@ -1,6 +1,10 @@
 map.on('moveend', function () {
     loadMarkers();
 });
+map.on('load', function () {
+    loadMarkers();
+});
+
 let filterArray = [];
 function checkFilterSelected(value) {
 
@@ -107,7 +111,7 @@ function onClick() {
     let latitude = coordinates[1];
     let longitude = coordinates[2];
 
-
+    /*
     try {
         $.ajax({
             type: 'GET',
@@ -125,6 +129,8 @@ function onClick() {
     }catch (e){
 
     }
+
+     */
 }
 
 function setMarkerColor(type) {
