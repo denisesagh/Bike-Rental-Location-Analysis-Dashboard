@@ -11,3 +11,57 @@ html, body {
     z-index: 1;
     position: relative;
 }
+
+
+
+.darkmode_onoffswitch {
+    position: relative; width: 90px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.darkmode_onoffswitch-checkbox {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+.darkmode_onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #999999; border-radius: 20px;
+}
+.darkmode_onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.darkmode_onoffswitch-inner:before, .darkmode_onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 33px; padding: 0; line-height: 33px;
+    font-size: 19px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.darkmode_onoffswitch-inner:before {
+    content: "Ligth";
+    padding-left: 6px;
+    background-color: #DBDBDB; color: #FFFFFF;
+}
+.darkmode_onoffswitch-inner:after {
+    content: "Dark";
+    padding-right: 6px;
+    background-color: #4A4848; color: #999999;
+    text-align: right;
+}
+.darkmode_onoffswitch-switch {
+    display: block; width: 26px; margin: 3.5px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 53px;
+    border: 2px solid #999999; border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+}
+.darkmode_onoffswitch-checkbox:checked + .darkmode_onoffswitch-label .darkmode_onoffswitch-inner {
+    margin-left: 0;
+}
+.darkmode_onoffswitch-checkbox:checked + .darkmode_onoffswitch-label .darkmode_onoffswitch-switch {
+    right: 0px;
+}
+
+.poiAdderButton{
+    margin: -20px;
+}
