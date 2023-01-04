@@ -116,7 +116,10 @@
         <label for="myCheck3"><i class="fa-solid fa-cart-shopping"></i> Shopping</label><br>
 
         <input type="checkbox" class="checkboxcheck" id="myCheck8" onclick=loadMarkers('Sonstige') value="Sonstige" >
-        <label for="myCheck3"><i class="fa-solid fa-minus"></i> Sonstige</label>
+        <label for="myCheck3"><i class="fa-solid fa-minus"></i> Sonstige</label><br>
+
+        <input type="checkbox" class="checkboxcheck" id="myCheck9" onclick=loadMarkers('user') value="Sonstige" >
+        <label for="myCheck3"><i class="fa-regular fa-user"></i></i> User</label>
 
 
         <div class="buttonaddpoi">
@@ -200,10 +203,13 @@
 
     <div class="poiAdderButton" id ="poi_adder_button">
 
-        <a href="javascript:darkmode()" class="icon" id="poiAdderButton" style="text-decoration: none; color: black" >
-            <i class="fa" style="font-size:24px" aria-hidden="true">+</i>
-            <i class="fa-solid fa-map-pin " style="font-size:24px"></i>
-        </a>
+        <div class="darkmode_onoffswitch">
+            <input type="checkbox" name="darkmode_onoffswitch" onclick="darkmode()" class="darkmode_onoffswitch-checkbox" id="darkmode_myonoffswitch" tabindex="0" checked>
+            <label class="darkmode_onoffswitch-label" for="darkmode_myonoffswitch">
+                <span class="darkmode_onoffswitch-inner"></span>
+                <span class="darkmode_onoffswitch-switch"></span>
+            </label>
+        </div>
 
     </div>
 
