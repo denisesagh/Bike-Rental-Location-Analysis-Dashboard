@@ -7,11 +7,7 @@ class POI {
         station_id: 0,
         user_id: 0,
 
-        markerBtn1: null,
-        markerBtn2: null,
-        markerBtn3: null,
-
-        searchBtnClick: null
+        marker: null,
     }
 
     searchButton = null;
@@ -48,7 +44,11 @@ function addToSelectedPOIs(name, cat, lat, lng) {
             name: name,
             cat: cat,
             lat: lat,
-            lng: lng
+            lng: lng,
+
+            marker: L.marker([lat, lng],
+                {icon: personalPOIIcon})
+                .addTo(map)
         });
     } else if (secondSelectedPOI == null) {
         document.getElementById("selected-poi2").appendChild(formatSelectedPOI(name, cat, lat, lng, "selected-poi2"));
@@ -56,12 +56,15 @@ function addToSelectedPOIs(name, cat, lat, lng) {
             name: name,
             cat: cat,
             lat: lat,
-            lng: lng
+            lng: lng,
+
+            marker: L.marker([lat, lng],
+                {icon: personalPOIIcon})
+                .addTo(map)
         });
     } else {
         alert("please remove one of your selected POIs");
     }
-    console.log(name + " " + cat + " " + lat + " " + lng);
 }
 
 function formatSelectedPOI(name, cat, lat, lng, elementId) {
@@ -84,8 +87,10 @@ function formatSelectedPOI(name, cat, lat, lng, elementId) {
 function removeSelectedPOI(elementId) {
     document.getElementById(elementId).innerHTML = "";
     if (elementId === "selected-poi1") {
+        firstSelectedPOI.params.marker.remove();
         firstSelectedPOI = null;
     } else {
+        secondSelectedPOI.params.marker.remove();
         secondSelectedPOI = null;
     }
 }
