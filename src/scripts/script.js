@@ -4,7 +4,7 @@ var map = L.map('map', {
     zoomControl: false,
     inertia: true,
     worldCopyJump: true
-}).setView([53.565394659681424 , 10.007514953613283], 10);
+}).setView([49.988015, 8.228197], 12);
 lightmode();
 var Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
     maxZoom: 20,
@@ -19,7 +19,7 @@ function darkmode() {
         modus = "dark";
         map.removeLayer(osm);
     } else {
-        map.removeLayer(Stadia_AlidadeSmoothDark);
+        map.removeLayer(Stadia_AlidadeSmoothDark)
         lightmode();
     }
 
@@ -38,6 +38,7 @@ function lightmode() {
 
     map.addLayer(osm);
     modus = "light";
+
 }
 
 

@@ -7,7 +7,11 @@ class POI {
         station_id: 0,
         user_id: 0,
 
-        marker: null,
+        markerBtn1: null,
+        markerBtn2: null,
+        markerBtn3: null,
+
+        searchBtnClick: null
     }
 
     searchButton = null;
@@ -44,11 +48,7 @@ function addToSelectedPOIs(name, cat, lat, lng) {
             name: name,
             cat: cat,
             lat: lat,
-            lng: lng,
-
-            marker: L.marker([lat, lng],
-                {icon: personalPOIIcon})
-                .addTo(map)
+            lng: lng
         });
     } else if (secondSelectedPOI == null) {
         document.getElementById("selected-poi2").appendChild(formatSelectedPOI(name, cat, lat, lng, "selected-poi2"));
@@ -56,15 +56,12 @@ function addToSelectedPOIs(name, cat, lat, lng) {
             name: name,
             cat: cat,
             lat: lat,
-            lng: lng,
-
-            marker: L.marker([lat, lng],
-                {icon: personalPOIIcon})
-                .addTo(map)
+            lng: lng
         });
     } else {
         alert("please remove one of your selected POIs");
     }
+    console.log(name + " " + cat + " " + lat + " " + lng);
 }
 
 function formatSelectedPOI(name, cat, lat, lng, elementId) {
@@ -74,7 +71,7 @@ function formatSelectedPOI(name, cat, lat, lng, elementId) {
     var buttonRemove = '<button type="button" class="searchButton" onclick="removeSelectedPOI(' + formattedElement + ')">' +
         "Remove" + '</button>'
 
-    formattedElement = lat + "," + lng;
+    formattedElement = "\'" + getIsoType() + "\'," + lat + "," + lng + "," + isoradius;
     console.log(formattedElement);
     var buttonIso = '<button type="button" class="searchButton" onclick="addIsochroneToMapRaw(' + formattedElement + ')">' +
         "Show Reach" + '</button>'
@@ -87,10 +84,8 @@ function formatSelectedPOI(name, cat, lat, lng, elementId) {
 function removeSelectedPOI(elementId) {
     document.getElementById(elementId).innerHTML = "";
     if (elementId === "selected-poi1") {
-        firstSelectedPOI.params.marker.remove();
         firstSelectedPOI = null;
     } else {
-        secondSelectedPOI.params.marker.remove();
         secondSelectedPOI = null;
     }
 }
