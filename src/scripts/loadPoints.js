@@ -188,7 +188,13 @@ function setMarkerColor(type) {
         case 'Shopping':
             return '#12778a';
         case 'Sonstige':
-            return '#6c0b9b';
+            return '#0b9363';
+        case 'Religion':
+            return '#bb49f8';
+        case 'Finanzwesen':
+            return '#525a94';
+        case 'CustomUserPOI':
+            return '#000000';
         default:
             break;
     }
