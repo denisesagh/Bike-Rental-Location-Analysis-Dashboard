@@ -47,6 +47,9 @@
     z-index: 1;
 
     pointer-events: auto;
+
+    margin-left: 15px;
+    margin-top: 15px;
 }
 
 .menu a.icon {
