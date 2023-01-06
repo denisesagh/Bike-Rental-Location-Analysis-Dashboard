@@ -93,7 +93,7 @@ function formatWithCategoryIcon(text, cat) {
     switch (cat) {
         case "Gastronomie":
             return "<label for=\"myCheck1\"><i class=\"fa-solid fa-utensils iconcheck\"></i>" + text + "</label>";
-        case "Öffentliche_Hand":
+        case "Öffentlich":
             return "<label for=\"myCheck2\"><i class=\"fa-solid fa-building iconcheck\" ></i>" + text + "</label>";
         case "Freizeit":
             return "<label for=\"myCheck3\"><i class=\"fa-solid fa-futbol iconcheck\"></i>" + text + "</label>";
@@ -101,9 +101,9 @@ function formatWithCategoryIcon(text, cat) {
             return "<label for=\"myCheck3\"><i class=\"fa-solid fa-book\"></i>" + text + "</label>";
         case "Lebensmittel":
             return "<label for=\"myCheck3\"><i class=\"fa-solid fa-carrot\"></i>" + text + "</label>";
-        case "Dienstleistungen_Fachhandel":
+        case "Dienstleistung":
             return "<label for=\"myCheck3\"><i class=\"fa-solid fa-bell-concierge\"></i>" + text + "</label>";
-        case "Finanzwesen_Versicherungen":
+        case "Finanzwesen":
             return "<label for=\"myCheck3\"><i class=\"fa-solid fa-money-bill\"></i>" + text + "</label>";
         case "Gesundheit":
             return "<label for=\"myCheck3\"><i class=\"fa-solid fa-house-medical\"></i>" + text + "</label>";

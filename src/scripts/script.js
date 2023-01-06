@@ -391,11 +391,11 @@ function createRouteWithSearchSelection() {
         if (routingtype === 1) {
             addRouteToMap("foot", start, dest);
         } else if (routingtype === 2) {
-            addRouteToMap("bike", start, dest);
+            addRouteToMap("bicycle", start, dest);
         } else if (routingtype === 3) {
             addRouteToMap("car", start, dest);
         } else {
-            addRouteToMap("car", start, dest);
+            addRouteToMap("driving", start, dest);
         }
     }
 }

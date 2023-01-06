@@ -3,7 +3,7 @@ header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json; charset=utf-8');
 $connection = include ('db.inc.php');
 $input = $_POST['input'];
-$sql = "SELECT * FROM poi WHERE NAME LIKE '%$input%' GROUP BY NAME LIMIT 4";
+$sql = "SELECT * FROM poi WHERE NAME LIKE '%$input%' AND USERID = 0 GROUP BY NAME LIMIT 4";
 $sql2 = "SELECT * FROM stationen_hamburg WHERE NAME LIKE '%$input%' GROUP BY NAME LIMIT 1";
 
 try{
