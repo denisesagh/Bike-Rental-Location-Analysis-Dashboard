@@ -12,7 +12,7 @@ function ajaxloadDataNextThreeMarkers(id) {
     try {
         $.ajax({
             type: 'GET',
-            url: ('../php/POI-Dash-GetData.php'),
+            url: ('../php/GetData.php'),
             dataType: 'json',
             data: {ID: id},
             error: ajaxLoadMHSError,
