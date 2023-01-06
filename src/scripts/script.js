@@ -335,6 +335,13 @@ function clickeventmanger(cords) {
 
 }
 
+function activateBikeCheckBox(){
+    if(!document.getElementById("myCheck0").checked && document.getElementById("myonoffswitch").checked){
+        document.getElementById("myCheck0").checked = true;
+        loadMarkers("Fahrradstation");
+    }
+}
+
 var route_cords_start = null;
 var route_cords_end = null;
 
