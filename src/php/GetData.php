@@ -5,7 +5,7 @@ function createSQL($value, $table, $latStart, $latEnd, $longStart, $longEnd, $us
     switch ($value){
         case "Persönliche":
             return "SELECT * FROM $table WHERE LATITUDE >= $latStart and LATITUDE <= $latEnd and LONGITUDE >= $longStart and LONGITUDE <= $longEnd and USERID=$userID";
-        case "empty":
+        case "showAll":
             return "SELECT * FROM $table WHERE LATITUDE >= $latStart and LATITUDE <= $latEnd and LONGITUDE >= $longStart and LONGITUDE <= $longEnd and USERID=0";
         default:
             return "SELECT * FROM $table WHERE LATITUDE >= $latStart and LATITUDE <= $latEnd and LONGITUDE >= $longStart and LONGITUDE <= $longEnd and KATEGORIE = '$value' and USERID=0";

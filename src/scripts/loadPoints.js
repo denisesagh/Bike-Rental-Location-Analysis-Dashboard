@@ -53,14 +53,7 @@ function checkFilterSelected(value) {
     return filterArray;
 }
 
-function loadMarkers(value) {
-
-    var Box = map.getBounds();
-    let MapBounds = Box.toBBoxString().split(/[,]/);
-
-    let userID;
-    let filterArray = checkFilterSelected(value);
-
+function checkUser(userID){
     if(loginStatus === "logged"){
         userID = current_user_id;
         console.log(userID);
@@ -69,9 +62,20 @@ function loadMarkers(value) {
         userID = 0;
         console.log("Keine User id übergeben");
     }
+    return userID;
+}
+
+function loadMarkers(value) {
+
+    var Box = map.getBounds();
+    let MapBounds = Box.toBBoxString().split(/[,]/);
+
+    let filterArray = checkFilterSelected(value);
+    let userID = checkUser();
+
 
     if (filterArray.length === 0) {
-        filterArray = ["empty"];
+        filterArray = ["showAll"];
         ajaxloadData(MapBounds[0], MapBounds[2], MapBounds[1], MapBounds[3], userID, filterArray);
     } else {
         ajaxloadData(MapBounds[0], MapBounds[2], MapBounds[1], MapBounds[3], userID, filterArray);
@@ -83,7 +87,7 @@ function ajaxloadData(latStart, latEnd, longStart, longEnd, userID, filterArray)
     try {
         $.ajax({
             type: 'GET',
-            url: ('../php/POI-Dash-GetData.php'),
+            url: ('../php/GetData.php'),
             dataType: 'json',
             data: {
                 lat1: latStart,
