@@ -99,7 +99,7 @@ function ajaxloadData(latStart, latEnd, longStart, longEnd, userID, filterArray)
             },
             error: ajaxLoadMHSError,
             success: function (result) {
-                placeMarkersInBounds(result, 1000)
+                placeMarkersInBounds(result, 2500)
             }
         })
     } catch (error) {
@@ -132,7 +132,7 @@ function placeMarkersInBounds(myData, limit) {
         })
             .bindPopup("<b>Name: </b>" + element.name + "<br><b>Kategorie: </b>" + element.kategorie);
 
-        if (markerCounter <= limit) {
+        if (markerCounter <= limit || element.kategorie === "Fahrradstation") {
             marker.addTo(markerLayer).on('click', onClick);
         }
 
