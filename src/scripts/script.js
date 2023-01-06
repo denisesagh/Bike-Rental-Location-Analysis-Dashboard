@@ -213,7 +213,6 @@ var onSearchInput = function (e) {
                         category: json[i].cat,
                         lng: json[i].lng,
                         lat: json[i].lat,
-                        station_id: json[i].sid,
                         user_id: json[i].uid,
                     });
                     document.getElementById("search_recomendations").innerHTML += result.searchButton;

@@ -111,6 +111,8 @@ function formatWithCategoryIcon(text, cat) {
             return "<label for=\"myCheck3\"><i class=\"fa-solid fa-cart-shopping\"></i>" + text + "</label>";
         case "Religion":
             return "<label for=\"myCheck3\"><i class=\"fa-solid fa-cross\"></i>" + text + "</label>";
+        case "Fahrradstation":
+            return "<label for=\"myCheck1\" class=\"textcheck\"><i class=\"fa-solid fa-bicycle iconcheck\"></i>" + text + "</label>";
         default:
             return "<label for=\"myCheck3\"><i class=\"fa-solid fa-minus\"></i>" + text + "</label>";
     }
