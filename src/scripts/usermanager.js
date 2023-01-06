@@ -43,6 +43,8 @@ async function isLogged() {
                 loginStatus = "logged";
                 let user_id = result.id;
                 ShowUserLoggedStatus(user_id, loginStatus);
+                document.getElementById("myCheck9").checked = true;
+                loadMarkers("Persönliche");
 
             },
             error: function (xhr, ajaxOptions, thrownError) {
