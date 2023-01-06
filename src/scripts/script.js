@@ -270,13 +270,13 @@ function buttonaddpoi() {
 
 showhideaddpoi();
 
-var radiusmenuvalue = 3;
+var isotype = 3;
 
 function sliderbuttons(radiusmenu) {
     var radiusWalking = document.getElementById("buttonradiusWalking");
     var radiusBike = document.getElementById("buttonradiusBike");
     var radiusCar = document.getElementById("buttonradiusCar");
-    radiusmenuvalue = radiusmenu
+    isotype = radiusmenu
     radiusWalking.classList.remove("buttonselected");
     radiusBike.classList.remove("buttonselected");
     radiusCar.classList.remove("buttonselected");
@@ -319,15 +319,15 @@ function clickeventmanger(cords) {
 
     }
     if (menu === 3) {
-        if (radiusmenuvalue === 1) {
+        if (isotype === 1) {
             console.log("1");
             addIsochroneToMap("foot-walking", cords, isoradius);
         }
-        if (radiusmenuvalue === 2) {
+        if (isotype === 2) {
             console.log("2");
             addIsochroneToMap("cycling-regular", cords, isoradius);
         }
-        if (radiusmenuvalue === 3) {
+        if (isotype === 3) {
             console.log("3");
             addIsochroneToMap("driving-car", cords, isoradius);
         }
@@ -395,9 +395,9 @@ function createRouteWithSearchSelection() {
 }
 
 function getIsoType() {
-    if (radiusmenuvalue === 1) {
+    if (isotype === 1) {
         return "foot-walking";
-    } else if (radiusmenuvalue === 2) {
+    } else if (isotype === 2) {
         return "cycling-regular";
     } else {
         return "driving-car";

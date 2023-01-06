@@ -20,6 +20,11 @@ class BykeRoute {
             draggableWaypoints: false,
             routeWhileDragging: false,
             router: new L.Routing.OSRMv1({serviceUrl: OSRM_URL, profile: this.routeType}),
+            lineOptions: {
+                styles: [{color: '#2e4f3a', opacity: 0.15, weight: 7},
+                    {color: '#396444', opacity: 0.6, weight: 4},
+                    {color: '#60a175', opacity: 0.8, weight: 2, dashArray: '7,12'}]
+            },
             show: false,
             collapsible: false
         });
@@ -45,5 +50,13 @@ class BykeRoute {
 
     hidePlan() {
         this.route.hide();
+    }
+
+    getTime(){
+        return this.route.summary.totalTime;
+    }
+
+    getDistance(){
+        return this.route.summary.totalDistance;
     }
 }

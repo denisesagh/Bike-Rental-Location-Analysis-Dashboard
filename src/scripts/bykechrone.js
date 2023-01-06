@@ -77,7 +77,7 @@ function clickIsolines(e) {
     // NOTE: as shown in the examples on the Leaflet website, e.target = the layer the user is interacting with
     var layer = e.target;
     var props = layer.feature.properties;
-    var popupContent = 'Mode of travel: ' + props['Travel mode'] + '<br />Range: 0 - ' + props['Range'] + ' ' + props['Range units'] + '<br />Area: ' + props['Area'] + ' ' + props['Area units'] + '<br />Population: ' + props['Population'];
+    var popupContent = 'Mode of travel: ' + props['Travel mode'] + '<br />Range: 0 - ' + props['Range'] + ' ' + 'km' + '<br />Population: ' + props['Population'];
     if (props.hasOwnProperty('Reach factor')) popupContent += '<br />Reach factor: ' + props['Reach factor'];
     layer.bindPopup(popupContent).openPopup();
 }

@@ -16,7 +16,6 @@ try{
             "cat"=> $row["KATEGORIE"],
             "lng"=> $row["LATITUDE"],
             "lat"=> $row["LONGITUDE"],
-            "sid"=> $row["STATION_ID"],
             "uid"=> $row["USERID"]);
             array_push($messages,$message);
         }

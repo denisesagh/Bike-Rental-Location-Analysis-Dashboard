@@ -4,7 +4,6 @@ class POI {
         category: "",
         lng: 0.0,
         lat: 0.0,
-        station_id: 0,
         user_id: 0,
 
         markerBtn1: null,
@@ -71,7 +70,7 @@ function formatSelectedPOI(name, cat, lat, lng, elementId) {
     var buttonRemove = '<button type="button" class="searchButton" onclick="removeSelectedPOI(' + formattedElement + ')">' +
         "Remove" + '</button>'
 
-    formattedElement = "\'" + getIsoType() + "\'," + lat + "," + lng + "," + isoradius;
+    formattedElement = lat + "," + lng;
     console.log(formattedElement);
     var buttonIso = '<button type="button" class="searchButton" onclick="addIsochroneToMapRaw(' + formattedElement + ')">' +
         "Show Reach" + '</button>'
