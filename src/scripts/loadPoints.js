@@ -7,8 +7,8 @@ var map = L.map('map', {
 });
 
 map.on('load',  function () {
-    loadMarkers("empty");
-    filterArray = [];
+    document.getElementById("myCheck0").checked = true;
+    loadMarkers("Fahrradstation");
 });
 
 map.setView([53.605544099238, 9.992752075195314], 15);
@@ -28,7 +28,9 @@ function lightmode() {
 }
 
 map.on('moveend', function () {
-    loadMarkers();
+    if(!(document.getElementById('myonoffswitch').checked && document.getElementById('myCheck0').checked)){
+        loadMarkers();
+    }
 });
 
 var Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
@@ -69,7 +71,7 @@ function loadMarkers(value) {
     }
 
     if (filterArray.length === 0) {
-        filterArray = ["Persönliche", "empty"];
+        filterArray = ["empty"];
         ajaxloadData(MapBounds[0], MapBounds[2], MapBounds[1], MapBounds[3], userID, filterArray);
     } else {
         ajaxloadData(MapBounds[0], MapBounds[2], MapBounds[1], MapBounds[3], userID, filterArray);
@@ -137,32 +139,34 @@ function placeMarkersInBounds(myData, limit) {
 }
 
 function onClick() {
-    //console.log(this.getLatLng());
     const coordinates = this.getLatLng().toString().split(/([1-9]\d*(\.|\,)\d*|0?(\.|\,)\d*[1-9]\d*|[1-9]\d*)/);
 
     let latitude = coordinates[1];
-    let longitude = coordinates[2];
+    let longitude = coordinates[5];
+    console.log(latitude, longitude);
 
-    /*
-    try {
-        $.ajax({
-            type: 'GET',
-            url: ('../php/GetNextThreePOIS.php'),
-            dataType: 'json',
-            data: {
-                lat: latitude,
-                long: longitude,
-            },
-            error: ajaxLoadMHSError,
-            success: function (result) {
-                placeMarkersInBounds(result, 3)
-            }
-        })
-    }catch (e){
-
+    if(document.getElementById('myonoffswitch').checked && document.getElementById('myCheck0').checked){
+        try {
+            $.ajax({
+                type: 'GET',
+                url: ('../php/GetNextThreePOIS.php'),
+                dataType: 'json',
+                data: {
+                    lat: latitude,
+                    long: longitude,
+                },
+                error: ajaxLoadMHSError,
+                success: function (result) {
+                    placeMarkersInBounds(result, 209);
+                }
+            })
+        }catch (e){
+            console.log(e);
+        }
     }
 
-     */
+
+
 }
 
 function setMarkerColor(type) {
