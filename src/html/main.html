@@ -110,7 +110,10 @@
         <label for="myCheck3"><i class="fa-solid fa-minus"></i> Sonstige</label><br>
 
         <input type="checkbox" class="checkboxcheck" id="myCheck9" onchange=loadMarkers('Persönliche')>
-        <label for="myCheck3"><i class="fa-regular fa-user"></i></i> User</label>
+        <label for="myCheck3"><i class="fa-regular fa-user"></i> User</label><br>
+
+        <input type="checkbox" class="checkboxcheck" id="myCheck10" onchange=loadMarkers('All')>
+        <label for="myCheck3"><i class="fa-brands fa-slack"></i> Alle Marker</label>
 
 
         <div class="buttonaddpoi">
@@ -144,6 +147,10 @@
 
     <div class="box drei" id="slidecontainer">
         <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+        <br>
+        <div class="infos" id="infosmenudrei">
+            15 km - 3 min
+        </div>
     </div>
 
     <div class="select zwei" id="buttons_walking-bike-car">
@@ -158,6 +165,7 @@
         </a>
     </div>
 
+
     <div class="select drei" id="buttons_radius">
         <a href="javascript:void(0);" class="icon" id="buttonradiusWalking" onclick="sliderbuttons(1)">
             <i class="fa-solid fa-person-walking"></i>
@@ -169,11 +177,19 @@
             <i class="fa-solid fa-car"></i>
         </a>
     </div>
+
+
     <div class="box" id="search_recomendations">
 
     </div>
 
     <div class="box zwei" id="menu_2_clear">
+        <div class="infos" id="infosmenuzwei">
+            <br>
+            15 Km - 3 min
+            <br>
+            <br>
+        </div>
         <a href="javascript:void(0);" class="buttonaddpoi" onclick="routing_edit_start()">Edit start</a>
         <a href="javascript:void(0);" class="buttonaddpoi" onclick="routing_clear()">Clear</a>
         <a href="javascript:void(0);" class="buttonaddpoi" onclick="createRouteWithSearchSelection()">Create Route</a>
