@@ -25,6 +25,10 @@ function removeRouteFromMap() {
     }
 }
 
+function updateRouteOnMap(lat, lng){
+    this.route.updateRoute(lat, lng);
+}
+
 /*
 types: driving-car, cycling-regular/cycling-road, foot-walking
 coords: L.latLng(X.Y, X.Y)

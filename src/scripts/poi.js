@@ -50,7 +50,6 @@ function addToSelectedPOIs(name, cat, lat, lng) {
     } else {
         alert("please remove one of your selected POIs");
     }
-    console.log(name + " " + cat + " " + lat + " " + lng);
 }
 
 function formatSelectedPOI(name, cat, lat, lng, elementId) {
@@ -64,6 +63,17 @@ function formatSelectedPOI(name, cat, lat, lng, elementId) {
     console.log(formattedElement);
     var buttonIso = '<button type="button" class="searchButton" onclick="addIsochroneToMapRaw(' + formattedElement + ')">' +
         "Show Reach" + '</button>'
+
+    if(cat === "Fahrradstation") {
+        if (elementId === "selected-poi1") {
+            formattedElement = lat + "," + lng + "," + 0;
+        } else {
+            formattedElement = lat + "," + lng + "," + 1;
+        }
+        var buttonUpdate = '<button type="button" class="searchButton" onclick="updateRouteOnMap(' + formattedElement + ')">' +
+            "Sim" + '</button>'
+        body.innerHTML += buttonUpdate;
+    }
 
     body.innerHTML += buttonIso;
     body.innerHTML += buttonRemove;
