@@ -20,12 +20,9 @@ function createPOI() {
     let poiLong = document.querySelector("#poiLat").value;
     let poiLat = document.querySelector("#poiLong").value;
 
-    console.log(poiName + " " + poiLong + " " + poiLat + " ");
     if (loginStatus === "logged") {
         if (poiName !== "" && poiLong !== "" && poiLat !== "") {
             try {
-
-                console.log("Creating POI: " + poiName + " at " + poiLong + ", " + poiLat + " with " + current_user_id);
                 $.ajax({
                     url: "../php/poimaker.php",    //the page containing php script
                     type: "post",    //request type,
@@ -40,8 +37,6 @@ function createPOI() {
                     success: function (result) {
                         //alert(result);
                         alert("POI " + poiName + " erfolgreich erstellt");
-                        let reply = result.reply;
-                        console.log(reply)
                         createPersonalPOIMarker(poiName, poiLong, poiLat);
                     },
                     error: function (xhr, ajaxOptions, thrownError) {

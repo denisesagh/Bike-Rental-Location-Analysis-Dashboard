@@ -2,7 +2,6 @@ var modus = "light";
 
 function darkmode() {
     if (modus === "light") {
-        console.log("darkmode");
         map.addLayer(Stadia_AlidadeSmoothDark);
         modus = "dark";
         map.removeLayer(osm);
@@ -13,7 +12,6 @@ function darkmode() {
 
 }
 
-console.log("lightmode");
 
 
 //document.querySelector("#user_login_logout").style.display = "none"
@@ -181,7 +179,6 @@ function searchround() {
     }
     if (search === false) {
         search_recomendations.style.display = "none";
-        console.log();
         document.querySelector(".search").removeAttribute("id")
     }
 }
@@ -191,7 +188,6 @@ var source = document.getElementById('source21');
 
 var searchinput = "";
 var onSearchInput = function (e) {
-    //console.log(searchinput)
     searchinput = document.getElementById('source21').value;
     if (searchinput === "") {
         search = false
@@ -300,7 +296,6 @@ slider.oninput = function () {
 }
 
 map.on('click', function (e) {
-    console.log(e.latlng.lat, e.latlng.lng);
     clickeventmanger(e.latlng);
 });
 
@@ -320,15 +315,12 @@ function clickeventmanger(cords) {
     }
     if (menu === 3) {
         if (isotype === 1) {
-            console.log("1");
             addIsochroneToMap("foot-walking", cords, isoradius);
         }
         if (isotype === 2) {
-            console.log("2");
             addIsochroneToMap("cycling-regular", cords, isoradius);
         }
         if (isotype === 3) {
-            console.log("3");
             addIsochroneToMap("driving-car", cords, isoradius);
         }
 

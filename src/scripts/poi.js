@@ -64,7 +64,6 @@ function formatSelectedPOI(name, cat, lat, lng, elementId) {
         "Remove" + '</button>'
 
     formattedElement = lat + "," + lng;
-    console.log(formattedElement);
     var buttonIso = '<button type="button" class="selectionButton" onclick="addIsochroneToMapRaw(' + formattedElement + ')">' +
         "Show Reach" + '</button>'
 
