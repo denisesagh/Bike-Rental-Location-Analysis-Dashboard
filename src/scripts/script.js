@@ -59,12 +59,14 @@ function handleUIState() {
     if (hidemenu === true) {
         document.getElementById("menu").style.background = "transparent";
         divbuttons.style.display = "none";
+        divcheckboxPoi.style.visibility = "hidden";
         menu = 0;
         showmenu(0);
         hidemenu = false;
     } else {
         document.getElementById("menu").style.background = "grey";
         divbuttons.style.display = "block";
+        divcheckboxPoi.style.visibility = "";
         showmenu(menu);
         hidemenu = true;
         radiusbuttons(0);
@@ -188,15 +190,34 @@ function searchround() {
 
 var source = document.getElementById('source21');
 
+///*
+var checkboxcheck = document.getElementsByClassName("checkboxcheck");
+for (var i = 0; i < checkboxcheck.length; i++) {
+    checkboxcheck[i].style.pointerEvents = "none";// depending on what you're doing
+}
 
+//*/
 var searchinput = "";
 var onSearchInput = function (e) {
     //console.log(searchinput)
     searchinput = document.getElementById('source21').value;
+    var checkboxcheck = document.getElementsByClassName("checkboxcheck");
     if (searchinput === "") {
         search = false
         searchround();
+        document.getElementById("checkboxPoi").disabled = false;
+        for (var i = 0; i < checkboxcheck.length; i++) {
+            checkboxcheck[i].style.pointerEvents = "none";// depending on what you're doing
+        }
+        console.log("enabled")
+        //checkboxcheck
     } else {
+        document.getElementById("checkboxPoi").disabled = true;
+        for (var i = 0; i < checkboxcheck.length; i++) {
+
+            checkboxcheck[i].style.pointerEvents = "none";// depending on what you're doing
+        }
+        console.log("disabled")
         //TODO: SQL in PHP auslegen, sicherheitsgefahr KRITISCH!
         $.ajax({
             url: "../php/PoiSearchCollector.php",
@@ -227,6 +248,12 @@ var onSearchInput = function (e) {
         hidemenu = true;
         handleUIState();
         searchround();
+
+        document.getElementById("checkboxPoi").disabled = true;
+        for (var i = 0; i < checkboxcheck.length; i++) {
+
+            checkboxcheck[i].style.pointerEvents = "none";// depending on what you're doing
+        }
     }
 
 }

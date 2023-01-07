@@ -67,6 +67,8 @@ function checkUser(userID){
 
 function loadMarkers(value) {
 
+
+
     var Box = map.getBounds();
     let MapBounds = Box.toBBoxString().split(/[,]/);
 
