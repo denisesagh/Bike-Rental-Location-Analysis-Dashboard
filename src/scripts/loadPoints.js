@@ -74,11 +74,10 @@ function loadMarkers(value) {
     let userID = checkUser();
 
 
-    if (filterArray.length === 0) {
-        filterArray = ["showAll"];
+    if (filterArray.length !== 0) {
         ajaxloadData(MapBounds[0], MapBounds[2], MapBounds[1], MapBounds[3], userID, filterArray);
-    } else {
-        ajaxloadData(MapBounds[0], MapBounds[2], MapBounds[1], MapBounds[3], userID, filterArray);
+    }else {
+        clearMap();
     }
 
 }
@@ -118,11 +117,16 @@ var myRenderer = L.canvas({padding: 0.5});
 function placeMarkersInBounds(myData, limit) {
     let markerCounter = 0;
 
+    /*
     if (markerLayer == null) {
         markerLayer = L.layerGroup();
     } else {
         markerLayer.clearLayers();
     }
+
+
+     */
+    clearMap();
 
     myData.forEach(element => {
 
@@ -140,6 +144,14 @@ function placeMarkersInBounds(myData, limit) {
     });
 
     map.addLayer(markerLayer);
+}
+
+function clearMap(){
+    if (markerLayer == null) {
+        markerLayer = L.layerGroup();
+    } else {
+        markerLayer.clearLayers();
+    }
 }
 
 function onClick() {
