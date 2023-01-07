@@ -28,6 +28,7 @@ class BykeChrone {
         isochrone = this.isochrone;
         this.isochrone.callApi();
         this.isochrone.addTo(this.map);
+        map.setView(this.poi, 12);
     }
 
     removeIsochrone() {

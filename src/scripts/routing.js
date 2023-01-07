@@ -26,7 +26,7 @@ class BykeRoute {
                     {color: '#60a175', opacity: 0.8, weight: 2, dashArray: '7,12'}]
             },
             createMarker: function (i, waypoint, n) {
-                const marker = L.marker(waypoint.latLng, {
+                return L.marker(waypoint.latLng, {
                     draggable: false,
                     bounceOnAdd: false,
                     bounceOnAddOptions: {
@@ -43,7 +43,6 @@ class BykeRoute {
                     }),
                     opacity: 0.85,
                 });
-                return marker;
             },
             show: false,
             collapsible: false

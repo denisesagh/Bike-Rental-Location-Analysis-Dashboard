@@ -15,7 +15,6 @@ function addRouteToMap(type, start, destination) {
         document.getElementById("infosmenuzwei").innerHTML = "<br>" + parseFloat(distance / 1000).toFixed(2) + "km / "
             + parseFloat(time / 60).toFixed(2) + "min<br><br>";
     });
-
 }
 
 function removeRouteFromMap() {
