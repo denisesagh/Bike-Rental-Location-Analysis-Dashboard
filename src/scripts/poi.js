@@ -92,28 +92,28 @@ function removeSelectedPOI(elementId) {
 function formatWithCategoryIcon(text, cat) {
     switch (cat) {
         case "Gastronomie":
-            return "<label for=\"myCheck1\"><i class=\"fa-solid fa-utensils iconcheck\"></i>" + text + "</label>";
+            return "<i class=\"fa-solid fa-utensils iconcheck\"></i>" + text;
         case "Öffentlich":
-            return "<label for=\"myCheck2\"><i class=\"fa-solid fa-building iconcheck\" ></i>" + text + "</label>";
+            return "<i class=\"fa-solid fa-building iconcheck\" ></i>" + text;
         case "Freizeit":
-            return "<label for=\"myCheck3\"><i class=\"fa-solid fa-futbol iconcheck\"></i>" + text + "</label>";
+            return "<i class=\"fa-solid fa-futbol iconcheck\"></i>" + text;
         case "Bildung":
-            return "<label for=\"myCheck3\"><i class=\"fa-solid fa-book\"></i>" + text + "</label>";
+            return "<i class=\"fa-solid fa-book\"></i>" + text;
         case "Lebensmittel":
-            return "<label for=\"myCheck3\"><i class=\"fa-solid fa-carrot\"></i>" + text + "</label>";
+            return "<i class=\"fa-solid fa-carrot\"></i>" + text;
         case "Dienstleistung":
-            return "<label for=\"myCheck3\"><i class=\"fa-solid fa-bell-concierge\"></i>" + text + "</label>";
+            return "<i class=\"fa-solid fa-bell-concierge\"></i>" + text;
         case "Finanzwesen":
-            return "<label for=\"myCheck3\"><i class=\"fa-solid fa-money-bill\"></i>" + text + "</label>";
+            return "<i class=\"fa-solid fa-money-bill\"></i>" + text;
         case "Gesundheit":
-            return "<label for=\"myCheck3\"><i class=\"fa-solid fa-house-medical\"></i>" + text + "</label>";
+            return "<i class=\"fa-solid fa-house-medical\"></i>" + text;
         case "Shopping":
-            return "<label for=\"myCheck3\"><i class=\"fa-solid fa-cart-shopping\"></i>" + text + "</label>";
+            return "<i class=\"fa-solid fa-cart-shopping\"></i>" + text;
         case "Religion":
-            return "<label for=\"myCheck3\"><i class=\"fa-solid fa-cross\"></i>" + text + "</label>";
+            return "<i class=\"fa-solid fa-cross\"></i>" + text;
         case "Fahrradstation":
-            return "<label for=\"myCheck1\" class=\"textcheck\"><i class=\"fa-solid fa-bicycle iconcheck\"></i>" + text + "</label>";
+            return "<i class=\"fa-solid fa-bicycle iconcheck\"></i>" + text;
         default:
-            return "<label for=\"myCheck3\"><i class=\"fa-solid fa-minus\"></i>" + text + "</label>";
+            return "<i class=\"fa-solid fa-minus\"></i>" + text;
     }
 }
