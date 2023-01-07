@@ -1,6 +1,6 @@
 var username;
 var loginStatus = "not logged";
-var current_user_id = 0;
+var current_user_id = -1;
 
 //user_login_logout.style.display = "none";
 
@@ -43,8 +43,12 @@ async function isLogged() {
                 loginStatus = "logged";
                 let user_id = result.id;
                 ShowUserLoggedStatus(user_id, loginStatus);
-                document.getElementById("myCheck9").checked = true;
-                loadMarkers("Persönliche");
+
+                if(!document.getElementById('myCheck9').checked){
+                    document.getElementById("myCheck9").checked = true;
+                    loadMarkers("Persönliche");
+                }
+
 
             },
             error: function (xhr, ajaxOptions, thrownError) {
