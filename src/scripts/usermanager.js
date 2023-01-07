@@ -1,6 +1,6 @@
 var username;
 var loginStatus = "not logged";
-var current_user_id;
+var current_user_id = 0;
 
 //user_login_logout.style.display = "none";
 
