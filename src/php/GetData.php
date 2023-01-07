@@ -46,7 +46,7 @@ foreach ($tables as $table) {
     }
 }
 
-
+shuffle($PointsArray);
 
 //return Arrays
 mysqli_close ($verbindung);
