@@ -167,6 +167,30 @@
     background-color: rgba(25, 25, 25, 0.8);
 }
 
+.selectionButton {
+    font-family: Helvetica;
+    font-size: 18px;
+
+    transition: .3s all ease-in-out;
+    color: black;
+    background-color: white;
+    border: #191919 solid 0px;
+    margin: 2px;
+    border-radius: 25px;
+    justify-content: right;
+
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.selectionButton:hover{
+    transition: .3s all ease-in-out;
+    color: white;
+    background-color: rgba(25, 25, 25, 0.8);
+}
+
 
 #search_recomendations {
     font-family: Helvetica;

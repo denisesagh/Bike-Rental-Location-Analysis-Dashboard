@@ -66,6 +66,7 @@ class BykeRoute {
                         context.target = coords;
                         context.createRoute();
                     }
+                    context.updateData();
                 },
                 error: function (thrownError) {
                     console.log(thrownError.responseText);
@@ -79,6 +80,15 @@ class BykeRoute {
             this.map.removeControl(this.route);
             this.route = null;
         }
+    }
+
+    updateData(){
+        this.route.on('routesfound', function (e) {
+            let distance = e.routes[0].summary.totalDistance;
+            let time = e.routes[0].summary.totalTime;
+            document.getElementById("infosmenuzwei").innerHTML = "<br>" + parseFloat(distance / 1000).toFixed(2) + "km / "
+                + parseFloat(time / 60).toFixed(2) + "min<br><br>";
+        });
     }
 
     showPlan() {

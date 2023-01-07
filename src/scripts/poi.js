@@ -54,14 +54,18 @@ function addToSelectedPOIs(name, cat, lat, lng) {
 
 function formatSelectedPOI(name, cat, lat, lng, elementId) {
     var body = document.createElement("p");
-    body.innerHTML += formatWithCategoryIcon("  " + shortenName(name, 20), cat);
+    if(cat === "Fahrradstation") {
+        body.innerHTML += formatWithCategoryIcon("  " + shortenName(name, 15), cat);
+    } else {
+        body.innerHTML += formatWithCategoryIcon("  " + shortenName(name, 20), cat);
+    }
     var formattedElement = "\'" + elementId + "\'";
-    var buttonRemove = '<button type="button" class="searchButton" onclick="removeSelectedPOI(' + formattedElement + ')">' +
+    var buttonRemove = '<button type="button" class="selectionButton" onclick="removeSelectedPOI(' + formattedElement + ')">' +
         "Remove" + '</button>'
 
     formattedElement = lat + "," + lng;
     console.log(formattedElement);
-    var buttonIso = '<button type="button" class="searchButton" onclick="addIsochroneToMapRaw(' + formattedElement + ')">' +
+    var buttonIso = '<button type="button" class="selectionButton" onclick="addIsochroneToMapRaw(' + formattedElement + ')">' +
         "Show Reach" + '</button>'
 
     if(cat === "Fahrradstation") {
@@ -70,8 +74,8 @@ function formatSelectedPOI(name, cat, lat, lng, elementId) {
         } else {
             formattedElement = lat + "," + lng + "," + 1;
         }
-        var buttonUpdate = '<button type="button" class="searchButton" onclick="updateRouteOnMap(' + formattedElement + ')">' +
-            "Sim" + '</button>'
+        var buttonUpdate = '<button type="button" class="selectionButton" onclick="updateRouteOnMap(' + formattedElement + ')">' +
+            "<i class=\"fa-solid fa-route\"></i>" + '</button>'
         body.innerHTML += buttonUpdate;
     }
 
