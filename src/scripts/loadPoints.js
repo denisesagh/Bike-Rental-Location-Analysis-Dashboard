@@ -45,9 +45,7 @@ lightmode();
 function checkFilterSelected(value) {
 
         if(!filterArray.includes(value)){
-            console.log(value);
             filterArray.push(value);
-            console.log(filterArray);
         }else {
             filterArray = filterArray.filter(e => e !== value);
         }

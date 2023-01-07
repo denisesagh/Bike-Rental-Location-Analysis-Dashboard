@@ -24,7 +24,6 @@ async function isLogged() {
     username = document.querySelector("body > div.user_login_window > div > label > input:nth-child(1)").value;
     let password = document.querySelector("body > div.user_login_window > div > label > input:nth-child(2)").value;
     let hashedPassword = await sha256(password);
-    console.log(username);
     //alert (hashedPassword);
     //PHP-Datei muss in htdocs liegen
     try {
@@ -68,7 +67,6 @@ async function isLogged() {
 
 function ShowUserLoggedStatus(user_id, loginStatus) {
     if (loginStatus === "logged") {
-        console.log("User with id " + user_id + " is logged"); //USER ID!!!!!!!!!
         current_user_id = user_id;
         document.querySelector("#user_login_logout").style.display = "block";
         //document.querySelector("#user_login_logout").style.display = "block";

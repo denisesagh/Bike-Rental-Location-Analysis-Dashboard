@@ -58,7 +58,6 @@ class BykeRoute {
                 },
                 success: function (json) {
                     var coords = L.latLng(json[1].lat, json[1].lng);
-                    console.log(coords + " " + context.source + " " + context.target);
                     if (selected === 0) {
                         context.source = coords;
                         context.createRoute();
