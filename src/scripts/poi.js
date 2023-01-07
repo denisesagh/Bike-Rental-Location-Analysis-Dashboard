@@ -5,12 +5,6 @@ class POI {
         lng: 0.0,
         lat: 0.0,
         user_id: 0,
-
-        markerBtn1: null,
-        markerBtn2: null,
-        markerBtn3: null,
-
-        searchBtnClick: null
     }
 
     searchButton = null;
@@ -18,10 +12,6 @@ class POI {
     constructor(params) {
         this.params = params;
         this.searchButton = this.createButton(this.params.name);
-    }
-
-    createMarker() {
-
     }
 
     createButton(name) {

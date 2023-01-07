@@ -16,14 +16,14 @@ class BykeChrone {
             apiKey: API_KEY,
             travelMode: this.type,
             poi: this.poi,
-            smoothing: 25,
+            smoothing: 10,
             rangeType: "distance",
             rangeValue: this.range,
             rangeInterval: this.range / 5,
-            styleFn: styleIsolines,
-            mouseOverFn: highlightIsolines,
-            mouseOutFn: resetIsolines,
-            clickFn: clickIsolines,
+            styleEvnt: styleIsolines,
+            mouseOverEvnt: highlightIsolines,
+            mouseOutEvnt: resetIsolines,
+            clickEvnt: clickIsolines,
         });
         isochrone = this.isochrone;
         this.isochrone.callApi();
@@ -34,22 +34,17 @@ class BykeChrone {
     removeIsochrone() {
         if (this.isochrone != null) {
             this.isochrone.onRemove();
-            //this.map.removeControl(this.isochrone);
         }
     }
-
-
 }
 
 function resetIsolines(e) {
-    // NOTE: as shown in the examples on the Leaflet website, e.target = the layer the user is interacting with
     var layer = e.target;
 
     isochrone.lastIso.resetStyle(layer);
 }
 
 function styleIsolines(feature) {
-    // NOTE: You can do some conditional styling by reading the properties of the feature parameter passed to the function
     return {
         color: '#567272',
         opacity: 0.4,
@@ -57,9 +52,7 @@ function styleIsolines(feature) {
     };
 }
 
-// Example function to style the isoline polygons when the user hovers over them
 function highlightIsolines(e) {
-    // NOTE: as shown in the examples on the Leaflet website, e.target = the layer the user is interacting with
     var layer = e.target;
 
     layer.setStyle({
@@ -70,12 +63,7 @@ function highlightIsolines(e) {
     });
 }
 
-// Example function to reset the style of the isoline polygons when the user stops hovering over them
-
-
-// Example function to display information about an isoline in a popup when the user clicks on it
 function clickIsolines(e) {
-    // NOTE: as shown in the examples on the Leaflet website, e.target = the layer the user is interacting with
     var layer = e.target;
     var props = layer.feature.properties;
     var popupContent = 'Mode of travel: ' + props['Travel mode'] + '<br />Range: 0 - ' + props['Range'] + ' ' + 'km' + '<br />Population: ' + props['Population'];

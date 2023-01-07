@@ -197,13 +197,13 @@ var onSearchInput = function (e) {
         search = false
         searchround();
     } else {
-        //TODO: SQL in PHP auslegen, sicherheitsgefahr KRITISCH!
         $.ajax({
             url: "../php/PoiSearchCollector.php",
             type: "post",
             dataType: 'json',
             data: {
-                input: searchinput
+                input: searchinput,
+                uid: current_user_id
             },
             success: function (json) {
                 document.getElementById("search_recomendations").innerHTML = "";

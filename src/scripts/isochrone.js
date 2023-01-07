@@ -1,12 +1,3 @@
-String.prototype.format = function () {
-    var args = arguments;
-    return this.replace(/{(\d+)}/g, function (match, number) {
-        return typeof args[number] != 'undefined'
-            ? args[number]
-            : match;
-    });
-};
-
 L.Control.Isochrone = L.Control.extend({
     options: {
         position: 'topleft',
@@ -22,11 +13,10 @@ L.Control.Isochrone = L.Control.extend({
         smoothing: 0,
         attributes: '"area","reachfactor","total_pop"',
 
-        //function calls
-        styleFn: null,
-        mouseOverFn: null,
-        mouseOutFn: null,
-        clickFn: null,
+        styleEvnt: null,
+        mouseOverEvnt: null,
+        mouseOutEvnt: null,
+        clickEvnt: null,
 
         showOriginMarker: true,
         markerFn: null
@@ -87,19 +77,18 @@ L.Control.Isochrone = L.Control.extend({
                             data.features[i].properties = newProps;
                         }
 
-                        context.lastIso = L.geoJSON(data, {style: context.options.styleFn});
+                        context.lastIso = L.geoJSON(data, {style: context.options.styleEvnt});
 
                         context.lastIso.eachLayer(function (layer) {
-                            // Iterate through each layer adding events if applicable
                             layer.on({
                                 mouseover: (function (e) {
-                                    if (context.options.mouseOverFn != null) context.options.mouseOverFn(e)
+                                    if (context.options.mouseOverEvnt != null) context.options.mouseOverEvnt(e)
                                 }),
                                 mouseout: (function (e) {
-                                    if (context.options.mouseOutFn != null) context.options.mouseOutFn(e)
+                                    if (context.options.mouseOutEvnt != null) context.options.mouseOutEvnt(e)
                                 }),
                                 click: (function (e) {
-                                    if (context.options.clickFn != null) context.options.clickFn(e);
+                                    if (context.options.clickEvnt != null) context.options.clickEvnt(e);
                                 })
                             });
                         });
@@ -109,7 +98,6 @@ L.Control.Isochrone = L.Control.extend({
                             if (context.options.markerFn != null) {
                                 originMarker = context.options.markerFn(context.options.poi, context.options.travelMode, context.options.rangeType);
                             } else {
-                                // Create a default marker for the origin of the isolines group
                                 originMarker = L.circleMarker(context.options.poi, {
                                     radius: 3,
                                     weight: 0,
@@ -117,11 +105,9 @@ L.Control.Isochrone = L.Control.extend({
                                     fillOpacity: 1
                                 });
                             }
-                            // Add the marker to the isolines GeoJSON
                             originMarker.addTo(context.lastIso);
                         }
                         context.lastIso.addTo(context.groupIso);
-                        // Add the isolines GeoJSON FeatureGroup to the map if it isn't already
                         if (!context._map.hasLayer(context.groupIso)) context.groupIso.addTo(context._map);
                     }
                 }
