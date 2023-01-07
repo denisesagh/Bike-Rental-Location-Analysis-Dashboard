@@ -1,4 +1,5 @@
 let filterArray = [];
+let CustomArray = [];
 
 var map = L.map('map', {
     zoomControl: false,
@@ -12,7 +13,6 @@ map.on('load',  function () {
 });
 
 map.setView([53.605544099238, 9.992752075195314], 15);
-
 function lightmode() {
 
     var osmUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
@@ -28,9 +28,11 @@ function lightmode() {
 }
 
 map.on('moveend', function () {
-    if(!(document.getElementById('myonoffswitch').checked && document.getElementById('myCheck0').checked)){
+
+    if(!(document.getElementById('myonoffswitch').checked && document.getElementById('myCheck0').checked) && !(document.getElementById('myonoffswitch').checked && !document.getElementById('myCheck0').checked)){
         loadMarkers();
     }
+    loadNextThreeBikeStations(CustomArray[0], CustomArray[1]);
 });
 
 var Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
@@ -53,29 +55,22 @@ function checkFilterSelected(value) {
     return filterArray;
 }
 
-function checkUser(userID){
-    if(loginStatus === "logged"){
-        userID = current_user_id;
-        console.log(userID);
-        console.log("User id übergeben");
-    }else {
-        userID = 0;
-        console.log("Keine User id übergeben");
-    }
-    return userID;
+function getFilterArray(){
+    return filterArray;
 }
 
+function getMapBounds(){
+    var Box = map.getBounds();
+    return Box.toBBoxString().split(/[,]/);
+}
 function loadMarkers(value) {
 
-    var Box = map.getBounds();
-    let MapBounds = Box.toBBoxString().split(/[,]/);
-
+    let MapBounds = getMapBounds();
     let filterArray = checkFilterSelected(value);
-    let userID = checkUser();
 
 
     if (filterArray.length !== 0) {
-        ajaxloadData(MapBounds[0], MapBounds[2], MapBounds[1], MapBounds[3], userID, filterArray);
+        ajaxloadData(MapBounds[0], MapBounds[2], MapBounds[1], MapBounds[3], current_user_id, filterArray);
     }else {
         clearMap();
     }
@@ -116,18 +111,7 @@ var myRenderer = L.canvas({padding: 0.5});
 
 function placeMarkersInBounds(myData, limit) {
     let markerCounter = 0;
-
-    /*
-    if (markerLayer == null) {
-        markerLayer = L.layerGroup();
-    } else {
-        markerLayer.clearLayers();
-    }
-
-
-     */
     clearMap();
-
     myData.forEach(element => {
 
         marker = new L.circleMarker([element.long, element.lat], {
@@ -154,13 +138,7 @@ function clearMap(){
     }
 }
 
-function onClick() {
-    const coordinates = this.getLatLng().toString().split(/([1-9]\d*(\.|\,)\d*|0?(\.|\,)\d*[1-9]\d*|[1-9]\d*)/);
-
-    let latitude = coordinates[1];
-    let longitude = coordinates[5];
-    console.log(latitude, longitude);
-
+function loadNextThreePOIS(latitude, longitude){
     if(document.getElementById('myonoffswitch').checked && document.getElementById('myCheck0').checked){
         try {
             $.ajax({
@@ -180,6 +158,49 @@ function onClick() {
             console.log(e);
         }
     }
+}
+
+function loadNextThreeBikeStations(latitude, longitude){
+    if(document.getElementById('myonoffswitch').checked && !document.getElementById('myCheck0').checked){
+        let MapBounds = getMapBounds();
+
+        try {
+            $.ajax({
+                type: 'GET',
+                url: ('../php/GetNextThreeBikeStations.php'),
+                dataType: 'json',
+                data: {
+                    lat1: MapBounds[0],
+                    lat2: MapBounds[2],
+                    long1: MapBounds[1],
+                    long2: MapBounds[3],
+                    latPOI: latitude,
+                    longPOI: longitude,
+                    kategorie: getFilterArray()
+                },
+                error: ajaxLoadMHSError,
+                success: function (result) {
+                    placeMarkersInBounds(result, 1000);
+                }
+            })
+        }catch (e){
+            console.log(e);
+        }
+    }
+}
+
+function onClick() {
+    const coordinates = this.getLatLng().toString().split(/([1-9]\d*(\.|\,)\d*|0?(\.|\,)\d*[1-9]\d*|[1-9]\d*)/);
+
+    let latitude = coordinates[1];
+    let longitude = coordinates[5];
+
+    CustomArray = [];
+    CustomArray.push(latitude);
+    CustomArray.push(longitude);
+
+    loadNextThreePOIS(latitude, longitude);
+    loadNextThreeBikeStations(latitude, longitude);
 
 
 
