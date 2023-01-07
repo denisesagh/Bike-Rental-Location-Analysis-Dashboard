@@ -43,6 +43,37 @@ class BykeRoute {
         this.route.addTo(this.map);
     }
 
+    updateRoute(lat, lng, selected) {
+        if(this.route != null) {
+            var context = this;
+            this.removeRoute();
+            $.ajax({
+                context: context,
+                url: "../php/GetFallbackStation.php",
+                type: "get",
+                dataType: 'json',
+                data: {
+                    latitude: lat,
+                    longitude: lng
+                },
+                success: function (json) {
+                    var coords = L.latLng(json[1].lat, json[1].lng);
+                    console.log(coords + " " + context.source + " " + context.target);
+                    if (selected === 0) {
+                        context.source = coords;
+                        context.createRoute();
+                    } else {
+                        context.target = coords;
+                        context.createRoute();
+                    }
+                },
+                error: function (thrownError) {
+                    console.log(thrownError.responseText);
+                }
+            });
+        }
+    }
+
     removeRoute() {
         if (route != null) {
             this.map.removeControl(this.route);
