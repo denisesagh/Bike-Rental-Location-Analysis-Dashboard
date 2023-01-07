@@ -80,6 +80,9 @@
         </div>
     </div>
     <div class="box eins" id="checkboxPoi">
+        <input type="checkbox" class="checkboxcheck" id="myCheck10" onchange=loadMarkers('showAll')>
+        <label for="myCheck3"><i class="fa-brands fa-slack"></i> Alle Marker</label><br>
+
         <input type="checkbox" class="checkboxcheck" id="myCheck0" onclick=loadMarkers("Fahrradstation") >
         <label for="myCheck1" class="textcheck"><i class="fa-solid fa-bicycle iconcheck"></i> Fahrradstationen</label><br>
 
@@ -110,10 +113,8 @@
         <label for="myCheck3"><i class="fa-solid fa-minus"></i> Sonstige</label><br>
 
         <input type="checkbox" class="checkboxcheck" id="myCheck9" onchange=loadMarkers('Persönliche')>
-        <label for="myCheck3"><i class="fa-regular fa-user"></i> User</label><br>
+        <label for="myCheck3"><i class="fa-regular fa-user"></i> User</label>
 
-        <input type="checkbox" class="checkboxcheck" id="myCheck10" onchange=loadMarkers('All')>
-        <label for="myCheck3"><i class="fa-brands fa-slack"></i> Alle Marker</label>
 
 
         <div class="buttonaddpoi">
