@@ -68,5 +68,8 @@ html, body {
 
 
 .infos{
+    font-family: Helvetica;
+    color: #191919;
+    font-size: 18px;
     text-align: center;
 }

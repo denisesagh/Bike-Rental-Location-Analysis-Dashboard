@@ -292,10 +292,11 @@ function sliderbuttons(radiusmenu) {
 }
 
 var isoradius = 5000;
+document.getElementById("infosmenudrei").innerHTML = (isoradius / 1000) + "km";
 var slider = document.getElementById("myRange");
 slider.oninput = function () {
     isoradius = 100 * this.value
-    console.log(isoradius)
+    document.getElementById("infosmenudrei").innerHTML = (isoradius / 1000) + "km";
 }
 
 map.on('click', function (e) {
