@@ -144,6 +144,7 @@ function buttonpressed(menu) {
 
 //TODO: get rid of this or add relevant functionality
 function radiusbuttons(value) {
+    routingtype = value;
     buttonpressedRadius(value);
 }
 

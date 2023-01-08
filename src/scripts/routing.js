@@ -1,4 +1,6 @@
 var OSRM_URL = "https://router.project-osrm.org/route/v1";
+var OSRM_BIKE = "https://routing.openstreetmap.de/routed-bike/route/v1";
+var OSRM_FOOT = "https://routing.openstreetmap.de/routed-foot/route/v1";
 
 class BykeRoute {
     route;
@@ -44,7 +46,7 @@ class BykeRoute {
     }
 
     updateRoute(lat, lng, selected) {
-        if(this.route != null) {
+        if (this.route != null) {
             var context = this;
             this.removeRoute();
             $.ajax({
@@ -81,12 +83,13 @@ class BykeRoute {
         }
     }
 
-    updateData(){
+    updateData() {
         this.route.on('routesfound', function (e) {
             let distance = e.routes[0].summary.totalDistance;
             let time = e.routes[0].summary.totalTime;
+            let calc = calculateTime(time, distance);
             document.getElementById("infosmenuzwei").innerHTML = "<br>" + parseFloat(distance / 1000).toFixed(2) + "km / "
-                + parseFloat(time / 60).toFixed(2) + "min<br><br>";
+                + parseFloat(calc / 60).toFixed(2) + "min<br><br>";
         });
     }
 
@@ -96,5 +99,18 @@ class BykeRoute {
 
     hidePlan() {
         this.route.hide();
+    }
+}
+
+function calculateTime(time, distance) {
+    console.log(time+ " " + distance + " " + routingtype)
+    if (routingtype === 3) {
+        return time;
+    } else if (routingtype === 2) {
+        return distance / 2.5;
+    } else if (routingtype === 1) {
+        return distance / 1.2;
+    } else {
+        return time;
     }
 }
